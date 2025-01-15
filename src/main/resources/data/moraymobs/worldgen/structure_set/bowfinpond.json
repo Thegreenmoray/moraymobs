@@ -1,0 +1,18 @@
+{"structures": [
+{
+"structure": "moraymobs:bowfinpond",
+"weight": 1
+}
+],
+"placement": {
+"type": "minecraft:random_spread",
+
+"salt": 568443481,
+
+
+"spacing": 20,
+
+
+"separation": 10
+}
+}

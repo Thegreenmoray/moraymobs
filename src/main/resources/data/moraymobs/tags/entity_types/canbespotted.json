@@ -1,0 +1,18 @@
+{
+  "__comment": "Entities lit up by basalt lamp",
+  "values": [
+    "minecraft:wither_skeleton",
+    "minecraft:evoker",
+    "minecraft:enderman",
+    "minecraft:blaze",
+    "minecraft:elder_guardian",
+    "minecraft:ravager",
+    "minecraft:witch",
+    "minecraft:wither"
+  ]
+
+
+
+
+
+}

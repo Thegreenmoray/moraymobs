@@ -1,0 +1,10 @@
+{
+ "__comment": "Enities that can spawn bodysnatchers on death",
+  "values": [
+    "minecraft:zombie",
+    "minecraft:enderman",
+    "minecraft:villager",
+    "minecraft:husk",
+    "minecraft:drowned"
+  ]
+}

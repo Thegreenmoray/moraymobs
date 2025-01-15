@@ -1,0 +1,64 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 1.5,
+				"visible_bounds_offset": [0, 0.25, 0]
+			},
+			"bones": [
+				{
+					"name": "whole",
+					"pivot": [-1, 2, 6],
+					"rotation": [90, 0, 0]
+				},
+				{
+					"name": "handle",
+					"parent": "whole",
+					"pivot": [0, 1, 6],
+					"cubes": [
+						{"origin": [-1, 3, 6], "size": [1, 3, 2], "uv": [9, 11]}
+					]
+				},
+				{
+					"name": "whipline4",
+					"parent": "whole",
+					"pivot": [-1, 3, 9],
+					"cubes": [
+						{"origin": [-1, 2.47011, 6.21556], "size": [1, 3, 1], "pivot": [-1, 5.62812, 4.83486], "rotation": [90, 0, 0], "uv": [8, 1]},
+						{"origin": [-1, 8, 4], "size": [1, 0, 1], "uv": [12, 5]},
+						{"origin": [-1, 7, 4], "size": [1, 0, 1], "uv": [12, 5]}
+					]
+				},
+				{
+					"name": "whipline3",
+					"parent": "whole",
+					"pivot": [-1, 8, 7],
+					"cubes": [
+						{"origin": [-1, 5.60549, -2.3656], "size": [1, 4, 1], "pivot": [-1, 6.29198, 2.85136], "rotation": [-122.5, 0, 0], "uv": [8, 1]}
+					]
+				},
+				{
+					"name": "whipline2",
+					"parent": "whole",
+					"pivot": [-0.5, 7.98205, 4.56699],
+					"cubes": [
+						{"origin": [-1, 6.4641, 2.26795], "size": [1, 4, 1], "pivot": [-1, 6.4641, 3.26795], "rotation": [-30, 0, 0], "uv": [2, 1]}
+					]
+				},
+				{
+					"name": "whipline",
+					"parent": "whole",
+					"pivot": [-1, 8, 6],
+					"cubes": [
+						{"origin": [-1, 7, 7], "size": [1, 5, 1], "pivot": [-1, 7, 8], "rotation": [90, 0, 0], "uv": [2, 10]}
+					]
+				}
+			]
+		}
+	]
+}

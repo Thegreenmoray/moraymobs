@@ -1,0 +1,17 @@
+{"type": "forge:add_spawns",
+"biomes": [
+"minecraft:forest",
+  "minecraft:birch_forest",
+  "minecraft:dark_forest",
+  "minecraft:taiga",
+  "minecraft:old_growth_spruce_taiga",
+  "minecraft:old_growth_pine_taiga",
+  "minecraft:old_growth_birch_forest",
+  "minecraft:flower_forest"
+],
+"spawners": {
+"type": "moraymobs:opossum",
+  "maxCount": 2,
+  "minCount": 1,
+  "weight": 40
+}}

@@ -1,0 +1,11 @@
+{"type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:plains"
+
+  ],
+  "spawners": {
+    "type": "moraymobs:pronghorn",
+    "maxCount": 4,
+    "minCount": 2,
+    "weight": 50
+  }}

@@ -1,0 +1,51 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.soul.spin": {
+			"loop": true,
+			"animation_length": 0.9115,
+			"bones": {
+				"ring": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.1302": {
+							"vector": [0, 60, 0],
+							"easing": "linear"
+						},
+						"0.2604": {
+							"vector": [0, 120, 0],
+							"easing": "linear"
+						},
+						"0.3906": {
+							"vector": [0, 180, 0],
+							"easing": "linear"
+						},
+						"0.5208": {
+							"vector": [0, 250, 0],
+							"easing": "linear"
+						},
+						"0.651": {
+							"vector": [0, 280, 0],
+							"easing": "linear"
+						},
+						"0.7813": {
+							"vector": [0, 320, 0],
+							"easing": "linear"
+						},
+						"0.9115": {
+							"vector": [0, 360, 0],
+							"easing": "linear"
+						}
+					},
+					"position": {
+						"vector": [0, 0, -0.25],
+						"easing": "linear"
+					}
+				}
+			}
+		}
+	}
+}
