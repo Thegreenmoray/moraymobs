@@ -4,6 +4,9 @@ import com.moray.moraymobs.entity.projectiles.Stunwave;
 import com.moray.moraymobs.rendersandmodels.render.Stungunrender;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -19,6 +22,7 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class Stungun extends Item implements GeoItem {
@@ -29,10 +33,12 @@ public class Stungun extends Item implements GeoItem {
         super(pProperties);
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
-
-    public int getUseDuration(ItemStack pStack) {
+    @Override
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000;
     }
+
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
        if (pLevel instanceof ServerLevel serverLevel) {
@@ -44,32 +50,36 @@ public class Stungun extends Item implements GeoItem {
         return super.use(pLevel, pPlayer, pHand);
     }
 
+
     @Override
-    public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
-        int j = this.getUseDuration(pStack) - pTimeLeft;
+    public void releaseUsing(ItemStack stack, Level level, LivingEntity entityLiving, int timeLeft) {
+        if (entityLiving instanceof Player player) {
 
-        if (pEntityLiving instanceof Player player&&j>=20) {
-            if (!pLevel.isClientSide) {
-                Stunwave stunwave=new Stunwave(pLevel);
-                Vec3 vec= player.getViewVector(1);
-                stunwave.setPos(player.getX() + vec.x * 2.0, player.getY(0.33333) + 0.5, player.getZ() + vec.z * 2.0);
+                int j = this.getUseDuration(stack, entityLiving) - timeLeft;
 
-
-                stunwave.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.1f * 3.0F, 1.0F);
-                stunwave.setDeltaMovement(vec.normalize());
-
-                pStack.hurtAndBreak(1,pEntityLiving,player.getEquipmentSlotForItem(pStack));
+                if (j>=20) {
+                    if (!level.isClientSide) {
+                        Stunwave stunwave=new Stunwave(level);
+                        Vec3 vec= player.getViewVector(1);
+                        stunwave.setPos(player.getX() + vec.x * 2.0, player.getY(0.33333) + 0.5, player.getZ() + vec.z * 2.0);
 
 
-                this.triggerAnim(player, GeoItem.getOrAssignId(player.getItemInHand(player.getUsedItemHand()), (ServerLevel) pLevel),
-                        "BagController", "stunblast");
+                        stunwave.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.1f * 3.0F, 1.0F);
+                        stunwave.setDeltaMovement(vec.normalize());
+
+                        stack.hurtAndBreak(1,entityLiving,player.getEquipmentSlotForItem(stack));
 
 
-                pLevel.addFreshEntity(stunwave);
-            }
+                        this.triggerAnim(player, GeoItem.getOrAssignId(player.getItemInHand(player.getUsedItemHand()), (ServerLevel) level),
+                                "BagController", "stunblast");
+
+
+                        level.addFreshEntity(stunwave);
+
+
         }
+    }}}
 
-    }
 
     @Override
     public boolean isPerspectiveAware() {

@@ -69,7 +69,7 @@ public class MorayMobs
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
 
 
-        event.enqueueWork(()->{((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(Blockregistrires.END_CELSOSIA.getId(),Blockregistrires.END_CELSOSIA_POTTED);});
+      //  event.enqueueWork(()->{((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(Blockregistrires.END_CELSOSIA.getId(),Blockregistrires.END_CELSOSIA_POTTED);});
 
     }
 

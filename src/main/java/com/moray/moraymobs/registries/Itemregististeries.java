@@ -81,19 +81,19 @@ public class Itemregististeries {
             ()->new Item(new Item.Properties().stacksTo(64)));
 
     final public static DeferredItem<Item> BEETLE_HELMET=ITEM.register("beetlemask",()->new Beetlearmor(
-            Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL ,ArmorItem.Type.HELMET,new Item.Properties().fireResistant()));
+            Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL ,ArmorItem.Type.HELMET,new Item.Properties().fireResistant().stacksTo(1)));
 
     final public static DeferredItem<Item> BEETLE_CHESTPLATE=ITEM.register("beetlechestplate",
-            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,new Item.Properties().fireResistant()));
+            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,new Item.Properties().fireResistant().stacksTo(1)));
 
     final public static DeferredItem<Item> BEETLE_LEGGINGS=ITEM.register("beetleleggings",
-            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,new Item.Properties().fireResistant()));
+            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,new Item.Properties().fireResistant().stacksTo(1)));
 
     final public static DeferredItem<Item> BEETLE_BOOTS=ITEM.register("beetleboots",
-            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,new Item.Properties().fireResistant()));
+            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,new Item.Properties().fireResistant().stacksTo(1)));
 
     final public static DeferredItem<Item> EEL_WHIP=ITEM.register("eelwhip",
-            ()->new Eelwhip(Tiers.WOOD,new Item.Properties().attributes(Eelwhip.createAttributes(Tiers.WOOD,4,4)).durability(450)));
+            ()->new Eelwhip(Tiers.WOOD,new Item.Properties().attributes(Eelwhip.createAttributes(Tiers.WOOD,3f,4f)).durability(450)));
 
     final public static DeferredItem<Item> BASALT_CRYSTAL=ITEM.register("basalt_crystal",
             ()->new Cagedbasalitisk(new Item.Properties().stacksTo(64)));

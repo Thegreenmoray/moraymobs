@@ -1,9 +1,0 @@
-{"type": "forge:add_spawns",
-  "biomes":
-  "minecraft:warm_ocean",
-  "spawners": [{
-    "type": "moraymobs:threshershark",
-    "maxCount": 3,
-    "minCount": 1,
-    "weight": 50
-  }]}

@@ -11,6 +11,8 @@ import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
+import java.util.function.Supplier;
+
 public class MorayItemModelProvider extends ItemModelProvider {
     public MorayItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, MorayMobs.MODID, existingFileHelper);
@@ -41,8 +43,6 @@ withExistingParent(Itemregististeries.THRESHERSHARK_SPAWN_EGG.getId().getPath(),
    basicItem(Itemregististeries.PADDLEFISH_FOOD.get());
     basicItem(Itemregististeries.SOULJEWEL.get());
     basicItem(Itemregististeries.SOULBEADRING.get());
-//simpleItemblock(Blockregistrires.END_CELSOSIA);
-//simpleItemblock(Blockregistrires.END_GRASS);
 basicItem(Itemregististeries.END_SEED.get());
 basicItem(Itemregististeries.SHULKERBERRY.get());
 basicItem(Itemregististeries.RAW_BOWFIN.get());
@@ -52,15 +52,17 @@ basicItem(Itemregististeries.COOKED_PRONGHORN.get());
 basicItem(Itemregististeries.ANTLER.get());
 basicItem(Itemregististeries.MOSS.get());
 basicItem(Itemregististeries.BOTTLE_OF_SHOCK.get());
+//simpleItemblock(Blockregistrires.END_CELSOSIA);
+//simpleItemblock(Blockregistrires.END_GRASS);
     }
 
 
 
 
 
-  //  private ItemModelBuilder simpleItemblock(RegistryObject<Block> item) {
-    //    return withExistingParent(item.getId().getPath(),
-   //             new ResourceLocation("item/generated")).texture("layer0",
-    //            new ResourceLocation(MorayMobs.MODID,"block/" + item.getId().getPath()));
-   // }
+  // private ItemModelBuilder simpleItemblock(Supplier<Block> item) {
+ //   return withExistingParent(item.get().getDescriptionId(),
+ //             ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"item/generated")).texture("layer0",
+ //           ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"block/" + item.get().getDescriptionId()));
+// }
 }

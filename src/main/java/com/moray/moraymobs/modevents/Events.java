@@ -41,7 +41,7 @@ public class Events {
         event.register(Mobregistries.PADDLEFISH.get(),SpawnPlacementTypes.IN_LAVA,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,LavaPaddleFish::checkPaddlefishSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.SOULCATCHER.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Soulcatcher::checkMonsterSpawnruleschance, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.PRONGHORN.get(),SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Animal::checkAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
-   event.register(Mobregistries.THRESHER.get(),SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
+   event.register(Mobregistries.THRESHER.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 
 
@@ -104,7 +104,7 @@ event.put(Mobregistries.THRESHER.get(), Thresher_shark.createAttributes().build(
          LivingEntity entity = event.getEntity();
 
       boolean biol  = (entity.getType().is(MorayKeys.ASSIMILABLE));
-         if ((biol&&!entity.isBaby())||entity instanceof Player){
+         if ((biol&&!entity.isBaby())){
 
              int point = entity.level().random.nextInt(10);
 

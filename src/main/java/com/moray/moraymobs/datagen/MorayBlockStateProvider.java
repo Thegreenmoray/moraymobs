@@ -25,8 +25,8 @@ blockWithItem(Blockregistrires.BASALTLAMP);
 blockWithItem(Blockregistrires.BLOCK_OF_SCALES);
 simpleBlockWithItem(Blockregistrires.END_CELSOSIA.get(), models().cross(blockTexture(Blockregistrires.END_CELSOSIA.get()).getPath(),
                 blockTexture(Blockregistrires.END_CELSOSIA.get())).renderType("cutout"));
-        simpleBlockWithItem(Blockregistrires.END_CELSOSIA_POTTED.get(), models().singleTexture("potted_endercelosia", ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"flower_pot_cross"), "plant",
-                blockTexture(Blockregistrires.END_CELSOSIA.get())).renderType("cutout"));
+      //  simpleBlockWithItem(Blockregistrires.END_CELSOSIA_POTTED.get(), models().singleTexture("potted_endercelosia", ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"flower_pot_cross"), "plant",
+            //    blockTexture(Blockregistrires.END_CELSOSIA.get())).renderType("cutout"));
         simpleBlockWithItem(Blockregistrires.END_GRASS.get(),
                 models().cross(blockTexture(Blockregistrires.END_GRASS.get()).getPath(), blockTexture(Blockregistrires.END_GRASS.get())).renderType("cutout"));
         makeshulkerberryCrop((CropBlock) Blockregistrires.SHULKERFRUIT_CROP.get(), "shulkerberrycrop_stage", "shulkerberrycrop_stage");
