@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "$": {
+      "item": "moraymobs:soulbead"
+    },
+    "&": {
+      "item": "minecraft:soul_soil"
+    },
+    "*": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "*&*",
+    "&$&",
+    "*&*"
+  ],
+  "result": {
+    "count": 1,
+    "id": "moraymobs:soulbeamjewel"
+  }
+}

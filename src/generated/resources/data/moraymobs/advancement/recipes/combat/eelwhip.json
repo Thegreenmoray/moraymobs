@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_jawloose": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moraymobs:jawloose"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moraymobs:eelwhip"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_jawloose"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moraymobs:eelwhip"
+    ]
+  }
+}

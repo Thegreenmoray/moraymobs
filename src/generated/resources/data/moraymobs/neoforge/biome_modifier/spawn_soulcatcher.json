@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:soul_sand_valley",
+  "spawners": {
+    "type": "moraymobs:soulcatcher",
+    "maxCount": 3,
+    "minCount": 1,
+    "weight": 20
+  }
+}

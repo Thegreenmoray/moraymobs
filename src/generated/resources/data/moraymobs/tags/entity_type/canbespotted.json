@@ -1,0 +1,12 @@
+{
+  "values": [
+    "minecraft:evoker",
+    "minecraft:witch",
+    "minecraft:ravager",
+    "minecraft:enderman",
+    "minecraft:wither",
+    "minecraft:wither_skeleton",
+    "minecraft:blaze",
+    "minecraft:elder_guardian"
+  ]
+}

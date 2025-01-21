@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "%": {
+      "item": "moraymobs:glassofstunwave"
+    },
+    "*": {
+      "item": "minecraft:iron_ingot"
+    },
+    "@": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "pattern": [
+    "%@ ",
+    "@*@",
+    "  *"
+  ],
+  "result": {
+    "count": 1,
+    "id": "moraymobs:stungun3"
+  }
+}

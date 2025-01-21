@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "moraymobs:basalt_sanctuary",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+
+     "salt": 1634767092,
+
+    "spacing": 12,
+
+    "separation": 4
+  }
+}
