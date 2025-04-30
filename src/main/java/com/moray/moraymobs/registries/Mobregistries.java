@@ -67,7 +67,7 @@ public class Mobregistries {
                   .sized(1.5F,1.5F).build("pronghorn"));
 
   final public static Supplier<EntityType<Thresher_shark>> THRESHER=
-          ENTITY_TYPE.register("threshershark",()->EntityType.Builder.of(Thresher_shark::new, MobCategory.CREATURE)
+          ENTITY_TYPE.register("threshershark",()->EntityType.Builder.of(Thresher_shark::new, MobCategory.WATER_CREATURE)
                   .sized(1.5F,1F).build("threshershark"));
 
   final public static Supplier<EntityType<Stunwave>> STUNWAVE=

@@ -40,6 +40,7 @@ public class Events {
         event.register(Mobregistries.VOLCANOBACK.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Volcanoback::checkMonsterSpawnRuleschance,RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.PADDLEFISH.get(),SpawnPlacementTypes.IN_LAVA,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,LavaPaddleFish::checkPaddlefishSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.SOULCATCHER.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Soulcatcher::checkMonsterSpawnruleschance, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+  event.register(Mobregistries.BOWFIN.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.PRONGHORN.get(),SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Animal::checkAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
    event.register(Mobregistries.THRESHER.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }

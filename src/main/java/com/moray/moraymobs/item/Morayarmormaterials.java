@@ -22,12 +22,12 @@ public class Morayarmormaterials  {
     public class ModArmorMaterials {
         public static final Holder<ArmorMaterial> BEETLE_ARMOR_MATERIAL = register("beetle",
                 Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
-                    attribute.put(ArmorItem.Type.BOOTS, 5);
+                    attribute.put(ArmorItem.Type.BOOTS, 4);
                     attribute.put(ArmorItem.Type.LEGGINGS, 7);
-                    attribute.put(ArmorItem.Type.CHESTPLATE, 9);
-                    attribute.put(ArmorItem.Type.HELMET, 5);
-                    attribute.put(ArmorItem.Type.BODY, 11);
-                }), 16, 2f, 0.1f, () -> Itemregististeries.BEETLE_SCALE.get());
+                    attribute.put(ArmorItem.Type.CHESTPLATE, 8);
+                    attribute.put(ArmorItem.Type.HELMET, 4);
+                    attribute.put(ArmorItem.Type.BODY, 10);
+                }), 20, 1f, 0.0f, () -> Itemregististeries.BEETLE_SCALE.get());
 
 
         private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,

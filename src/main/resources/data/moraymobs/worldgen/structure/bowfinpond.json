@@ -24,6 +24,17 @@
   "liquid_settings": "apply_waterlogging",
 
    "spawn_overrides": {
+    "water_creature": {
+     "bounding_box": "piece",
+     "spawns": [
+      {
+       "type": "moraymobs:bowfin",
+       "weight": 20,
+       "minCount": 1,
+       "maxCount": 2
+      }
+     ]
 
+    }
   }
 }
