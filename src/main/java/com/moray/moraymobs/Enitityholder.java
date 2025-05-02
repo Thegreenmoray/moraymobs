@@ -23,6 +23,7 @@ public class Enitityholder {
    EntityRenderers.register(Mobregistries.PRONGHORN.get(),Pronghornrenderer::new);
    EntityRenderers.register(Mobregistries.THRESHER.get(),ThresherSharkRender::new);
    EntityRenderers.register(Mobregistries.STUNWAVE.get(),StunwaveRender::new);
+  EntityRenderers.register(Mobregistries.OMNIDENS.get(),Omnidensrender::new);
     }
 
 

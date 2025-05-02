@@ -2,6 +2,7 @@ package com.moray.moraymobs.modevents;
 
 import com.moray.moraymobs.MorayMobs;
 import com.moray.moraymobs.entity.living.animal.*;
+import com.moray.moraymobs.entity.living.boss.Omnidens;
 import com.moray.moraymobs.entity.living.monster.*;
 import com.moray.moraymobs.entity.projectiles.Stunwave;
 import com.moray.moraymobs.registries.Itemregististeries;
@@ -59,6 +60,7 @@ event.put(Mobregistries.SOULCATCHER.get(), Soulcatcher.createAttributes().build(
 event.put(Mobregistries.BOWFIN.get(), Enderbowfin.createAttributes().build());
 event.put(Mobregistries.PRONGHORN.get(), Pronghorn.createAttributes().build());
 event.put(Mobregistries.THRESHER.get(), Thresher_shark.createAttributes().build());
+event.put(Mobregistries.OMNIDENS.get(), Omnidens.createMonsterAttributes().build());
     }
 @EventBusSubscriber(modid = MorayMobs.MODID)
     public static class itemspawn{

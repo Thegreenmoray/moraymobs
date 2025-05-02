@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 7.5,
+				"visible_bounds_offset": [0, 3.25, 0]
+			},
+			"bones": [
+				{
+					"name": "whrilpool",
+					"pivot": [0, -19, -0.5],
+					"cubes": [
+						{"origin": [8, 0, -8], "size": [0, 100, 15], "uv": [98, 13]},
+						{"origin": [-7, 0, -8], "size": [0, 100, 15], "pivot": [-7.5, 50, -0.5], "rotation": [0, 180, 0], "uv": [98, 13]},
+						{"origin": [-8, 0, 7], "size": [16, 100, 0], "uv": [0, 28]},
+						{"origin": [-8, 0, -9], "size": [16, 100, 0], "pivot": [0, 50, -8.5], "rotation": [0, 180, 0], "uv": [0, 28]}
+					]
+				}
+			]
+		}
+	]
+}

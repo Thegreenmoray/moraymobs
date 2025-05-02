@@ -1,0 +1,104 @@
+package com.moray.moraymobs.entity.projectiles;
+
+import com.moray.moraymobs.registries.Mobregistries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
+
+public  class Boomerrang extends AbstractHurtingProjectile implements GeoEntity {
+
+    private static final EntityDataAccessor<Integer> BACKWARDS= SynchedEntityData.defineId(Boomerrang.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> TIMER= SynchedEntityData.defineId(Boomerrang.class, EntityDataSerializers.INT);
+
+
+    public int getbackwards(){
+        return this.entityData.get(BACKWARDS);
+    }
+    public void setBackwards(int backwards){
+        this.entityData.set(BACKWARDS,backwards);
+    }
+
+    public int gettimer(){
+        return this.entityData.get(TIMER);
+    }
+    public void settimer(int timer){
+        this.entityData.set(TIMER,timer);
+    }
+
+    private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
+
+
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        this.setBackwards(compound.getInt("backwards"));
+        this.settimer(compound.getInt("timer"));
+    }
+
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putInt("backwards",this.getbackwards());
+        compound.putInt("timer",this.gettimer());
+    }
+
+
+    protected void defineSynchedData (SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(BACKWARDS,0);
+        builder.define(TIMER,0);
+    }
+
+
+
+
+
+    public Boomerrang(EntityType<? extends AbstractHurtingProjectile> entityType, Level level) {
+        super(entityType, level);
+    }
+    public Boomerrang(Level level) {
+        super(Mobregistries.BOOMERANG.get(),level);
+    }
+
+
+    @Override
+    public void tick() {
+        super.tick();
+setBackwards(getbackwards()+1);
+settimer(gettimer()+1);
+        Vec3 vec3=getDeltaMovement();
+if (getbackwards()<=50){
+    this.setDeltaMovement(vec3.x,vec3.y,vec3.z);
+}else {
+    this.setDeltaMovement(-vec3.x,vec3.y,-vec3.z);
+}
+
+if (gettimer()>=150){
+    remove(RemovalReason.DISCARDED);
+}
+    }
+
+
+    protected float getInertia() {
+        return this.isInWater() ? 2.00F : 1.5f;
+    }
+
+
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return Cache;
+    }
+}

@@ -21,10 +21,7 @@ public class Threshermeleeattackgoal extends Goal {
     private double pathedTargetZ;
     private int ticksUntilNextPathRecalculation;
     private int ticksUntilNextAttack;
-    private final int attackInterval = 20;
-    private long lastCanUseCheck;
     private long lastUpdateTime;
-    private static final long COOLDOWN_BETWEEN_CAN_USE_CHECKS = 20L;
     private int failedPathFindingPenalty = 0;
     private boolean canPenalize = false;
 
@@ -161,18 +158,6 @@ public class Threshermeleeattackgoal extends Goal {
 
     protected void resetAttackCooldown() {
         this.ticksUntilNextAttack = this.adjustedTickDelay(20);
-    }
-
-    protected boolean isTimeToAttack() {
-        return this.ticksUntilNextAttack <= 0;
-    }
-
-    protected int getTicksUntilNextAttack() {
-        return this.ticksUntilNextAttack;
-    }
-
-    protected int getAttackInterval() {
-        return this.adjustedTickDelay(20);
     }
 
     protected double getAttackReachSqr(LivingEntity pAttackTarget) {

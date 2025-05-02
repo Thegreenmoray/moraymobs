@@ -33,8 +33,9 @@ public class Opossummodel extends GeoModel<Opossum> {
    if (head != null&&!animatable.isfainted()){
        EntityModelData entityModelData=animationState.getData(DataTickets.ENTITY_MODEL_DATA);
 
-        head.setRotX(entityModelData.headPitch()* Mth.DEG_TO_RAD);
-        head.setRotZ(entityModelData.headPitch()* Mth.DEG_TO_RAD);
+      if (entityModelData !=null){
+       head.setRotX(entityModelData.headPitch()* Mth.DEG_TO_RAD);
+        head.setRotZ(entityModelData.headPitch()* Mth.DEG_TO_RAD);}
 
    }
 

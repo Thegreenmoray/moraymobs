@@ -2,10 +2,9 @@ package com.moray.moraymobs.registries;
 
 import com.moray.moraymobs.MorayMobs;
 import com.moray.moraymobs.entity.living.animal.*;
+import com.moray.moraymobs.entity.living.boss.Omnidens;
 import com.moray.moraymobs.entity.living.monster.*;
-import com.moray.moraymobs.entity.projectiles.Fireheap;
-import com.moray.moraymobs.entity.projectiles.Soulpiece;
-import com.moray.moraymobs.entity.projectiles.Stunwave;
+import com.moray.moraymobs.entity.projectiles.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -73,6 +72,21 @@ public class Mobregistries {
   final public static Supplier<EntityType<Stunwave>> STUNWAVE=
           ENTITY_TYPE.register("stunwave",()->EntityType.Builder.<Stunwave>of(Stunwave::new, MobCategory.MISC)
                   .sized(1.5f,1F).fireImmune().build("stunwave"));
+
+
+  final public static Supplier<EntityType<Boomerrang>> BOOMERANG=
+          ENTITY_TYPE.register("boomerang",()->EntityType.Builder.<Boomerrang>of(Boomerrang::new, MobCategory.MISC)
+                  .sized(1.5f,1F).fireImmune().build("boomerang"));
+
+  final public static Supplier<EntityType<Geyser>> GESYER=
+          ENTITY_TYPE.register("geyser",()->EntityType.Builder.<Geyser>of(Geyser::new, MobCategory.MISC)
+                  .sized(15f,100F).fireImmune().build("geyser"));
+
+  final public static Supplier<EntityType<Omnidens>> OMNIDENS=
+          ENTITY_TYPE.register("omnidens",()->EntityType.Builder.of(Omnidens::new, MobCategory.MONSTER)
+                  .sized(30F,5F).build("omnidens"));
+
+
 
   public static void register(IEventBus bus){
     ENTITY_TYPE.register(bus);
