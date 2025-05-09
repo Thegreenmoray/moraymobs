@@ -1,13 +1,20 @@
 package com.moray.moraymobs.entity.projectiles;
 
+import com.moray.moraymobs.entity.living.boss.Omnidens;
 import com.moray.moraymobs.registries.Mobregistries;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -57,8 +64,18 @@ public  class Boomerrang extends AbstractHurtingProjectile implements GeoEntity 
     }
 
 
+    @Override
+    protected void onHitEntity(EntityHitResult result) {
+        Entity entity = result.getEntity();
 
+        if (entity instanceof LivingEntity entity1&&getbackwards()<20&& !(entity1 instanceof Omnidens)){
+            entity1.hurt(this.damageSources().generic(),5);
+        }
 
+        if (entity instanceof LivingEntity entity1&&getbackwards()>=20&& !(entity1 instanceof Omnidens)){
+            entity1.hurt(this.damageSources().generic(),10);
+        }
+    }
 
     public Boomerrang(EntityType<? extends AbstractHurtingProjectile> entityType, Level level) {
         super(entityType, level);
@@ -74,20 +91,19 @@ public  class Boomerrang extends AbstractHurtingProjectile implements GeoEntity 
 setBackwards(getbackwards()+1);
 settimer(gettimer()+1);
         Vec3 vec3=getDeltaMovement();
-if (getbackwards()<=50){
-    this.setDeltaMovement(vec3.x,vec3.y,vec3.z);
-}else {
-    this.setDeltaMovement(-vec3.x,vec3.y,-vec3.z);
+if (getbackwards()==20){
+    this.setDeltaMovement(new Vec3(-Mth.floor(vec3.x),vec3.y-0.05,-Mth.floor(vec3.z)).normalize().scale(0.0009));
 }
 
-if (gettimer()>=150){
+if (gettimer()>=50){
     remove(RemovalReason.DISCARDED);
 }
     }
 
 
+
     protected float getInertia() {
-        return this.isInWater() ? 2.00F : 1.5f;
+        return this.isInWater() ? 2.00F : 1.0f;
     }
 
 

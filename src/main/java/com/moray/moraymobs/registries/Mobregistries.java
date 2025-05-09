@@ -80,11 +80,11 @@ public class Mobregistries {
 
   final public static Supplier<EntityType<Geyser>> GESYER=
           ENTITY_TYPE.register("geyser",()->EntityType.Builder.<Geyser>of(Geyser::new, MobCategory.MISC)
-                  .sized(15f,100F).fireImmune().build("geyser"));
+                  .sized(1f,10F).fireImmune().build("geyser"));
 
   final public static Supplier<EntityType<Omnidens>> OMNIDENS=
           ENTITY_TYPE.register("omnidens",()->EntityType.Builder.of(Omnidens::new, MobCategory.MONSTER)
-                  .sized(30F,5F).build("omnidens"));
+                  .sized(6F,1F).build("omnidens"));
 
 
 

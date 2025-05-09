@@ -24,6 +24,8 @@ public class Enitityholder {
    EntityRenderers.register(Mobregistries.THRESHER.get(),ThresherSharkRender::new);
    EntityRenderers.register(Mobregistries.STUNWAVE.get(),StunwaveRender::new);
   EntityRenderers.register(Mobregistries.OMNIDENS.get(),Omnidensrender::new);
+  EntityRenderers.register(Mobregistries.BOOMERANG.get(),BoomerangRender::new);
+  EntityRenderers.register(Mobregistries.GESYER.get(),Whirlpoolrender::new);
     }
 
 

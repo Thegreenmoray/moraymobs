@@ -5,6 +5,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.goal.Goal;
 
 import java.util.List;
@@ -19,18 +20,40 @@ public class Roaromnidensgoal extends Goal {
         this.timer=timer;
     }
 
+    @Override
+    public void start() {
+      count=0;
+
+    }
 
     @Override
     public void tick() {
+      count++;
+        omnidens.stopInPlace();
+        if (count==10){
+       this.omnidens.setPose(Pose.ROARING);
         List<Entity> entities=  this.omnidens.level().getEntities(this.omnidens,this.omnidens.getBoundingBox().inflate(5));
         for (Entity entity:entities){
             if(entity instanceof LivingEntity livingEntity){
-    livingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS,150,1));
-            }}
+    livingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS,150,0));
+            }}}
+    }
+
+
+    @Override
+    public void stop() {
+        count=0;
+        this.omnidens.setPose(Pose.STANDING);
+        this.omnidens.setRoar(0);
+    }
+
+    @Override
+    public boolean canContinueToUse() {
+        return timer>count;
     }
 
     @Override
     public boolean canUse() {
-        return omnidens.getroar()>150;
+        return omnidens.getroar()>100;//&&omnidens.getRandom().nextInt(10)==4;
     }
 }

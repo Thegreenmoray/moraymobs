@@ -164,15 +164,15 @@ if (gettimer()<50){
         public void tick() {
             if (this.soulcatcher.getTarget() == null) {
                 Vec3 $$0 = this.soulcatcher.getDeltaMovement();
-                this.soulcatcher.setYRot(-((float)Mth.atan2($$0.x, $$0.z)) * 57.295776F);
+                this.soulcatcher.setYRot(-((float)Mth.atan2($$0.x, $$0.z)) * Mth.RAD_TO_DEG);
                 this.soulcatcher.yBodyRot = this.soulcatcher.getYRot();
             } else {
                 LivingEntity $$1 = this.soulcatcher.getTarget();
-                double $$2 = 64.0;
+
                 if ($$1.distanceToSqr(this.soulcatcher) < 4096.0) {
                     double $$3 = $$1.getX() - this.soulcatcher.getX();
                     double $$4 = $$1.getZ() - this.soulcatcher.getZ();
-                    this.soulcatcher.setYRot(-((float)Mth.atan2($$3, $$4)) * 57.295776F);
+                    this.soulcatcher.setYRot(-((float)Mth.atan2($$3, $$4)) * Mth.RAD_TO_DEG);
                     this.soulcatcher.yBodyRot = this.soulcatcher.getYRot();
                 }
             }

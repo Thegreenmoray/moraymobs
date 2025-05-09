@@ -6,28 +6,30 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.Tags;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
-import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
@@ -36,19 +38,23 @@ public class Omnidens extends Monster implements GeoEntity {
 
     private static final EntityDataAccessor<Integer> BOOMERANGATTACK= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> BURROW= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Integer> LEAP= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> LEAP= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> GRIP= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> WHIRLPOOL= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> ROAR= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> LEAPGRAB= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
-
+    private static final EntityDataAccessor<Boolean> NONVISBLE= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.BOOLEAN);
+    protected static final EntityDimensions UPRIGHT_DIMESIONS_JAW=EntityDimensions.fixed(6.0F, 3.0F);
+    protected static final EntityDimensions UPRIGHT_DIMESIONS=EntityDimensions.fixed(4.0F, 3.0F);
     private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
-    private final ServerBossEvent bossEvent;
-
+    private final ServerBossEvent bossEvent= (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);;
+private final float oneforth=(this.getMaxHealth())/4;
+private final float onehalf=(this.getMaxHealth())/2;
+private int ejection=0;
     public Omnidens(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
-
-        this.bossEvent = (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
-
+        this.moveControl =new MoveControl(this);
+        this.xpReward=500;
     }
     @Override
     public void knockback(double pStrength, double pX, double pZ) {
@@ -72,50 +78,99 @@ public class Omnidens extends Monster implements GeoEntity {
         return amount>30? super.hurt(damageSource,30):super.hurt(damageSource,amount);
     }
 
-    public static AttributeSupplier.Builder createMonsterAttributes() {
+    public static AttributeSupplier.@NotNull Builder createMonsterAttributes() {
         return Monster.createMobAttributes().add(Attributes.ATTACK_DAMAGE,10).add(Attributes.MAX_HEALTH,600)
                 .add(Attributes.WATER_MOVEMENT_EFFICIENCY,0.4f).add(Attributes.ARMOR,15f)
-                .add(Attributes.MOVEMENT_SPEED,0.4f).add(Attributes.FOLLOW_RANGE,20f);
+                .add(Attributes.MOVEMENT_SPEED,0.4f).add(Attributes.FOLLOW_RANGE,50f);
     }
-    
+    @Override
+    public EntityDimensions getDefaultDimensions(Pose pose) {
+        if (pose == Pose.ROARING) {
+            return UPRIGHT_DIMESIONS;
+        } else if (pose==Pose.LONG_JUMPING) {
+            return UPRIGHT_DIMESIONS_JAW;
+        } else {
+            return super.getDefaultDimensions(pose);
+        }
+    }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
+        this.goalSelector.addGoal(4,new Omnidenleapgoal(this,100));
+         this.goalSelector.addGoal(6,new Whirlpoolgoal(this,100));
+         this.goalSelector.addGoal(8,new OmnidensJumpattackgoal(this,50));
+         this.goalSelector.addGoal(5,new Roaromnidensgoal(this,35));
+         this.goalSelector.addGoal(3,new Omnidenprojectilegoal(this,20));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.goalSelector.addGoal(3,new Omnidenprojectilegoal(this,50));
-       // this.goalSelector.addGoal(7,new Burrowgoal(this,300));
-       // this.goalSelector.addGoal(4,new Omnidenleapgoal(this,80));
-        //this.goalSelector.addGoal(5,new Roaromnidensgoal(this,50));
-        //this.goalSelector.addGoal(6,new Whirlpoolgoal(this,70));
-       // this.goalSelector.addGoal(8,new OmnidensJumpattackgoal(this,0.5,false));
+        this.goalSelector.addGoal(0,new RandomStrollGoal(this,0.5)
+        {
+            @Override
+            public boolean canUse() {
+               return this.mob instanceof Omnidens omnidens&&omnidens.canuseskill()&&super.canUse();
+            }
+        });
+        this.goalSelector.addGoal(0, new LookAtPlayerGoal(this, Player.class, 20.0F));
+       this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 0.3,true){
+            @Override
+            public boolean canUse() {
+                return this.mob instanceof Omnidens omnidens&&omnidens.canuseskill()&&super.canUse();
+            }
+
+        });
+
+        this.goalSelector.addGoal(7,new Burrowgoal(this,100));
 
     }
 
+
+
+    public boolean canuseskill(){
+
+        return getjumpgrab()<=201&&getroar()<=101&&getboomerangtime()<=51
+                &&getwhirlpool()<=101&&getBurrow()<=201&&!getleap();
+    }
+
+    public boolean canmeleejump(){
+
+        return getjumpgrab()<201&&getroar()<101&&getboomerangtime()<51
+                &&getwhirlpool()<101&&getBurrow()<201;
+    }
     @Override
     public void aiStep() {
+        if (getHealth()<=onehalf&&canuseskill()){
+        setjumpgrab(getjumpgrab()+1);}
+
+        if (canuseskill()){
+            setboomerangtime(getboomerangtime()+1);
+        }
+        if (canuseskill()){
+            setRoar(getroar()+1);
+        }
+
+       if (getHealth()<=oneforth&&canuseskill()){
+        setwhirlpool(getwhirlpool()+1);}
+
+
+       if (getHealth()<=oneforth&&canuseskill()){
+       setBurrow(getBurrow()+1);}
+
+
+
+
+
+
+this.bossEvent.setProgress(this.getHealth()/this.getMaxHealth());
         super.aiStep();
-
-        //setleap(getleap()+1);
-       setboomerangtime(getboomerangtime()+1);
-        //setwhirlpool(getwhirlpool()+1);
-       // setjumpgrab(getjumpgrab()+1);
-       // setleap(getleap()+1);
-       // setRoar(getroar()+1);
-
-
-
-
-        grabb();
-
-bossEvent.setProgress(this.getHealth()/this.getMaxHealth());
-
+    }
+    protected @NotNull PathNavigation createNavigation(Level pLevel) {
+        return new NoSpinAminaphinnavigation(this, pLevel);
     }
 
     @Override
     public boolean isInvulnerableTo(DamageSource source) {
-        return source.is(DamageTypes.LAVA)|| source.is(DamageTypes.DROWN)||source.is(DamageTypes.FALL)||super.isInvulnerableTo(source);
+        return source.is(DamageTypes.LAVA)|| source.is(DamageTypes.DROWN)||source.is(DamageTypes.IN_WALL)||source.is(DamageTypes.FALL)||super.isInvulnerableTo(source);
     }
 
     @Override
@@ -126,6 +181,48 @@ controllers.add(new AnimationController<>(this,
 
     private PlayState animations(AnimationState<Omnidens> omnidensAnimationState) {
 
+        if (this.getjumpgrab()>200&&this.getgrip()){
+            omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.grab", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
+
+        if (this.getleap()){
+            omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.jumpbite", Animation.LoopType.PLAY_ONCE));
+            return PlayState.CONTINUE;
+        }
+
+        if (this.getroar()>100){
+            omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.roar", Animation.LoopType.PLAY_ONCE));
+            return PlayState.CONTINUE;
+        }
+
+
+        if (this.getboomerangtime()>50){
+            omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.shoot", Animation.LoopType.PLAY_ONCE));
+            return PlayState.CONTINUE;
+        }
+
+        if (this.getwhirlpool()>100){
+            omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.gesyer", Animation.LoopType.PLAY_ONCE));
+            return PlayState.CONTINUE;
+        }
+
+        if (this.getBurrow()>200&&this.getnonvisble()){
+            omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.burrow", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
+
+        if (omnidensAnimationState.isMoving()){
+            omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.walks", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
+        if (!omnidensAnimationState.isMoving()){
+            omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("omni.idle", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
 
 
         return PlayState.STOP;
@@ -152,13 +249,26 @@ controllers.add(new AnimationController<>(this,
         this.entityData.set(BURROW,burrow);
     }
 
-    public int getleap(){
+    public boolean getleap(){
         return this.entityData.get(LEAP);
     }
-    public void setleap(int leap){
-        this.entityData.set(ROAR,leap);
+    public void setleap(boolean leap){
+        this.entityData.set(LEAP,leap);
     }
 
+    public boolean getgrip(){
+        return this.entityData.get(GRIP);
+    }
+    public void setgrip(boolean grip){
+        this.entityData.set(GRIP,grip);
+    }
+
+    public boolean getnonvisble(){
+        return this.entityData.get(NONVISBLE);
+    }
+    public void setnonvisble(boolean grip){
+        this.entityData.set(NONVISBLE,grip);
+    }
     public int getwhirlpool(){
         return this.entityData.get(WHIRLPOOL);
     }
@@ -178,7 +288,9 @@ controllers.add(new AnimationController<>(this,
         this.setboomerangtime(compound.getInt("boomerang"));
         this.setRoar(compound.getInt("roar"));
         this.setBurrow(compound.getInt("burrow"));
-        this.setleap(compound.getInt("leap"));
+        this.setleap(compound.getBoolean("leap"));
+        this.setgrip(compound.getBoolean("grip"));
+        this.setnonvisble(compound.getBoolean("nonvisble"));
         this.setjumpgrab(compound.getInt("jumpgrab"));
         this.setwhirlpool(compound.getInt("whirlpool"));
     }
@@ -188,7 +300,9 @@ controllers.add(new AnimationController<>(this,
         compound.putInt("boomerang",this.getboomerangtime());
         compound.putInt("roar",this.getroar());
         compound.putInt("burrow",this.getBurrow());
-        compound.putInt("leap",this.getleap());
+        compound.putBoolean("leap",this.getleap());
+        compound.putBoolean("grip",this.getgrip());
+        compound.putBoolean("nonvisble",this.getnonvisble());
         compound.putInt("jumpgrab",this.getjumpgrab());
         compound.putInt("whirlpool",this.getwhirlpool());
     }
@@ -199,7 +313,9 @@ controllers.add(new AnimationController<>(this,
         builder.define(BOOMERANGATTACK,0);
         builder.define(ROAR,0);
         builder.define(BURROW,0);
-        builder.define(LEAP,0);
+        builder.define(LEAP,false);
+        builder.define(GRIP,false);
+        builder.define(NONVISBLE,false);
         builder.define(LEAPGRAB,0);
         builder.define(WHIRLPOOL,0);
     }
@@ -215,36 +331,34 @@ controllers.add(new AnimationController<>(this,
         return true;
     }
 
-    public void grabb(){
-   LivingEntity livingEntity =this.getTarget();
+    public void positionRider(Entity passenger, Entity.MoveFunction moveFunc){
+     float theta= this.yHeadRot*Mth.DEG_TO_RAD;
+     float x_rotation=4*Mth.cos(theta+Mth.HALF_PI);
+     float z_rotation=4*Mth.sin(theta+Mth.HALF_PI);
+     float x_postion= (float) (this.getX()+x_rotation);
+     float z_postion= (float) (this.getZ()+z_rotation);
+     ejection++;
 
-   if (livingEntity!=null){
+moveFunc.accept(passenger,x_postion,this.getY(),z_postion);
 
-       float f1 = Mth.cos(this.yBodyRot * ((float)Mth.DEG_TO_RAD)) ;
-       float f2 = Mth.sin(this.yBodyRot * ((float)Mth.DEG_TO_RAD)) ;
-
-       float theta=(yBodyRot*(Mth.DEG_TO_RAD))+(Mth.HALF_PI);
-
-       float sin=Mth.cos(theta);
-       float cos=Mth.sin(theta);
-
-
-       float x= (float) (this.getX()+10*sin+f1);
-       float z= (float) (this.getZ()+10*cos+f2);
-livingEntity.setPos(x,this.getY(),z);
-        if (livingEntity.isShiftKeyDown()) {
-            livingEntity.setShiftKeyDown(false);
-        }
-
-       if(this.getPassengers().isEmpty()){
-           if (!this.level().isClientSide) {
-               livingEntity.startRiding(this, true);
-           }
+if (ejection==40){
+   this.ejectPassengers();
+   ejection=0;
+}
 
    }
 
-    }}
+    @Override
+    public void startSeenByPlayer(ServerPlayer serverPlayer) {
+        super.startSeenByPlayer(serverPlayer);
+        this.bossEvent.addPlayer(serverPlayer);
+    }
 
+    @Override
+    public void stopSeenByPlayer(ServerPlayer serverPlayer) {
+        super.stopSeenByPlayer(serverPlayer);
+        this.bossEvent.removePlayer(serverPlayer);
+    }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {

@@ -38,7 +38,6 @@ public class Threshermeleeattackgoal extends Goal {
 
     public boolean canUse() {
         //credit to the graveyard mod for this.
-
         long l = this.thresherShark.level().getGameTime();
         if (l - this.lastUpdateTime < 20L) {
             this.lastUpdateTime -= 20;
