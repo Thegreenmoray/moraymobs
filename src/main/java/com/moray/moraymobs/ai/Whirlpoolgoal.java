@@ -2,9 +2,7 @@ package com.moray.moraymobs.ai;
 
 import com.moray.moraymobs.entity.living.boss.Omnidens;
 import com.moray.moraymobs.entity.projectiles.Geyser;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -88,10 +86,11 @@ public class Whirlpoolgoal extends Goal {
     public boolean canUse() {
 
        if (omnidens.getTarget()==null){
+           omnidens.setwhirlpool(0);
            return false;
        }
 
 
-        return omnidens.getwhirlpool()>100&&omnidens.getRandom().nextInt(20)==10;
+        return omnidens.getwhirlpool()>100;
     }
 }

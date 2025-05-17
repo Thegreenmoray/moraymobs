@@ -94,10 +94,11 @@ public class Burrowgoal extends Goal {
     public boolean canUse() {
       Entity entity=this.omnidens.getTarget();
       if (entity==null){
+          omnidens.setBurrow(0);
           return false;
       }
 
 
-        return omnidens.getBurrow()>200&&omnidens.getRandom().nextInt(15)==6;
+        return omnidens.getBurrow()>200;
     }
 }

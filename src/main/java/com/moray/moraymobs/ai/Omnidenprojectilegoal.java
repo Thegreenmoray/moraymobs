@@ -24,9 +24,7 @@ public Omnidenprojectilegoal(Omnidens omnidens,int timer) {
           this.omnidens.lookAt(livingEntity, (float) livingEntity.getY(), (float) livingEntity.getX());
 
           count++;
-                if (count==7){
-                    //Animation
-                }
+
 
             if(count==10){
                 Boomerrang boomerrang = new Boomerrang(this.omnidens.level());
@@ -72,13 +70,14 @@ public Omnidenprojectilegoal(Omnidens omnidens,int timer) {
     @Override
     public boolean canUse() {
         if(this.omnidens.getTarget()==null){
+            this.omnidens.setboomerangtime(0);
             return false;
         }
 
 
 
-        return this.omnidens.getboomerangtime()>50;
-                //&&omnidens.getRandom().nextInt(7)==3;
+        return this.omnidens.getboomerangtime()>100;
+
     }
 
     }

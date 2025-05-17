@@ -34,7 +34,7 @@
 				}
 			}
 		},
-		"animation.whrilpool.spin": {
+		"animation.whirlpool.spin": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {

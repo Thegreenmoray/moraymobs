@@ -37,9 +37,11 @@ int timer;
 
 
         if (entity!=null){
-
-        distance_x= (float) (entity.getX()-omnidens.getX());
+         if (count<15){
+            distance_x= (float) (entity.getX()-omnidens.getX());
         distance_z= (float) (entity.getZ()-omnidens.getZ());
+         omnidens.setYBodyRot((float) Mth.atan2(distance_z,distance_x)*Mth.RAD_TO_DEG);
+         }
 
 
             count++;
@@ -47,19 +49,21 @@ int timer;
        if (count>=20&&count<25){
            Vec3 vec=new Vec3(-distance_x,0,-distance_z);
         Vec3 jump= vec.normalize().scale(0.1);
-         omnidens.addDeltaMovement(jump.add(-distance_x*0.0001,jump.y()+0.02,-distance_z*0.0001).normalize());}
+         omnidens.addDeltaMovement(jump.add(-distance_x*0.00009,jump.y()+0.01,-distance_z*0.00009).normalize());}
 
-if (count>=35) {
+if (count>=45) {
 
-    if (omnidens.distanceTo(entity)<10&&!omnidens.hasPassenger(entity)){
+    if (omnidens.distanceTo(entity)<9&&!omnidens.hasPassenger(entity)){
         omnidens.setgrip(true);
-        entity.startRiding(omnidens);
+        entity.startRiding(omnidens,true);
     }
     if (omnidens.hasPassenger(entity)){
-    omnidens.stopInPlace();}
+        if (count%10==0){
+        entity.hurt(omnidens.damageSources().generic(),4);}
+        omnidens.stopInPlace();}
 
     if (!omnidens.hasPassenger(entity)){
-    omnidens.addDeltaMovement(new Vec3(distance_x * 0.0002, 0, distance_z * 0.0002).normalize());
+    omnidens.addDeltaMovement(new Vec3(distance_x * 0.00002, 0, distance_z * 0.00002).normalize());
 }}
 
         }
@@ -76,9 +80,10 @@ if (count>=35) {
     public boolean canUse() {
 
         if (this.omnidens.getTarget()==null){
-        return false;}
+            omnidens.setjumpgrab(0);
+            return false;}
 
 
-        return omnidens.getjumpgrab()>200&&omnidens.getRandom().nextInt(15)==6;
+        return omnidens.getjumpgrab()>250;
     }
 }

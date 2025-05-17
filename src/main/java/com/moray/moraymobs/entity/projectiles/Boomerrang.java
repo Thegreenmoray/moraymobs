@@ -18,7 +18,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public  class Boomerrang extends AbstractHurtingProjectile implements GeoEntity {
@@ -103,14 +103,20 @@ if (gettimer()>=50){
 
 
     protected float getInertia() {
-        return this.isInWater() ? 2.00F : 1.0f;
+        return this.isInWater() ? 1.50F : 1.0f;
     }
 
 
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this,
+                "Controller",this::animations));
+    }
 
+    private PlayState animations(AnimationState<Boomerrang> boomerrangAnimationState) {
+        boomerrangAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.boomerang.spin", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
     }
 
     @Override

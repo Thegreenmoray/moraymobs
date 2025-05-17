@@ -45,6 +45,8 @@ public class MorayMobs
         Itemregististeries.register(modEventBus);
         Moraytab.register(modEventBus);
         Effectregisteries.register(modEventBus);
+        //Structureregisteries.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
+        //MorayStructurePlacements.DEFERRED_REGISTRY_STRUCTURE_PLACEMENT_TYPE.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
 
 

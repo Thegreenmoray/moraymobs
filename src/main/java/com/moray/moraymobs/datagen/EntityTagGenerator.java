@@ -29,7 +29,7 @@ public class EntityTagGenerator extends EntityTypeTagsProvider {
         super.addTags(provider);
         this.tag(ASSIMILABLE).add(EntityType.ZOMBIE, EntityType.HUSK,EntityType.DROWNED,EntityType.PLAYER,EntityType.VILLAGER,EntityType.ENDERMAN, EntityType.WITCH,EntityType.PILLAGER,EntityType.VINDICATOR,EntityType.EVOKER);
         this.tag(SPOTTED).add(EntityType.EVOKER,EntityType.WITCH,EntityType.RAVAGER,EntityType.ENDERMAN,EntityType.WITHER, EntityType.WITHER_SKELETON,EntityType.BLAZE,EntityType.ELDER_GUARDIAN);
-        this.tag(EntityTypeTags.ARTHROPOD).add(Mobregistries.VOLCANOBACK.get());
+        this.tag(EntityTypeTags.ARTHROPOD).add(Mobregistries.VOLCANOBACK.get()).add(Mobregistries.OMNIDENS.get());
     this.tag(EntityTypeTags.UNDEAD).add(Mobregistries.MORAY.get());
     }
 

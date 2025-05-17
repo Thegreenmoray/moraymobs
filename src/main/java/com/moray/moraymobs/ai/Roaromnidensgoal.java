@@ -32,10 +32,10 @@ public class Roaromnidensgoal extends Goal {
         omnidens.stopInPlace();
         if (count==10){
        this.omnidens.setPose(Pose.ROARING);
-        List<Entity> entities=  this.omnidens.level().getEntities(this.omnidens,this.omnidens.getBoundingBox().inflate(5));
+        List<Entity> entities=  this.omnidens.level().getEntities(this.omnidens,this.omnidens.getBoundingBox().inflate(7));
         for (Entity entity:entities){
             if(entity instanceof LivingEntity livingEntity){
-    livingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS,150,0));
+                livingEntity.addEffect(omnidens.getHealth()>omnidens.getMaxHealth()/2?new MobEffectInstance(MobEffects.WEAKNESS,150,0):new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,150,0));
             }}}
     }
 
@@ -54,6 +54,13 @@ public class Roaromnidensgoal extends Goal {
 
     @Override
     public boolean canUse() {
-        return omnidens.getroar()>100;//&&omnidens.getRandom().nextInt(10)==4;
+     LivingEntity entity=this.omnidens.getTarget();
+     if (entity==null){
+         this.omnidens.setRoar(0);
+         return false;
+     }
+
+
+        return omnidens.getroar()>150;//&&omnidens.getRandom().nextInt(10)==4;
     }
 }

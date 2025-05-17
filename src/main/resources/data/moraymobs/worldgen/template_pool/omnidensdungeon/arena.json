@@ -1,0 +1,20 @@
+{
+  "name": "moraymobs:omnidensdungeon/arena",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "moraymobs:arena",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+
+
+
+
+
+  ]
+}

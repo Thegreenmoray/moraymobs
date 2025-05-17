@@ -84,7 +84,7 @@ public class Mobregistries {
 
   final public static Supplier<EntityType<Omnidens>> OMNIDENS=
           ENTITY_TYPE.register("omnidens",()->EntityType.Builder.of(Omnidens::new, MobCategory.MONSTER)
-                  .sized(6F,1F).build("omnidens"));
+                  .sized(5F,1F).build("omnidens"));
 
 
 

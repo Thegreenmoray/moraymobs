@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "moraymobs:omnidensdungeon",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+
+    "salt": 912476464,
+
+    "spacing": 12, //will be 128
+
+    "separation": 4 //will be 100-120
+  }
+}
