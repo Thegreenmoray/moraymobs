@@ -42,7 +42,8 @@ public class Blockregistrires {
 
     public static final DeferredBlock<Block> SHULKERFRUIT_CROP=BLOCKS.register("shulkerberrycrop",
             ()->new Shulkerberrycrop(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).noCollission().noOcclusion().instabreak()));
-
+    public static final DeferredBlock<Block> LARGE_CRYSTAL =BLOCKS.register("large_crystal",
+            () -> new Largecrystal(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)));;
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

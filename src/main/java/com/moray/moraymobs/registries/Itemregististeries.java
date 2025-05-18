@@ -122,6 +122,8 @@ public class Itemregististeries {
     final public static DeferredItem<Item> STUNGUN=ITEM.register("stungun3",
             ()->new Stungun(new Item.Properties().durability(100)));
 
+    final public static DeferredItem<Item> CRYSTAL_LARGE_ITEM = ITEM.register("large_crystal",
+            () -> new Largecrystalblockitem(Blockregistrires.LARGE_CRYSTAL.get(), new Item.Properties()));
 
     public static void register(IEventBus bus){
         ITEM.register(bus);

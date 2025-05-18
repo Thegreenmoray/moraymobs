@@ -1,6 +1,12 @@
 package com.moray.moraymobs;
 import com.moray.moraymobs.registries.Mobregistries;
+import com.moray.moraymobs.registries.Morayblockentities;
 import com.moray.moraymobs.rendersandmodels.render.*;
+import com.moray.moraymobs.rendersandmodels.render.entities.animals.*;
+import com.moray.moraymobs.rendersandmodels.render.entities.monsters.*;
+import com.moray.moraymobs.rendersandmodels.render.entities.projectiles.*;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -16,16 +22,17 @@ public class Enitityholder {
     EntityRenderers.register(Mobregistries.FIREHEAP.get(), LavaRender::new);
    EntityRenderers.register(Mobregistries.MORAY.get(), Morayrender::new);
     EntityRenderers.register(Mobregistries.MORAYJAW.get(), Morayjawrender::new);
-    EntityRenderers.register(Mobregistries.PADDLEFISH.get(),Paddlefishrender::new);
-    EntityRenderers.register(Mobregistries.SOULCATCHER.get(),Soulcatcherrender::new);
-    EntityRenderers.register(Mobregistries.SOULPROJECTILE.get(),Soulballrenderer::new);
-   EntityRenderers.register(Mobregistries.BOWFIN.get(),Bowfinrender::new);
+    EntityRenderers.register(Mobregistries.PADDLEFISH.get(), Paddlefishrender::new);
+    EntityRenderers.register(Mobregistries.SOULCATCHER.get(), Soulcatcherrender::new);
+    EntityRenderers.register(Mobregistries.SOULPROJECTILE.get(), Soulballrenderer::new);
+   EntityRenderers.register(Mobregistries.BOWFIN.get(), Bowfinrender::new);
    EntityRenderers.register(Mobregistries.PRONGHORN.get(),Pronghornrenderer::new);
-   EntityRenderers.register(Mobregistries.THRESHER.get(),ThresherSharkRender::new);
-   EntityRenderers.register(Mobregistries.STUNWAVE.get(),StunwaveRender::new);
-  EntityRenderers.register(Mobregistries.OMNIDENS.get(),Omnidensrender::new);
-  EntityRenderers.register(Mobregistries.BOOMERANG.get(),BoomerangRender::new);
-  EntityRenderers.register(Mobregistries.GESYER.get(),Whirlpoolrender::new);
+   EntityRenderers.register(Mobregistries.THRESHER.get(), ThresherSharkRender::new);
+   EntityRenderers.register(Mobregistries.STUNWAVE.get(), StunwaveRender::new);
+  EntityRenderers.register(Mobregistries.OMNIDENS.get(), Omnidensrender::new);
+  EntityRenderers.register(Mobregistries.BOOMERANG.get(), BoomerangRender::new);
+  EntityRenderers.register(Mobregistries.GESYER.get(), Whirlpoolrender::new);
+  BlockEntityRenderers.register(Morayblockentities.LARGE_CRYSTAL_ENTITY.get(), CrystalLargeRender::new);
     }
 
 

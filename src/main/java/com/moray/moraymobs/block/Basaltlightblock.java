@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -37,13 +38,13 @@ public class Basaltlightblock extends Block {
 
 
 
-    @SuppressWarnings("")
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
-    if (!pLevel.isClientSide()) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+
+        if (!level.isClientSide()) {
 
 
-                List<Entity> light = pPlayer.level().getEntities(pPlayer, pPlayer.getBoundingBox().inflate(50), e -> e.getType().is(MorayKeys.IS_SPOTTABLE));
+                List<Entity> light = player.level().getEntities(player, player.getBoundingBox().inflate(50), e -> e.getType().is(MorayKeys.IS_SPOTTABLE));
 
            for (Entity entity:light){
               LivingEntity entity1 =(LivingEntity)entity;
