@@ -1,6 +1,8 @@
 package com.moray.moraymobs.datagen;
 
 import com.moray.moraymobs.MorayMobs;
+import com.moray.moraymobs.block.Keydownblock;
+import com.moray.moraymobs.block.Keytopblock;
 import com.moray.moraymobs.block.Shulkerberrycrop;
 import com.moray.moraymobs.registries.Blockregistrires;
 import net.minecraft.data.PackOutput;
@@ -33,7 +35,8 @@ simpleBlockWithItem(Blockregistrires.END_CELSOSIA.get(), models().cross(blockTex
 
 simpleBlockWithItem(Blockregistrires.PADDED_MOSS.get(), models().carpet(blockTexture(Blockregistrires.PADDED_MOSS.get()).getPath(),blockTexture(Blockregistrires.PADDED_MOSS.get())).renderType("translucent"));
 
-
+customlock();
+blockWithItem(Blockregistrires.CRACKEDDARKPRISMANE);
     }
 
 
@@ -60,4 +63,45 @@ simpleBlockWithItem(Blockregistrires.PADDED_MOSS.get(), models().carpet(blockTex
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
     }
 
-}
+    private void customlock() {
+
+        simpleBlockItem(Blockregistrires.KEYDOWNBLOCK.get(), models().cubeAll("dark_down_prismarine_keyhole_empty",
+                ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, "block/" + "dark_down_prismarine_keyhole_empty")));
+
+        simpleBlockItem(Blockregistrires.KEYTOPBLOCK.get(), models().cubeAll("dark_prismarine_up_keyhole_empty",
+                ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, "block/" + "dark_prismarine_up_keyhole_empty")));
+
+
+
+        getVariantBuilder(Blockregistrires.KEYDOWNBLOCK.get()).forAllStates(state -> {
+            if(state.getValue(Keydownblock.KEYINSERT2)) {
+                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("dark_down_prismarine_keyhole_empty",
+                        ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, "block/" + "dark_down_prismarine_keyhole_empty")))};
+
+            } else {
+                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("dark_prismarine_up_keyhole_empty",
+                        ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, "block/" + "dark_prismarine_up_keyhole_empty")))};
+            }
+        });
+
+        getVariantBuilder(Blockregistrires.KEYTOPBLOCK.get()).forAllStates(state -> {
+                    if(state.getValue(Keytopblock.KEYINSERT1)) {
+                        return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("dark_prismarine_up_keyhole_empty",
+                                ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, "block/" + "dark_prismarine_up_keyhole_empty")))};
+                    } else {
+                        return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("dark_up_prismarine_keyhole",
+                                ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, "block/" + "dark_up_prismarine_keyhole")))};
+
+                    }
+                }
+
+
+
+
+
+
+        );
+
+
+
+}}

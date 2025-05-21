@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "keyinsertedone=false": {
+      "model": "moraymobs:block/dark_up_prismarine_keyhole"
+    },
+    "keyinsertedone=true": {
+      "model": "moraymobs:block/dark_prismarine_up_keyhole_empty"
+    }
+  }
+}

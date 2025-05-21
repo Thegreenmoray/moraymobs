@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "moraymobs:block/dark_down_prismarine_keyhole_empty"
+  }
+}

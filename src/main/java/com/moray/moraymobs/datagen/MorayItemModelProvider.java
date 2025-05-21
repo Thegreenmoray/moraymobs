@@ -54,6 +54,9 @@ basicItem(Itemregististeries.MOSS.get());
 basicItem(Itemregististeries.BOTTLE_OF_SHOCK.get());
 //simpleItemblock(Blockregistrires.END_CELSOSIA);
 //simpleItemblock(Blockregistrires.END_GRASS);
+ basicItem(Itemregististeries.TOP_KEY.get());
+ basicItem(Itemregististeries.BOTTOM_KEY.get());
+
     }
 
 

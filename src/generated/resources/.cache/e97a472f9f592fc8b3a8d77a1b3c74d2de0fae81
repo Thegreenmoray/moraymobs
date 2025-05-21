@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-14T22:49:22.4232075	Item Models: moraymobs
+// 1.21.1	2025-05-20T22:26:00.1820879	Item Models: moraymobs
 620d1057bbc305de467830ba2d799f70dc3ff86e assets/moraymobs/models/item/basalt_crystal.json
 2aaafccd2f9caa60c26546840130703bf4027450 assets/moraymobs/models/item/beetleboots.json
 d9bca312dbb8b1a550eda0750bb249b66e92f6b3 assets/moraymobs/models/item/beetlechestplate.json
@@ -11,11 +11,13 @@ aea342caeb496305e1b66379bc97c3ff8bf8e43f assets/moraymobs/models/item/brain.json
 f7eff0b14d456279aaa0d6a023f86bc776c98b51 assets/moraymobs/models/item/cookedpronghorn.json
 c06249a3e02827d12195fbe2f2ca7f1c6e876fc2 assets/moraymobs/models/item/glassofstunwave.json
 9d1395e062361b3f52f1da3f25e533504d78a2db assets/moraymobs/models/item/jawloose.json
+11f394bbeec043194e3827c0b19df602cf095f39 assets/moraymobs/models/item/large_orb.json
 e75887297c21d730b9a4c9a9d15cfbc81fd48325 assets/moraymobs/models/item/paddlefishbucket.json
 26c3f4c54c55a16fb0d4878aa374e4695b5540d5 assets/moraymobs/models/item/paddlefishfood.json
 e07da74025e8f47349be7a5c7008c4375e6d38e0 assets/moraymobs/models/item/pronghornantler.json
 c8aa8ff05bde82d562e7620daf3f64d3bf59abaf assets/moraymobs/models/item/rawbowfin.json
 6eee8b25646836fc613108f0efb6bf04700eefae assets/moraymobs/models/item/rawpronghorn.json
+11891df69890c815df702a24edcc7d20ca7c8cf8 assets/moraymobs/models/item/red_key.json
 9667441bf175707749a542a48f771b5fd5f0f599 assets/moraymobs/models/item/scale.json
 33d4aff33cf4d2ec70aed115c38bad33299240c5 assets/moraymobs/models/item/shulkerberry.json
 db8eb6e7da4476f3d2c0194741a8ed9e931b3ec8 assets/moraymobs/models/item/shulkerberryseed.json
@@ -31,3 +33,4 @@ db8eb6e7da4476f3d2c0194741a8ed9e931b3ec8 assets/moraymobs/models/item/shulkerber
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_soulcatcher.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_thresher.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_volcanoback.json
+400c3a09043311d7882c111ba2a502af65e37841 assets/moraymobs/models/item/yellow_key.json
