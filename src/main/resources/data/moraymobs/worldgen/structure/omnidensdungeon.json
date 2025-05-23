@@ -13,8 +13,10 @@
 
   "terrain_adaptation": "beard_box",
 
+  "terrain_check_size": 1,
+
   "start_height": {
-    "absolute": 40
+    "absolute": -20
 
   },
 

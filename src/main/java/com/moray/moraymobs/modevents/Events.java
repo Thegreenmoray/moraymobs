@@ -98,6 +98,7 @@ event.put(Mobregistries.OMNIDENS.get(), Omnidens.createMonsterAttributes().build
                     event.setNewDamage(sourcereduction);
                 }
 
+
             }
         }
 

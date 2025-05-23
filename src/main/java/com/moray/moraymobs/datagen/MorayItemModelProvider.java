@@ -56,7 +56,10 @@ basicItem(Itemregististeries.BOTTLE_OF_SHOCK.get());
 //simpleItemblock(Blockregistrires.END_GRASS);
  basicItem(Itemregististeries.TOP_KEY.get());
  basicItem(Itemregististeries.BOTTOM_KEY.get());
-
+basicItem(Itemregististeries.OMNIDENS_CHESTPLATE.get());
+basicItem(Itemregististeries.OMNIDENS_LEGGINGS.get());
+basicItem(Itemregististeries.OMNIDENS_BOOTS.get());
+basicItem(Itemregististeries.OMNIDENS_HELMET.get());
     }
 
 

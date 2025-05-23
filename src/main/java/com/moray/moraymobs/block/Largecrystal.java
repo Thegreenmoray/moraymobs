@@ -32,7 +32,7 @@ public class Largecrystal extends BaseEntityBlock {
         return CODEC;
     }
 
-    @Override
+   @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 
 

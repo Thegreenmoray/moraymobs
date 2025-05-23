@@ -81,16 +81,16 @@ public class Itemregististeries {
             ()->new Item(new Item.Properties().stacksTo(64)));
 
     final public static DeferredItem<Item> BEETLE_HELMET=ITEM.register("beetlemask",()->new Beetlearmor(
-            Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL ,ArmorItem.Type.HELMET,new Item.Properties().fireResistant().stacksTo(1)));
+            Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL ,ArmorItem.Type.HELMET,new Item.Properties().fireResistant().stacksTo(1).durability(300)));
 
     final public static DeferredItem<Item> BEETLE_CHESTPLATE=ITEM.register("beetlechestplate",
-            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,new Item.Properties().fireResistant().stacksTo(1)));
+            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,new Item.Properties().fireResistant().stacksTo(1).durability(550)));
 
     final public static DeferredItem<Item> BEETLE_LEGGINGS=ITEM.register("beetleleggings",
-            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,new Item.Properties().fireResistant().stacksTo(1)));
+            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,new Item.Properties().fireResistant().stacksTo(1).durability(400)));
 
     final public static DeferredItem<Item> BEETLE_BOOTS=ITEM.register("beetleboots",
-            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,new Item.Properties().fireResistant().stacksTo(1)));
+            ()->new Beetlearmor(Morayarmormaterials.ModArmorMaterials.BEETLE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,new Item.Properties().fireResistant().stacksTo(1).durability(300)));
 
     final public static DeferredItem<Item> EEL_WHIP=ITEM.register("eelwhip",
             ()->new Eelwhip(Tiers.WOOD,new Item.Properties().attributes(Eelwhip.createAttributes(Tiers.WOOD,3f,4f)).durability(450)));
@@ -130,6 +130,22 @@ public class Itemregististeries {
 
     final public static DeferredItem<Item> BOTTOM_KEY=ITEM.register("yellow_key",
             ()->new Item(new Item.Properties()));
+
+    final public static DeferredItem<Item> OMNIDENS_HELMET=ITEM.register("omnidenshelmet",()->new Omnidensarmor(
+            Morayarmormaterials.ModArmorMaterials.OMNIDENS_ARMOR_MATERIAL ,ArmorItem.Type.HELMET,new Item.Properties().fireResistant().stacksTo(1).durability(500)));
+
+    final public static DeferredItem<Item> OMNIDENS_CHESTPLATE=ITEM.register("omnidenschest",
+            ()->new Omnidensarmor(Morayarmormaterials.ModArmorMaterials.OMNIDENS_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,new Item.Properties().fireResistant().stacksTo(1).durability(750)));
+
+    final public static DeferredItem<Item> OMNIDENS_LEGGINGS=ITEM.register("omnidensleggings",
+            ()->new Omnidensarmor(Morayarmormaterials.ModArmorMaterials.OMNIDENS_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,new Item.Properties().fireResistant().stacksTo(1).durability(600)));
+
+    final public static DeferredItem<Item> OMNIDENS_BOOTS=ITEM.register("omnidensboots",
+            ()->new Omnidensarmor(Morayarmormaterials.ModArmorMaterials.OMNIDENS_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,new Item.Properties().fireResistant().stacksTo(1).durability(500)));
+
+
+
+
 
     public static void register(IEventBus bus){
         ITEM.register(bus);

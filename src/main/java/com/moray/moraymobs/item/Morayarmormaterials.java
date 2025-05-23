@@ -12,6 +12,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.EnumMap;
@@ -28,6 +29,18 @@ public class Morayarmormaterials  {
                     attribute.put(ArmorItem.Type.HELMET, 4);
                     attribute.put(ArmorItem.Type.BODY, 10);
                 }), 20, 1f, 0.0f, () -> Itemregististeries.BEETLE_SCALE.get());
+
+
+        public static final Holder<ArmorMaterial> OMNIDENS_ARMOR_MATERIAL = register("omnidens",
+                Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                    attribute.put(ArmorItem.Type.BOOTS, 5);
+                    attribute.put(ArmorItem.Type.LEGGINGS, 8);
+                    attribute.put(ArmorItem.Type.CHESTPLATE, 10);
+                    attribute.put(ArmorItem.Type.HELMET, 5);
+                    attribute.put(ArmorItem.Type.BODY, 12);
+                }), 25, 2f, 1.0f, () -> Items.NAUTILUS_SHELL);
+
+
 
 
         private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,

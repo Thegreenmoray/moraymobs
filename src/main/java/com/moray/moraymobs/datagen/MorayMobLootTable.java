@@ -40,7 +40,16 @@ public class MorayMobLootTable extends EntityLootSubProvider {
    this.add(Mobregistries.BOWFIN.get(),LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(Itemregististeries.RAW_BOWFIN.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1,1))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries,UniformGenerator.between(0,1))))).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries,UniformGenerator.between(0.0F, 1.0F))).apply((SmeltItemFunction.smelted().when(this.shouldSmeltLoot()))));
   this.add(Mobregistries.PRONGHORN.get(),LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(Itemregististeries.RAW_PRONGHORN.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1,3))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries,UniformGenerator.between(0,3))))).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries,UniformGenerator.between(0.0F, 3.0F))).apply(SmeltItemFunction.smelted().when(this.shouldSmeltLoot())).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(Itemregististeries.ANTLER.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(0,2))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Items.LEATHER)).apply(SetItemCountFunction.setCount(UniformGenerator.between(0,2))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries,UniformGenerator.between(1,3)))));
   this.add(Mobregistries.THRESHER.get(),LootTable.lootTable());
-  this.add(Mobregistries.OMNIDENS.get(),LootTable.lootTable());
+  this.add(Mobregistries.OMNIDENS.get(),LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+          .add(LootItem.lootTableItem(Itemregististeries.OMNIDENS_BOOTS)
+  .apply(SetItemCountFunction.setCount(UniformGenerator.between(1,1))))
+          .add(LootItem.lootTableItem(Itemregististeries.OMNIDENS_LEGGINGS))
+          .apply(SetItemCountFunction.setCount(UniformGenerator.between(1,1)))
+          .add(LootItem.lootTableItem(Itemregististeries.OMNIDENS_CHESTPLATE))
+          .apply(SetItemCountFunction.setCount(UniformGenerator.between(1,1)))
+          .add(LootItem.lootTableItem(Itemregististeries.OMNIDENS_HELMET))
+          .apply(SetItemCountFunction.setCount(UniformGenerator.between(1,1)))
+  ));
    }
 
     @Override

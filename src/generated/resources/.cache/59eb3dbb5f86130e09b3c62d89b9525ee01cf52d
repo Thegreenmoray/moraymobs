@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-09T23:46:29.9058707	Loot Tables
+// 1.21.1	2025-05-23T11:59:13.3267144	Loot Tables
 f0d2e92677d34968cd9211b990b317ab40d3821f data/moraymobs/loot_table/blocks/basaltlamp.json
 a076d08baa9c7a9aa3b87d83fcf6f95349b22d6b data/moraymobs/loot_table/blocks/blockscale.json
 ccbddaca81987c675522e2ba69ecc2583f04f43d data/moraymobs/loot_table/blocks/chorousgrass.json
@@ -10,7 +10,7 @@ ccbddaca81987c675522e2ba69ecc2583f04f43d data/moraymobs/loot_table/blocks/chorou
 a2105ad688d637fbcc0d9f551418fedcf317d632 data/moraymobs/loot_table/entities/bodysnatcher.json
 9de24bba6e4a11f53dad062ddad36d573d0accad data/moraymobs/loot_table/entities/bonymoray.json
 c400babf5fa7975924ae873f01cf97cb13635f44 data/moraymobs/loot_table/entities/bowfin.json
-aa3df8efaed7271f02c800ce117589202a0c2579 data/moraymobs/loot_table/entities/omnidens.json
+b1d937023bae321d1d530693135a97041fcd3361 data/moraymobs/loot_table/entities/omnidens.json
 148809bf2a1a30c385f40db00ecdf3ed60e2a093 data/moraymobs/loot_table/entities/opossum.json
 abed4ec70f96ba4349ff3d5c3a05cc6aa31f9195 data/moraymobs/loot_table/entities/paddlefish.json
 8f6e9ef89035c70b514d052978c6d3ec5a51c76c data/moraymobs/loot_table/entities/pronghorn.json

@@ -103,7 +103,7 @@ if (gettimer()>=50){
 
 
     protected float getInertia() {
-        return this.isInWater() ? 1.50F : 1.0f;
+        return this.isInWater() ? 2.50F : 1.0f;
     }
 
 

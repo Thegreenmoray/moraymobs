@@ -14,7 +14,6 @@ public class BeetleArmorModel extends GeoModel<Beetlearmor> {
     @Override
     public ResourceLocation getTextureResource(Beetlearmor beetlearmor) {
         return ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"textures/armor/beetlearmor.png");
-
     }
 
     @Override

@@ -64,6 +64,14 @@ private int ejection=0;
         this.xpReward=500;
     }
 
+
+
+
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return false;
+    }
+
     @Override
     public void knockback(double pStrength, double pX, double pZ) {
     }
