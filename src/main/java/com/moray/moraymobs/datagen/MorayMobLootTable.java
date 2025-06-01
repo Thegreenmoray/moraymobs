@@ -50,6 +50,15 @@ public class MorayMobLootTable extends EntityLootSubProvider {
           .add(LootItem.lootTableItem(Itemregististeries.OMNIDENS_HELMET))
           .apply(SetItemCountFunction.setCount(UniformGenerator.between(1,1)))
   ));
+ this.add(Mobregistries.MICRODICTYON.get(),LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+         .add(LootItem.lootTableItem(Itemregististeries.BOTTOM_KEY_PART)
+                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1,1))))));
+this.add(Mobregistries.SCHINDERHANNES.get(),LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+        .add(LootItem.lootTableItem(Itemregististeries.TOP_KEY_PART)
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1,1))))));
+ this.add(Mobregistries.WALLISEROPS.get(),LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+         .add(LootItem.lootTableItem(Itemregististeries.MIDDLE_KEY_PART)
+                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1,1))))));
    }
 
     @Override

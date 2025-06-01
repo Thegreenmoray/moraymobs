@@ -1,17 +1,10 @@
 package com.moray.moraymobs.datagen;
 
 import com.moray.moraymobs.MorayMobs;
-import com.moray.moraymobs.registries.Blockregistrires;
 import com.moray.moraymobs.registries.Itemregististeries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-
-import java.util.function.Supplier;
 
 public class MorayItemModelProvider extends ItemModelProvider {
     public MorayItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -30,7 +23,10 @@ withExistingParent(Itemregististeries.SOULCATCHER_SPAWN_EGG.getId().getPath(),mc
 withExistingParent(Itemregististeries.BOWFIN_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
 withExistingParent(Itemregististeries.PRONGHORN_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
 withExistingParent(Itemregististeries.THRESHERSHARK_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
-        basicItem(Itemregististeries.BRAIN.get());
+withExistingParent(Itemregististeries.MICRODICTYON_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
+withExistingParent(Itemregististeries.SCHINDERHANNES_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
+withExistingParent(Itemregististeries.WALLISEROPS_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
+basicItem(Itemregististeries.BRAIN.get());
      basicItem(Itemregististeries.JAW.get());
      basicItem(Itemregististeries.BEETLE_SCALE.get());
      basicItem(Itemregististeries.BEETLE_HELMET.get());
@@ -60,6 +56,10 @@ basicItem(Itemregististeries.OMNIDENS_CHESTPLATE.get());
 basicItem(Itemregististeries.OMNIDENS_LEGGINGS.get());
 basicItem(Itemregististeries.OMNIDENS_BOOTS.get());
 basicItem(Itemregististeries.OMNIDENS_HELMET.get());
+basicItem(Itemregististeries.TOP_KEY_PART.get());
+basicItem(Itemregististeries.MIDDLE_KEY_PART.get());
+basicItem(Itemregististeries.BOTTOM_KEY_PART.get());
+
     }
 
 

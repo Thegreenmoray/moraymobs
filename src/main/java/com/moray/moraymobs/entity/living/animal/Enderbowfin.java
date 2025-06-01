@@ -33,7 +33,9 @@ public class Enderbowfin extends Abstractfishmoray implements GeoEntity {
     }
     private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
 
-
+    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
+        return false;
+    }
 
 
     public static AttributeSupplier.Builder createAttributes() {

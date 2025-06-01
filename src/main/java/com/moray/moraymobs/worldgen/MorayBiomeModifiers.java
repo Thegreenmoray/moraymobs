@@ -57,7 +57,7 @@ public class MorayBiomeModifiers {
                         biomes.getOrThrow(Biomes.SOUL_SAND_VALLEY),
                         biomes.getOrThrow(Biomes.WARPED_FOREST),
                         biomes.getOrThrow(Biomes.CRIMSON_FOREST)),
-                List.of(new MobSpawnSettings.SpawnerData(Mobregistries.VOLCANOBACK.get(), 5, 1, 1))));
+                List.of(new MobSpawnSettings.SpawnerData(Mobregistries.PADDLEFISH.get(), 25, 2, 5))));
 
         context.register(SPAWN_SOULCATCHER, new BiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct( biomes.getOrThrow(Biomes.SOUL_SAND_VALLEY)),

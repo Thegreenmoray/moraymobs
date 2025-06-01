@@ -92,11 +92,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                unlockedBy(getHasName(Itemregististeries.BOTTLE_OF_SHOCK.get()),has(Itemregististeries.BOTTLE_OF_SHOCK.get()))
                .save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BONE,2)
+                .requires(Itemregististeries.ANTLER.get())
+                .unlockedBy(getHasName(Itemregististeries.ANTLER.get()), has(Itemregististeries.ANTLER.get()))
+                .save(recipeOutput);
 
-ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BONE_MEAL,4)
-        .requires(Itemregististeries.ANTLER.get())
-        .unlockedBy(getHasName(Itemregististeries.ANTLER.get()), has(Itemregististeries.ANTLER.get()))
-        .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT,Itemregististeries.TOP_KEY.get())
+                .pattern("@@@")
+                .pattern("***")
+                .pattern("%%%").define('@',Itemregististeries.TOP_KEY_PART).define('*',Itemregististeries.MIDDLE_KEY_PART)
+                .define('%',Itemregististeries.BOTTOM_KEY_PART.get()).
+                unlockedBy(getHasName(Itemregististeries.MIDDLE_KEY_PART.get()),has(Itemregististeries.MIDDLE_KEY_PART.get()))
+                .save(recipeOutput);
+
+
 
 cookingRecipes(recipeOutput,"smelted", RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new,200);
         cookingRecipes(recipeOutput,"smoked", RecipeSerializer.SMOKING_RECIPE,SmokingRecipe::new, 100);

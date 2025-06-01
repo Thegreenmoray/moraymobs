@@ -34,7 +34,7 @@ public class OmnidensJumpattackgoal extends Goal {
 
 
     public boolean isWithinMeleeAttackRange(LivingEntity entity) {
-        return this.omnidens.getHitbox().inflate(2.5,10,2.5).intersects(entity.getHitbox());
+        return this.omnidens.getHitbox().inflate(5.5,10,5.5).intersects(entity.getHitbox());
     }
 
 

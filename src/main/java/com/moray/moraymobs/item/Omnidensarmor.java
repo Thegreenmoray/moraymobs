@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,10 +20,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -51,6 +49,23 @@ public class Omnidensarmor extends ArmorItem implements GeoItem {
         return p_41135_.is(Items.NAUTILUS_SHELL);
     }
 
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        if (this.getEquipmentSlot() == EquipmentSlot.HEAD) {
+            tooltipComponents.add(Component.translatable("tooltip.moraymobs.armor"));
+         }
+        if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
+            tooltipComponents.add(Component.translatable("tooltip.moraymobs.armor"));
+        }
+        if (this.getEquipmentSlot() == EquipmentSlot.LEGS) {
+            tooltipComponents.add(Component.translatable("tooltip.moraymobs.armor"));
+        }
+        if (this.getEquipmentSlot() ==  EquipmentSlot.FEET) {
+            tooltipComponents.add(Component.translatable("tooltip.moraymobs.armor"));
+        }
+
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
 
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
@@ -96,7 +111,7 @@ for(ItemStack itemStack:player.getArmorSlots()){
 
 
             if(hasCorrectArmorOn(mapArmorMaterial, player)) {
-                addStatusEffectForMaterial(player, mapArmorMaterial,new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,25,1) );
+                addStatusEffectForMaterial(player, mapArmorMaterial,new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,25,0) );
             }
         }
     }

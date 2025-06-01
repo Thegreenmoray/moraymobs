@@ -8,9 +8,9 @@
     "minecraft:crimson_forest"
   ],
   "spawners": {
-    "type": "moraymobs:volcanoback",
-    "maxCount": 1,
-    "minCount": 1,
-    "weight": 5
+    "type": "moraymobs:paddlefish",
+    "maxCount": 5,
+    "minCount": 2,
+    "weight": 25
   }
 }

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "%": {
+      "item": "moraymobs:bottomofkey"
+    },
+    "*": {
+      "item": "moraymobs:middleofkey"
+    },
+    "@": {
+      "item": "moraymobs:topofkey"
+    }
+  },
+  "pattern": [
+    "@@@",
+    "***",
+    "%%%"
+  ],
+  "result": {
+    "count": 1,
+    "id": "moraymobs:red_key"
+  }
+}

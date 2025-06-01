@@ -48,15 +48,12 @@ public class Geyser extends AbstractHurtingProjectile implements GeoEntity {
         this.entityData.set(START,start);
     }
 
-    @Override
-    protected void onHitEntity(EntityHitResult result) {
-       Entity entity = result.getEntity();
 
-       if (entity instanceof LivingEntity entity1){
-           entity1.hurt(this.damageSources().generic(),10);
-       }
-
+    public boolean isPickable() {
+        return false;
     }
+
+
 
     @Override
     public void tick() {
@@ -71,8 +68,8 @@ public class Geyser extends AbstractHurtingProjectile implements GeoEntity {
 
     List<Entity> entityList=level().getEntities(this,this.getBoundingBox());
      for (Entity entity:entityList){
-         if (entity instanceof LivingEntity&&!(entity instanceof Omnidens)){
-             entity.hurt(this.damageSources().generic(),10f);
+         if (entity instanceof LivingEntity&&!(entity instanceof Omnidens omnidens)){
+             entity.hurt(this.damageSources().magic(),5f);
          }
      }
         if (random.nextInt(15)==3){

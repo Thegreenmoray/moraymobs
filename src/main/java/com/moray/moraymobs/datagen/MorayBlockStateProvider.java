@@ -79,8 +79,8 @@ blockWithItem(Blockregistrires.CRACKEDDARKPRISMANE);
                         ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, "block/" + "dark_down_prismarine_keyhole_empty")))};
 
             } else {
-                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("dark_prismarine_up_keyhole_empty",
-                        ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, "block/" + "dark_prismarine_up_keyhole_empty")))};
+                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("dark_down_prismarine_keyhole",
+                        ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, "block/" + "dark_down_prismarine_keyhole")))};
             }
         });
 

@@ -52,10 +52,6 @@ public abstract class Abstractfishmoray extends WaterAnimal implements Bucketabl
         builder.define(FROM_BUCKET, false);
     }
 
-
-
-
-
     public boolean fromBucket() {
         return (Boolean)this.entityData.get(FROM_BUCKET);
     }

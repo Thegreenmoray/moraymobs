@@ -3,10 +3,14 @@ package com.moray.moraymobs.modevents;
 import com.moray.moraymobs.MorayMobs;
 import com.moray.moraymobs.entity.living.animal.*;
 import com.moray.moraymobs.entity.living.boss.Omnidens;
+import com.moray.moraymobs.entity.living.dungeonentities.Microdictyon;
+import com.moray.moraymobs.entity.living.dungeonentities.Schinderhannes;
+import com.moray.moraymobs.entity.living.dungeonentities.Walliserops;
 import com.moray.moraymobs.entity.living.monster.*;
 import com.moray.moraymobs.entity.projectiles.Stunwave;
 import com.moray.moraymobs.registries.Itemregististeries;
 import com.moray.moraymobs.registries.Mobregistries;
+import com.moray.moraymobs.rendersandmodels.render.entities.monsters.Schinderhannesrenderer;
 import com.moray.moraymobs.tags.MorayKeys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -61,6 +65,9 @@ event.put(Mobregistries.BOWFIN.get(), Enderbowfin.createAttributes().build());
 event.put(Mobregistries.PRONGHORN.get(), Pronghorn.createAttributes().build());
 event.put(Mobregistries.THRESHER.get(), Thresher_shark.createAttributes().build());
 event.put(Mobregistries.OMNIDENS.get(), Omnidens.createMonsterAttributes().build());
+event.put(Mobregistries.MICRODICTYON.get(), Microdictyon.createAttributes().build());
+event.put(Mobregistries.SCHINDERHANNES.get(), Schinderhannes.createMonsterAttributes().build());
+event.put(Mobregistries.WALLISEROPS.get(), Walliserops.createMonsterAttributes().build());
     }
 @EventBusSubscriber(modid = MorayMobs.MODID)
     public static class itemspawn{

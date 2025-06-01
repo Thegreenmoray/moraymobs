@@ -1,0 +1,50 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.sea mine.sway": {
+			"loop": true,
+			"animation_length": 3.3445,
+			"bones": {
+				"mine": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.8357": {
+							"vector": [1, 0, 0]
+						},
+						"1.6713": {
+							"vector": [0, 0, 0]
+						},
+						"2.507": {
+							"vector": [-1, 0, 0]
+						},
+						"3.3426": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"chain": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.8357": {
+							"vector": [0, 0, 5]
+						},
+						"1.6713": {
+							"vector": [0, 0, 0]
+						},
+						"2.507": {
+							"vector": [0, 0, -5]
+						},
+						"3.3426": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

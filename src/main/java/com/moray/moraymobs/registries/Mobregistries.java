@@ -3,6 +3,9 @@ package com.moray.moraymobs.registries;
 import com.moray.moraymobs.MorayMobs;
 import com.moray.moraymobs.entity.living.animal.*;
 import com.moray.moraymobs.entity.living.boss.Omnidens;
+import com.moray.moraymobs.entity.living.dungeonentities.Microdictyon;
+import com.moray.moraymobs.entity.living.dungeonentities.Schinderhannes;
+import com.moray.moraymobs.entity.living.dungeonentities.Walliserops;
 import com.moray.moraymobs.entity.living.monster.*;
 import com.moray.moraymobs.entity.projectiles.*;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -87,8 +90,34 @@ public class Mobregistries {
                   .sized(5F,1F).build("omnidens"));
 
 
+  final public static Supplier<EntityType<Microdictyon>> MICRODICTYON=
+          ENTITY_TYPE.register("microdictyon",()->EntityType.Builder.of(Microdictyon::new, MobCategory.MONSTER)
+                  .sized(2F,1F).build("microdictyon"));
 
-  public static void register(IEventBus bus){
+  final public static Supplier<EntityType<Microprojectile>> MICRODICTYON_PROJECTILE=
+          ENTITY_TYPE.register("microdictyon_projectiles",()->EntityType.Builder.<Microprojectile>of(Microprojectile::new, MobCategory.MISC)
+                  .sized(1F,1F).fireImmune().build("microdictyon_projectiles"));
+
+
+  final public static Supplier<EntityType<Schinderhannes>> SCHINDERHANNES=
+          ENTITY_TYPE.register("schinderhannes",()->EntityType.Builder.of(Schinderhannes::new, MobCategory.MONSTER)
+                  .sized(1F,1F).build("schinderhannes"));
+
+  final public static Supplier<EntityType<Walliserops>> WALLISEROPS=
+          ENTITY_TYPE.register("walliserops",()->EntityType.Builder.of(Walliserops::new, MobCategory.MONSTER)
+                  .sized(1F,1F).build("walliserops"));
+
+  final public static Supplier<EntityType<Bouncy_ball>> BOUNCE_BALL=
+          ENTITY_TYPE.register("bouncy_ball",()->EntityType.Builder.<Bouncy_ball>of(Bouncy_ball::new, MobCategory.MISC)
+                  .sized(1F,1F).fireImmune().build("bouncy_ball"));
+
+  final public static Supplier<EntityType<Sea_Mine>> SEA_MINE=
+          ENTITY_TYPE.register("sea_mine",()->EntityType.Builder.<Sea_Mine>of(Sea_Mine::new, MobCategory.MISC)
+                  .sized(2F,2F).fireImmune().build("sea_mine"));
+
+
+
+    public static void register(IEventBus bus){
     ENTITY_TYPE.register(bus);
 }
 

@@ -1,9 +1,10 @@
-// 1.21.1	2025-05-23T10:23:28.3393989	Item Models: moraymobs
+// 1.21.1	2025-05-28T20:38:45.4892833	Item Models: moraymobs
 620d1057bbc305de467830ba2d799f70dc3ff86e assets/moraymobs/models/item/basalt_crystal.json
 2aaafccd2f9caa60c26546840130703bf4027450 assets/moraymobs/models/item/beetleboots.json
 d9bca312dbb8b1a550eda0750bb249b66e92f6b3 assets/moraymobs/models/item/beetlechestplate.json
 3cf59f842dab1a7c3f4ff8b2cbe15a2f3cf9ad7d assets/moraymobs/models/item/beetleleggings.json
 a946d57c14b693f22d2a54e996ecc6d95134b9ae assets/moraymobs/models/item/beetlemask.json
+87ea74dcfeff9557b226ba8ff9b262c02a3c13e6 assets/moraymobs/models/item/bottomofkey.json
 0e721091e61f231c5dfe8e26b4c4deb215250d86 assets/moraymobs/models/item/bowfinbucket.json
 aea342caeb496305e1b66379bc97c3ff8bf8e43f assets/moraymobs/models/item/brain.json
 106a929641644196c56e4f3029b30e0166754b7c assets/moraymobs/models/item/chorousmoss.json
@@ -11,6 +12,7 @@ aea342caeb496305e1b66379bc97c3ff8bf8e43f assets/moraymobs/models/item/brain.json
 f7eff0b14d456279aaa0d6a023f86bc776c98b51 assets/moraymobs/models/item/cookedpronghorn.json
 c06249a3e02827d12195fbe2f2ca7f1c6e876fc2 assets/moraymobs/models/item/glassofstunwave.json
 9d1395e062361b3f52f1da3f25e533504d78a2db assets/moraymobs/models/item/jawloose.json
+80479972005332b23bf7fe3c568cc2db2bec23b9 assets/moraymobs/models/item/middleofkey.json
 0d6e90d613ad7765fca9604b5a0dbd9ead717436 assets/moraymobs/models/item/omnidensboots.json
 996631e7d8cf1be5e9267c9c8bb2d71a4a20c7f6 assets/moraymobs/models/item/omnidenschest.json
 2674401874f03bc967767055b0ab7e51ec944c04 assets/moraymobs/models/item/omnidenshelmet.json
@@ -30,10 +32,14 @@ db8eb6e7da4476f3d2c0194741a8ed9e931b3ec8 assets/moraymobs/models/item/shulkerber
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_body_snatcher.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_endbowfin.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_lava_paddlefish.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_microdictyon.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_moray.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_opposum.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_pronghorn.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_schinderhannes.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_soulcatcher.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_thresher.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_volcanoback.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_walliserops.json
+6e44d6405d84a0702ca6f20558df2d33ff453e9e assets/moraymobs/models/item/topofkey.json
 400c3a09043311d7882c111ba2a502af65e37841 assets/moraymobs/models/item/yellow_key.json

@@ -66,5 +66,6 @@
   "tooltip.moraymobs.basaltlamp": "Rare, Powerful, or Notable creatures are lit up by this lamp by right clicking the block. Obtained from Basaltlisks after eating a small magma cube or Basalt Sanctuaries.",
   "tooltip.moraymobs.crystal": "A Neutral creature is held with this magical cage, be warned that freeing it will break the cage, and you cannot reform it. Right click on a block to free it.",
   "tooltip.moraymobs.shulkerfruit": "Eat to clear effects of Levitation, can be eaten even when not hungry",
-"tooltip.moraymobs.glassofstunwave": "Obtained by bottling a shockwave from an agro'ed Thresher Shark, be careful not to be stunned!"
+"tooltip.moraymobs.glassofstunwave": "Obtained by bottling a shockwave from an agro'ed Thresher Shark, be careful not to be stunned!",
+  "tooltip.moraymobs.armor": "Set bonus: gain Resistance 1 at below half health, press the r key preform a roar that inflicts weakness/slowness (depending if above or below half health, respectively) on all nearby mobs"
 }

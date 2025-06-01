@@ -24,8 +24,8 @@ public class Morayarmormaterials  {
         public static final Holder<ArmorMaterial> BEETLE_ARMOR_MATERIAL = register("beetle",
                 Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
                     attribute.put(ArmorItem.Type.BOOTS, 4);
-                    attribute.put(ArmorItem.Type.LEGGINGS, 7);
-                    attribute.put(ArmorItem.Type.CHESTPLATE, 8);
+                    attribute.put(ArmorItem.Type.LEGGINGS, 6);
+                    attribute.put(ArmorItem.Type.CHESTPLATE, 7);
                     attribute.put(ArmorItem.Type.HELMET, 4);
                     attribute.put(ArmorItem.Type.BODY, 10);
                 }), 20, 1f, 0.0f, () -> Itemregististeries.BEETLE_SCALE.get());
@@ -33,11 +33,11 @@ public class Morayarmormaterials  {
 
         public static final Holder<ArmorMaterial> OMNIDENS_ARMOR_MATERIAL = register("omnidens",
                 Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
-                    attribute.put(ArmorItem.Type.BOOTS, 5);
-                    attribute.put(ArmorItem.Type.LEGGINGS, 8);
-                    attribute.put(ArmorItem.Type.CHESTPLATE, 10);
-                    attribute.put(ArmorItem.Type.HELMET, 5);
-                    attribute.put(ArmorItem.Type.BODY, 12);
+                    attribute.put(ArmorItem.Type.BOOTS, 4);
+                    attribute.put(ArmorItem.Type.LEGGINGS, 7);
+                    attribute.put(ArmorItem.Type.CHESTPLATE, 9);
+                    attribute.put(ArmorItem.Type.HELMET, 4);
+                    attribute.put(ArmorItem.Type.BODY, 8);
                 }), 25, 2f, 1.0f, () -> Items.NAUTILUS_SHELL);
 
 

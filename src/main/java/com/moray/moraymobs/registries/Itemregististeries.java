@@ -1,6 +1,7 @@
 package com.moray.moraymobs.registries;
 
 import com.moray.moraymobs.MorayMobs;
+import com.moray.moraymobs.block.Smallcrystal;
 import com.moray.moraymobs.item.*;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.sounds.SoundEvents;
@@ -13,6 +14,8 @@ import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.security.cert.Extension;
 
 
 public class Itemregististeries {
@@ -48,6 +51,16 @@ public class Itemregististeries {
     final public static DeferredItem<Item>  THRESHERSHARK_SPAWN_EGG=ITEM.register
             ("spawn_thresher",()-> new DeferredSpawnEggItem(Mobregistries.THRESHER,0xADD8E6,0xFFFFFF,new Item.Properties()));
 
+    final public static DeferredItem<Item>  MICRODICTYON_SPAWN_EGG=ITEM.register
+            ("spawn_microdictyon",()-> new DeferredSpawnEggItem(Mobregistries.MICRODICTYON,0xFFFF8F,0xFFF8DC,new Item.Properties()));
+
+    final public static DeferredItem<Item>  SCHINDERHANNES_SPAWN_EGG=ITEM.register
+            ("spawn_schinderhannes",()-> new DeferredSpawnEggItem(Mobregistries.SCHINDERHANNES,0x0000FF,0x088F8F,new Item.Properties()));
+
+    final public static DeferredItem<Item> WALLISEROPS_SPAWN_EGG=ITEM.register
+            ("spawn_walliserops",()-> new DeferredSpawnEggItem(Mobregistries.WALLISEROPS,0x964B00,0x800020,new Item.Properties()));
+
+
     final public static DeferredItem<Item> BRAIN=ITEM.register("brain",
            ()->new Brainitem(new Item.Properties().stacksTo(8)));
 
@@ -58,7 +71,7 @@ public class Itemregististeries {
             ()->new ItemNameBlockItem(Blockregistrires.SHULKERFRUIT_CROP.get(),new Item.Properties().stacksTo(64)));
 
     final public static DeferredItem<Item> SHULKERBERRY=ITEM.register("shulkerberry",
-            ()->new Shulkerfruit(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(3).build()).stacksTo(64)));
+            ()->new Shulkerfruit(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(3).alwaysEdible().build()).stacksTo(64)));
 
     final public static DeferredItem<Item> RAW_BOWFIN= ITEM.register("rawbowfin",
             ()->new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(3).build()).stacksTo(64)));
@@ -125,7 +138,20 @@ public class Itemregististeries {
     final public static DeferredItem<Item> CRYSTAL_LARGE_ITEM = ITEM.register("large_orb",
             () -> new Largecrystalblockitem(Blockregistrires.LARGE_CRYSTAL.get(), new Item.Properties()));
 
+    final public static DeferredItem<Item> CRYSTAL_SMALL_ITEM = ITEM.register("small_orb",
+            () -> new SmallCrystalitem(Blockregistrires.SMALL_CRYSTAL.get(), new Item.Properties()));
+
     final public static DeferredItem<Item> TOP_KEY=ITEM.register("red_key",
+            ()->new Item(new Item.Properties()));
+
+
+    final public static DeferredItem<Item> TOP_KEY_PART=ITEM.register("topofkey",
+            ()->new Item(new Item.Properties()));
+
+    final public static DeferredItem<Item> BOTTOM_KEY_PART=ITEM.register("bottomofkey",
+            ()->new Item(new Item.Properties()));
+
+    final public static DeferredItem<Item> MIDDLE_KEY_PART=ITEM.register("middleofkey",
             ()->new Item(new Item.Properties()));
 
     final public static DeferredItem<Item> BOTTOM_KEY=ITEM.register("yellow_key",
@@ -142,8 +168,6 @@ public class Itemregististeries {
 
     final public static DeferredItem<Item> OMNIDENS_BOOTS=ITEM.register("omnidensboots",
             ()->new Omnidensarmor(Morayarmormaterials.ModArmorMaterials.OMNIDENS_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,new Item.Properties().fireResistant().stacksTo(1).durability(500)));
-
-
 
 
 
