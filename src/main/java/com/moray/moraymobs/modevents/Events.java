@@ -8,11 +8,13 @@ import com.moray.moraymobs.entity.living.dungeonentities.Schinderhannes;
 import com.moray.moraymobs.entity.living.dungeonentities.Walliserops;
 import com.moray.moraymobs.entity.living.monster.*;
 import com.moray.moraymobs.entity.projectiles.Stunwave;
+import com.moray.moraymobs.item.Mega_Digger;
 import com.moray.moraymobs.registries.Itemregististeries;
 import com.moray.moraymobs.registries.Mobregistries;
 import com.moray.moraymobs.rendersandmodels.render.entities.monsters.Schinderhannesrenderer;
 import com.moray.moraymobs.tags.MorayKeys;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
@@ -34,6 +36,10 @@ import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @EventBusSubscriber(modid = MorayMobs.MODID,bus = EventBusSubscriber.Bus.MOD)
 public class Events {
@@ -108,6 +114,41 @@ event.put(Mobregistries.WALLISEROPS.get(), Walliserops.createMonsterAttributes()
 
             }
         }
+
+
+
+        private static final Set<BlockPos> HARVESTED_BLOCKS = new HashSet<>();
+
+        // Done with the help of https://github.com/CoFH/CoFHCore/blob/1.19.x/src/main/java/cofh/core/event/AreaEffectEvents.java
+        // Don't be a jerk License
+        @SubscribeEvent
+        public static void onHammerUsage(BlockEvent.BreakEvent event) {
+            Player player = event.getPlayer();
+            ItemStack mainHandItem = player.getMainHandItem();
+
+            if(mainHandItem.getItem() instanceof Mega_Digger megaDigger && player instanceof ServerPlayer serverPlayer) {
+                BlockPos initialBlockPos = event.getPos();
+                if(HARVESTED_BLOCKS.contains(initialBlockPos)) {
+                    return;
+                }
+
+                for(BlockPos pos : Mega_Digger.getBlocksToBeDestroyed(2, initialBlockPos, serverPlayer)) {
+                    if(pos == initialBlockPos || !megaDigger.isCorrectToolForDrops(mainHandItem, event.getLevel().getBlockState(pos))) {
+                        continue;
+                    }
+
+                    HARVESTED_BLOCKS.add(pos);
+                    serverPlayer.gameMode.destroyBlock(pos);
+                    HARVESTED_BLOCKS.remove(pos);
+                }
+            }
+        }
+
+
+
+
+
+
 
 
     @SubscribeEvent

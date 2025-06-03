@@ -13,24 +13,23 @@ import java.util.List;
 public class Roaromnidensgoal extends Goal {
 
     private Omnidens omnidens;
-    int timer;
-    int count;
-    public Roaromnidensgoal(Omnidens omnidens, int timer) {
+
+    public Roaromnidensgoal(Omnidens omnidens) {
         this.omnidens=omnidens;
-        this.timer=timer;
+
     }
 
     @Override
     public void start() {
-      count=0;
-
+    omnidens.setRoar(75);
+omnidens.setanimation(6);
     }
 
     @Override
     public void tick() {
-      count++;
+
         omnidens.stopInPlace();
-        if (count==10){
+        if (omnidens.getroar()==39){
        this.omnidens.setPose(Pose.ROARING);
         List<Entity> entities=  this.omnidens.level().getEntities(this.omnidens,this.omnidens.getBoundingBox().inflate(7));
         for (Entity entity:entities){
@@ -42,25 +41,28 @@ public class Roaromnidensgoal extends Goal {
 
     @Override
     public void stop() {
-        count=0;
         this.omnidens.setPose(Pose.STANDING);
-        this.omnidens.setRoar(0);
+        omnidens.setanimation(0);
     }
 
     @Override
     public boolean canContinueToUse() {
-        return timer>count;
+        return omnidens.getroar()>0;
     }
 
     @Override
     public boolean canUse() {
      LivingEntity entity=this.omnidens.getTarget();
      if (entity==null){
-         this.omnidens.setRoar(0);
+
          return false;
      }
 
 
-        return omnidens.getroar()>150;//&&omnidens.getRandom().nextInt(10)==4;
+        return omnidens.getroar()<=-150
+                &&omnidens.canuseskill()
+                &&omnidens.level().random.nextInt(15)==3;
+
+
     }
 }

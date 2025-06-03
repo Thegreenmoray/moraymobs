@@ -11,7 +11,7 @@ public class MeleeomnidensGoal extends MeleeAttackGoal {
     }
 
     protected boolean canPerformAttack(LivingEntity entity) {
-        return this.isTimeToAttack()  && this.mob.getSensing().hasLineOfSight(entity)&& this.mob.distanceTo(entity)<5.5;
+        return this.isTimeToAttack()  && this.mob.getSensing().hasLineOfSight(entity)&& this.mob.distanceTo(entity)<4.5;
     }
 
 }

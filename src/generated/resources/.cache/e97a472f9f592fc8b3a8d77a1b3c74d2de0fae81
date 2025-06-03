@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-28T20:38:45.4892833	Item Models: moraymobs
+// 1.21.1	2025-06-03T00:22:38.6233842	Item Models: moraymobs
 620d1057bbc305de467830ba2d799f70dc3ff86e assets/moraymobs/models/item/basalt_crystal.json
 2aaafccd2f9caa60c26546840130703bf4027450 assets/moraymobs/models/item/beetleboots.json
 d9bca312dbb8b1a550eda0750bb249b66e92f6b3 assets/moraymobs/models/item/beetlechestplate.json
@@ -7,6 +7,7 @@ a946d57c14b693f22d2a54e996ecc6d95134b9ae assets/moraymobs/models/item/beetlemask
 87ea74dcfeff9557b226ba8ff9b262c02a3c13e6 assets/moraymobs/models/item/bottomofkey.json
 0e721091e61f231c5dfe8e26b4c4deb215250d86 assets/moraymobs/models/item/bowfinbucket.json
 aea342caeb496305e1b66379bc97c3ff8bf8e43f assets/moraymobs/models/item/brain.json
+6202614d147b9299cc9017e641603bf88b65c1b6 assets/moraymobs/models/item/buccaneer_barrel.json
 106a929641644196c56e4f3029b30e0166754b7c assets/moraymobs/models/item/chorousmoss.json
 85cda535d69b7377900279fbf7c93ec4977d8751 assets/moraymobs/models/item/cookedbowfin.json
 f7eff0b14d456279aaa0d6a023f86bc776c98b51 assets/moraymobs/models/item/cookedpronghorn.json
@@ -17,6 +18,9 @@ c06249a3e02827d12195fbe2f2ca7f1c6e876fc2 assets/moraymobs/models/item/glassofstu
 996631e7d8cf1be5e9267c9c8bb2d71a4a20c7f6 assets/moraymobs/models/item/omnidenschest.json
 2674401874f03bc967767055b0ab7e51ec944c04 assets/moraymobs/models/item/omnidenshelmet.json
 c755afd28556d541431dc50e15d4478122b46bca assets/moraymobs/models/item/omnidensleggings.json
+96445b409383f71872823eb2f8c09460ca8bff15 assets/moraymobs/models/item/omnidens_bag.json
+959d6ff6a006f1673bb4c1679e6a77c549d553a5 assets/moraymobs/models/item/omnidens_blade.json
+087b981f2eaf4bd390a6488114ddb6d597395107 assets/moraymobs/models/item/omnidens_shovel.json
 e75887297c21d730b9a4c9a9d15cfbc81fd48325 assets/moraymobs/models/item/paddlefishbucket.json
 26c3f4c54c55a16fb0d4878aa374e4695b5540d5 assets/moraymobs/models/item/paddlefishfood.json
 e07da74025e8f47349be7a5c7008c4375e6d38e0 assets/moraymobs/models/item/pronghornantler.json

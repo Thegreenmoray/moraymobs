@@ -11,6 +11,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -51,7 +52,7 @@ public class Walliserops extends Monster implements GeoEntity {
     public void tick() {
         super.tick();
 
-        if (gettimer()<30){
+        if (gettimer()<=30){
             settimer(gettimer()+1);
         }
 
@@ -63,6 +64,7 @@ public class Walliserops extends Monster implements GeoEntity {
         this.goalSelector.addGoal(0,new RandomStrollGoal(this,0.5f));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class,30));
         this.goalSelector.addGoal(1,new MeleeAttackGoal(this,0.5,false));
    this.goalSelector.addGoal(3,new Walliseropsleapgoal(this,30));
     }
@@ -76,7 +78,7 @@ public class Walliserops extends Monster implements GeoEntity {
     public static AttributeSupplier.@NotNull Builder createMonsterAttributes() {
         return Monster.createMobAttributes().add(Attributes.ATTACK_DAMAGE,4).add(Attributes.MAX_HEALTH,18)
                 .add(Attributes.WATER_MOVEMENT_EFFICIENCY,0.3f).add(Attributes.ARMOR,2f)
-                .add(Attributes.FOLLOW_RANGE,20f);
+                .add(Attributes.ATTACK_KNOCKBACK,3).add(Attributes.FOLLOW_RANGE,40f);
     }
 
     public void readAdditionalSaveData(CompoundTag compound) {
@@ -124,7 +126,32 @@ public class Walliserops extends Monster implements GeoEntity {
                 "Controller",this::animations));
     }
 
+
+    @Override
+    protected void tickDeath() {
+        ++this.deathTime;
+
+
+        if (this.deathTime == 40 && !this.level().isClientSide()) {
+            this.level().broadcastEntityEvent(this, (byte) 60);
+            this.remove(RemovalReason.KILLED);
+        }
+    }
+
+
     private PlayState animations(AnimationState<Walliserops> walliseropsAnimationState) {
+
+        if (getHealth()<=0.01){
+            walliseropsAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.walliserops.death", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+
+        }
+
+        if (gettimer()>30){
+            walliseropsAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.walliserops.stab", Animation.LoopType.PLAY_ONCE));
+            return PlayState.CONTINUE;
+
+        }
 
 
         if (walliseropsAnimationState.isMoving()){

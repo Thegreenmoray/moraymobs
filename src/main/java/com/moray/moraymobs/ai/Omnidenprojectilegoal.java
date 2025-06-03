@@ -9,11 +9,9 @@ import net.minecraft.world.phys.Vec3;
 
 public class Omnidenprojectilegoal extends Goal {
   private Omnidens omnidens;
-  int timer;
-  int count;
-public Omnidenprojectilegoal(Omnidens omnidens,int timer) {
+public Omnidenprojectilegoal(Omnidens omnidens) {
     this.omnidens=omnidens;
-       this.timer=timer;
+
     }
 
     @Override
@@ -23,10 +21,7 @@ public Omnidenprojectilegoal(Omnidens omnidens,int timer) {
         if (livingEntity!=null){
           this.omnidens.lookAt(livingEntity, (float) -livingEntity.getY(), (float) livingEntity.getX());
 
-          count++;
-
-
-            if(count==10){
+            if(omnidens.getboomerangtime()==20){
 
                 for (int i = 0; i < 3; i++) {
                    float angle=Mth.PI/6;
@@ -62,14 +57,13 @@ public Omnidenprojectilegoal(Omnidens omnidens,int timer) {
 
     @Override
     public void start() {
-        count=0;
-
+        omnidens.setboomerangtime(40);
+omnidens.setanimation(7);
     }
 
     @Override
     public void stop() {
-        count=0;
-        this.omnidens.setboomerangtime(0);
+omnidens.setanimation(0);
     }
 
     @Override
@@ -80,19 +74,21 @@ public Omnidenprojectilegoal(Omnidens omnidens,int timer) {
         }
 
 
-        return timer>count;
+        return omnidens.getboomerangtime()>0;
     }
 
     @Override
     public boolean canUse() {
         if(this.omnidens.getTarget()==null){
-            this.omnidens.setboomerangtime(0);
+
             return false;
         }
 
 
 
-        return this.omnidens.getboomerangtime()>100;
+        return omnidens.getboomerangtime()<=-100
+                &&omnidens.canuseskill()
+                &&omnidens.level().random.nextInt(8)==3;
 
     }
 

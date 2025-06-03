@@ -10,26 +10,24 @@ import java.util.List;
 
 public class Burrowgoal extends Goal {
     private Omnidens omnidens;
-    int timer;
-    int count;
 
-    public Burrowgoal(Omnidens omnidens, int timer) {
+
+    public Burrowgoal(Omnidens omnidens) {
         this.omnidens=omnidens;
-        this.timer=timer;
     }
 
     @Override
     public void start() {
-        count=0;
+       omnidens.setBurrow(120);
+        omnidens.setanimation(9);
     }
 
     @Override
     public void stop() {
-        count=0;
         omnidens.setnonvisble(false);
         omnidens.setInvulnerable(false);
         omnidens.setInvisible(false);
-        omnidens.setBurrow(0);
+        omnidens.setanimation(0);
     }
 
     @Override
@@ -37,20 +35,22 @@ public class Burrowgoal extends Goal {
        LivingEntity entity =this.omnidens.getTarget();
 
       if (entity!=null){
-        count++;
 
-        if (count==20){ omnidens.setnonvisble(true);}
 
-          if (count==35){
+        if (omnidens.getBurrow()==80){
+
+            omnidens.setnonvisble(true);}
+
+          if (omnidens.getBurrow()==66){
               omnidens.setInvisible(true);
               omnidens.setInvulnerable(true);
           }
 
-          if (count==55){
+          if (omnidens.getBurrow()==28){
               omnidens.setPos(entity.getX(),entity.getY(),entity.getZ());
           }
 
-          if (count==70){
+          if (omnidens.getBurrow()==10){
               omnidens.setInvisible(false);
               omnidens.setInvulnerable(false);
               omnidens.setnonvisble(false);
@@ -87,18 +87,20 @@ public class Burrowgoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return timer>count;
+        return omnidens.getBurrow()>0;
     }
 
     @Override
     public boolean canUse() {
       Entity entity=this.omnidens.getTarget();
       if (entity==null){
-          omnidens.setBurrow(0);
           return false;
       }
 
 
-        return omnidens.getBurrow()>200;
+        return this.omnidens.getBurrow()<=-100
+                &&omnidens.canuseskill()
+                &&omnidens.getHealth()<=omnidens.oneforth
+                &&omnidens.level().random.nextInt(25)==10;
     }
 }

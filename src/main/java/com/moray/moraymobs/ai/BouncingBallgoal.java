@@ -12,22 +12,21 @@ import net.minecraft.world.phys.Vec3;
 public class BouncingBallgoal extends Goal {
 
     Omnidens omnidens;
-    int timer;
-    int count;
-    public BouncingBallgoal(Omnidens omnidens, int timer) {
+
+    public BouncingBallgoal(Omnidens omnidens) {
         this.omnidens = omnidens;
-        this.timer=timer;
+
     }
 
 
     @Override
     public void tick() {
-        count++;
+
         LivingEntity living = omnidens.getTarget();
         if (living!=null){
             this.omnidens.lookAt(living, (float) -living.getY(), (float) living.getX());
 
-            if(count==10){
+            if(omnidens.getbouncetime()==10){
                 Bouncy_ball bouncyBall = new Bouncy_ball(this.omnidens.level());
                 Vec3 vec3=this.omnidens.getViewVector(1);
                 bouncyBall.setPos(this.omnidens.getX() + vec3.x * 4.0, this.omnidens.getY(0.33333)+0.5, this.omnidens.getZ() + vec3.z * 4.0);
@@ -47,13 +46,14 @@ public class BouncingBallgoal extends Goal {
 
     @Override
     public void start() {
-        count=0;
+        omnidens.setbouncetime(36);
+        omnidens.setanimation(7);
     }
 
     @Override
     public void stop() {
-         count=0;
-        omnidens.setbouncetime(0);
+        omnidens.setanimation(0);
+
     }
 
 
@@ -65,7 +65,7 @@ public class BouncingBallgoal extends Goal {
 
 
 
-        return timer>count;
+        return omnidens.getbouncetime()>0;
     }
 
 
@@ -73,13 +73,12 @@ public class BouncingBallgoal extends Goal {
     public boolean canUse() {
         LivingEntity entity=this.omnidens.getTarget();
 
-
         if (entity==null){
-            omnidens.setbouncetime(0);
             return false;
         }
 
 
-        return this.omnidens.getbouncetime()>50;
+        return this.omnidens.getbouncetime()<=-50
+                &&omnidens.canuseskill()&&omnidens.level().random.nextInt(25)==8;
     }
 }

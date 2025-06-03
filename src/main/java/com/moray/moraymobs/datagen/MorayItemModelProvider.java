@@ -59,7 +59,10 @@ basicItem(Itemregististeries.OMNIDENS_HELMET.get());
 basicItem(Itemregististeries.TOP_KEY_PART.get());
 basicItem(Itemregististeries.MIDDLE_KEY_PART.get());
 basicItem(Itemregististeries.BOTTOM_KEY_PART.get());
-
+handheldItem(Itemregististeries.OMNIDENS_SWORD.get());
+handheldItem(Itemregististeries.OMNIDENS_SHOVEL.get());
+handheldItem(Itemregististeries.BUCCANEER.get());
+basicItem(Itemregististeries.OMNI_BAG.get());
     }
 
 

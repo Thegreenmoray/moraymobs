@@ -55,11 +55,11 @@ public class Keydownblock extends Block {
                 BlockState blockstate = level.getBlockState(p_294069_);
                 {
                     if (blockstate.getBlock() == Blockregistrires.CRACKEDDARKPRISMANE.get()||blockstate.getBlock() == Blockregistrires.KEYDOWNBLOCK.get()||blockstate.getBlock() == Blockregistrires.KEYTOPBLOCK.get()) {
-                        level.setBlock(p_294069_, Blocks.AIR.defaultBlockState(), 3);
+                        level.setBlock(p_294069_, Blocks.WATER.defaultBlockState(), 3);
                     }
                 }
 
-            }else{level.setBlock(p_294069_, Blocks.AIR.defaultBlockState(), 1);}
+            }else{level.setBlock(p_294069_, Blocks.WATER.defaultBlockState(), 1);}
             return true;
         })>1;
     }

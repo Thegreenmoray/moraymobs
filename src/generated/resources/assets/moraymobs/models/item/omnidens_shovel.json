@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "moraymobs:item/omnidens_shovel"
+  }
+}

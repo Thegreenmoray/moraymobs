@@ -1,9 +1,11 @@
 package com.moray.moraymobs.datagen;
 
 import com.moray.moraymobs.MorayMobs;
+import com.moray.moraymobs.registries.Itemregististeries;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -18,6 +20,8 @@ public class MorayItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+tag(ItemTags.SWORDS)
+        .add(Itemregististeries.OMNIDENS_SWORD.get());
 
     }
 }

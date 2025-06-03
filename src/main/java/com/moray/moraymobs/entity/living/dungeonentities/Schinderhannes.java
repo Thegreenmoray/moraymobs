@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -48,11 +49,13 @@ public class Schinderhannes extends Monster implements GeoEntity {
 this.goalSelector.addGoal(1,new MeleeAttackGoal(this,0.5,false));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, false));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class,30));
+
     }
 
     public static AttributeSupplier.@NotNull Builder createMonsterAttributes() {
         return Monster.createMobAttributes().add(Attributes.ATTACK_DAMAGE,8).add(Attributes.MAX_HEALTH,25)
-                .add(Attributes.WATER_MOVEMENT_EFFICIENCY,0.5f).add(Attributes.ARMOR,5f)
+                .add(Attributes.WATER_MOVEMENT_EFFICIENCY,2.5f).add(Attributes.ARMOR,5f).add(Attributes.ATTACK_KNOCKBACK,5)
                 .add(Attributes.FOLLOW_RANGE,20f);
     }
 
@@ -73,6 +76,18 @@ this.goalSelector.addGoal(1,new MeleeAttackGoal(this,0.5,false));
     @Override
     protected boolean shouldDespawnInPeaceful() {
         return false;
+    }
+
+
+    @Override
+    protected void tickDeath() {
+        ++this.deathTime;
+
+
+        if (this.deathTime == 45 && !this.level().isClientSide()) {
+            this.level().broadcastEntityEvent(this, (byte) 60);
+            this.remove(RemovalReason.KILLED);
+        }
     }
 
 
@@ -120,6 +135,12 @@ this.goalSelector.addGoal(1,new MeleeAttackGoal(this,0.5,false));
     }
 
     private PlayState animations(AnimationState<Schinderhannes> schinderhannesAnimationState) {
+
+      if (getHealth()<=0.01){
+          schinderhannesAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.schinderhannes.death", Animation.LoopType.HOLD_ON_LAST_FRAME));
+          return PlayState.CONTINUE;
+      }
+
 
         if (schinderhannesAnimationState.isMoving()){
             schinderhannesAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.schinderhannes.swim", Animation.LoopType.LOOP));

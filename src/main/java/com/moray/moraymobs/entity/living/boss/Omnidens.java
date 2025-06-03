@@ -1,20 +1,16 @@
 package com.moray.moraymobs.entity.living.boss;
 
 import com.moray.moraymobs.ai.*;
-import com.moray.moraymobs.entity.projectiles.Boomerrang;
-import com.moray.moraymobs.entity.projectiles.Bouncy_ball;
-import net.minecraft.core.BlockPos;
+import com.moray.moraymobs.entity.projectiles.Sea_Mine;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,8 +26,6 @@ import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
-import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -40,6 +34,7 @@ import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class Omnidens extends Monster implements GeoEntity,PowerableMob {
 
@@ -55,15 +50,15 @@ public class Omnidens extends Monster implements GeoEntity,PowerableMob {
     private static final EntityDataAccessor<Integer> BOUNCE= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> SLAM= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> SEAMINE= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Integer> ANIMATION= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
+   private static final EntityDataAccessor<Integer> ANIMATION= SynchedEntityData.defineId(Omnidens.class, EntityDataSerializers.INT);
 
     protected static final EntityDimensions UPRIGHT_DIMESIONS_JAW=EntityDimensions.fixed(6.0F, 3.0F);
     protected static final EntityDimensions UPRIGHT_DIMESIONS=EntityDimensions.fixed(4.0F, 3.0F);
     private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
     private final ServerBossEvent bossEvent= (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);;
-private final float oneforth=(this.getMaxHealth())/4;
-private final float onehalf=(this.getMaxHealth())/2;
-private final float threeforths= (float) ((this.getMaxHealth())*.75);
+public final float oneforth=(this.getMaxHealth())/4;
+public final float onehalf=(this.getMaxHealth())/2;
+public final float threeforths= (float) ((this.getMaxHealth())*.75);
 private int ejection=0;
 
     public Omnidens(EntityType<? extends Monster> entityType, Level level) {
@@ -82,11 +77,11 @@ private int ejection=0;
 
 
 
-  //  @Override
+  /*  @Override
    // public SoundEvent getBossMusic() {
   //      return ;
   //  }
-  //will do later
+   will do later    */
 
     @Override
     protected boolean shouldDespawnInPeaceful() {
@@ -142,6 +137,14 @@ private int ejection=0;
     protected void tickDeath() {
         ++this.deathTime;
 
+        List<Entity> seamineremoval=this.level().getEntities(this,this.getBoundingBox().inflate(100));
+
+        for (Entity entity:seamineremoval){
+            if (entity instanceof Sea_Mine){
+                entity.remove(RemovalReason.DISCARDED);
+            }
+        }
+
 
         if (this.deathTime == 70 && !this.level().isClientSide()) {
             this.level().broadcastEntityEvent(this, (byte) 60);
@@ -152,11 +155,11 @@ private int ejection=0;
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(4,new Omnidenleapgoal(this,60));
-         this.goalSelector.addGoal(6,new Whirlpoolgoal(this,100));
-         this.goalSelector.addGoal(8,new OmnidensJumpattackgoal(this,50));
-       this.goalSelector.addGoal(5,new Roaromnidensgoal(this,35));
-      this.goalSelector.addGoal(3,new Omnidenprojectilegoal(this,20));
+      this.goalSelector.addGoal(4,new Omnidenleapgoal(this));//done
+      this.goalSelector.addGoal(6,new Whirlpoolgoal(this));//done
+         this.goalSelector.addGoal(8,new OmnidensJumpattackgoal(this,50));//done
+     this.goalSelector.addGoal(5,new Roaromnidensgoal(this));//done
+     this.goalSelector.addGoal(3,new Omnidenprojectilegoal(this));//done
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(0,new RandomStrollGoal(this,0.5f) {
@@ -166,31 +169,32 @@ private int ejection=0;
             }
         });
       this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 20.0F));
-   /*   this.goalSelector.addGoal(0, new MeleeomnidensGoal(this, 0.5f,false)
-      {
+      this.goalSelector.addGoal(0, new MeleeomnidensGoal(this, 0.5f,false) {
           @Override
           public boolean canUse() {
              return mob instanceof Omnidens omnidens&&omnidens.canuseskill()&&getsummontime()>=50&&super.canUse();
           }
-      }); */
-       this.goalSelector.addGoal(7,new Burrowgoal(this,100));
-        this.goalSelector.addGoal(9,new BouncingBallgoal(this,20));
-        this.goalSelector.addGoal(8,new Slamgoal(this,30));
-         this.goalSelector.addGoal(7,new Sea_Mine_Goal(this,121));
+      });
+       this.goalSelector.addGoal(7,new Burrowgoal(this));//done
+       this.goalSelector.addGoal(9,new BouncingBallgoal(this));//done
+       this.goalSelector.addGoal(8,new Slamgoal(this));//done
+       this.goalSelector.addGoal(7,new Sea_Mine_Goal(this));//done
     }
-    
+
+
+
     public boolean canuseskill(){
 
-        return getjumpgrab()<251&&getroar()<151&&getboomerangtime()<101
-                &&getwhirlpool()<101&&getBurrow()<201&&!getleap()&&getbouncetime()<101
-                &&getslam()<51;
+        return  getjumpgrab()<=0&& getroar()<=0&&
+                 getboomerangtime()<=0&& getwhirlpool()<=0&& getBurrow()<=0&&
+        !getleap()&&getbouncetime()<=0&&getslam()<=0&& getseamine()<=0;
     }
 
     public boolean canmeleejump(){
 
-        return getjumpgrab()<251&&getroar()<151&&getboomerangtime()<101
-                &&getwhirlpool()<101&&getBurrow()<201&&getbouncetime()<101
-                &&getslam()<51;
+        return getjumpgrab()<=0&&getroar()<=0&&
+    getboomerangtime()<=0&& getwhirlpool()<=0&&getBurrow()<=0&&
+        getbouncetime()<=0&&getslam()<=0&&getseamine()<=0;
     }
 
     @Override
@@ -202,32 +206,32 @@ private int ejection=0;
 
 
         if (getsummontime()>=50){
-            if (getHealth()<=oneforth&&canuseskill()){
-                setBurrow(getBurrow()+1);}
-
-        if (getHealth()<=onehalf&&canuseskill()){
-        setjumpgrab(getjumpgrab()+1);}
-
-    /*    if (canuseskill()){
-            setboomerangtime(getboomerangtime()+1);
-        }
-        if (canuseskill()){
-            setRoar(getroar()+1);
-       }
-
-            if (canuseskill()){
-            setbouncetime(getbouncetime()+1);
-        }*/
-
-          if (canuseskill()&&getHealth()<=threeforths){
-              setslam(getslam()+1);
-          }
 
 
-       if (getHealth()<=oneforth&&canuseskill()){
-        setwhirlpool(getwhirlpool()+1);}
+                setBurrow(getBurrow()-1);
 
 
+   setjumpgrab(getjumpgrab()-1);
+
+
+          setboomerangtime(getboomerangtime()-1);
+
+
+            setRoar(getroar()-1);
+
+
+
+           setbouncetime(getbouncetime()-1);
+
+
+
+          setslam(getslam()-1);
+
+
+
+        setwhirlpool(getwhirlpool()-1);
+
+setseamine(getseamine()-1);
 
 
 
@@ -269,39 +273,38 @@ controllers.add(new AnimationController<>(this,
             return PlayState.CONTINUE;
         }
 
-        if (this.getslam()>150){
+        if (getanimation()==4){
             omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omnidens.slam", Animation.LoopType.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
 
 
-        if (this.getjumpgrab()>250&&this.getgrip()){
+        if (getanimation()==5&&this.getgrip()){
             omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.grab", Animation.LoopType.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
         }
 
-        if (this.getleap()){
+        if (this.getleap()&&getanimation()==0){
             omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.jumpbite", Animation.LoopType.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
 
-        if (this.getroar()>150){
+        if (getanimation()==6){
             omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.roar", Animation.LoopType.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
 
-
-        if (this.getboomerangtime()>100||this.getbouncetime()>50){
+        if (getanimation()==7){
             omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.shoot", Animation.LoopType.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
 
-        if (this.getwhirlpool()>100){
+        if (getanimation()==8){
             omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.gesyer", Animation.LoopType.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
 
-        if (this.getBurrow()>200&&this.getnonvisble()){
+        if (getanimation()==9&&this.getnonvisble()){
             omnidensAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.omni.burrow", Animation.LoopType.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
         }
@@ -404,6 +407,13 @@ controllers.add(new AnimationController<>(this,
         this.entityData.set(SEAMINE,sea);
     }
 
+    public int getanimation(){
+        return this.entityData.get(ANIMATION);
+    }
+    public void setanimation(int animation){
+        this.entityData.set(ANIMATION,animation);
+    }
+
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.setboomerangtime(compound.getInt("boomerang"));
@@ -418,6 +428,7 @@ controllers.add(new AnimationController<>(this,
         this.setbouncetime(compound.getInt("bounce"));
         this.setslam(compound.getInt("slam"));
         this.setseamine(compound.getInt("seamine"));
+        this.setanimation(compound.getInt("animation"));
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {
@@ -434,6 +445,7 @@ controllers.add(new AnimationController<>(this,
         compound.putInt("bounce",this.getbouncetime());
         compound.putInt("slam",this.getslam());
         compound.putInt("seamine",this.getseamine());
+        compound.putInt("animation",this.getanimation());
     }
 
     protected void defineSynchedData (SynchedEntityData.Builder builder) {
@@ -450,6 +462,7 @@ controllers.add(new AnimationController<>(this,
         builder.define(BOUNCE,0);
         builder.define(SLAM,0);
         builder.define(SEAMINE,0);
+        builder.define(ANIMATION,0);
     }
 
     public boolean addEffect(MobEffectInstance effectInstance, @Nullable Entity entity) {
@@ -474,11 +487,9 @@ controllers.add(new AnimationController<>(this,
         ejection++;
 moveFunc.accept(passenger,x_postion,this.getY(),z_postion);
 
-if (passenger.isShiftKeyDown()){
-    setShiftKeyDown(false);
-}
 
-if (ejection==40){
+
+if (ejection==20){
    this.ejectPassengers();
    ejection=0;
 }

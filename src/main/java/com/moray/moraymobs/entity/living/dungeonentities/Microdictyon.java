@@ -2,16 +2,19 @@ package com.moray.moraymobs.entity.living.dungeonentities;
 
 import com.moray.moraymobs.ai.Microdictyonprojectilegoal;
 import com.moray.moraymobs.entity.projectiles.Geyser;
+import com.moray.moraymobs.entity.projectiles.Sea_Mine;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -24,6 +27,8 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
+
+import java.util.List;
 
 public class Microdictyon extends Monster implements GeoEntity {
 
@@ -59,10 +64,11 @@ public class Microdictyon extends Monster implements GeoEntity {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH,15).add(Attributes.FOLLOW_RANGE, 20.0).add(Attributes.MOVEMENT_SPEED, 0.55);
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH,15).add(Attributes.FOLLOW_RANGE, 20.0).add(Attributes.WATER_MOVEMENT_EFFICIENCY, 1.5);
     }
     protected void registerGoals() {
         this.goalSelector.addGoal(0,new RandomStrollGoal(this,0.5f));
+        this.targetSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class,30));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(3,new Microdictyonprojectilegoal(this,25));
@@ -111,10 +117,33 @@ super.tick();
 
 
 
+    @Override
+    protected void tickDeath() {
+        ++this.deathTime;
+
+
+        if (this.deathTime == 35 && !this.level().isClientSide()) {
+            this.level().broadcastEntityEvent(this, (byte) 60);
+            this.remove(RemovalReason.KILLED);
+        }
+    }
+
+
+
+
     private PlayState animations(AnimationState<Microdictyon> microdictyonAnimationState) {
 
+        if (getHealth()<=0.01){
+            microdictyonAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.microdictyon.death", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
 
 
+
+       if (gettimer()>30){
+           microdictyonAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.mircodictyon.shoot", Animation.LoopType.LOOP));
+           return PlayState.CONTINUE;
+       }
 
 
         if (microdictyonAnimationState.isMoving()){

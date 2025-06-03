@@ -39,8 +39,10 @@ EntityRenderers.register(Mobregistries.SCHINDERHANNES.get(),Schinderhannesrender
  EntityRenderers.register(Mobregistries.WALLISEROPS.get(),Walliseropsrenderer::new);
 EntityRenderers.register(Mobregistries.BOUNCE_BALL.get(),Bouncerender::new);
 EntityRenderers.register(Mobregistries.SEA_MINE.get(),Seaminerenderer::new);
+ EntityRenderers.register(Mobregistries.BOOMERANG_FRIEND.get(),BoomerangFriendlyRender::new);
+EntityRenderers.register(Mobregistries.BOUNCE_BALL_FRIEND.get(),Bouncefrender::new);
     BlockEntityRenderers.register(Morayblockentities.LARGE_CRYSTAL_ENTITY.get(), CrystalLargeRender::new);
-        BlockEntityRenderers.register(Morayblockentities.SMALL_CRYSTAL_ENTITY.get(), SmallCrystalrenderer::new);
+    BlockEntityRenderers.register(Morayblockentities.SMALL_CRYSTAL_ENTITY.get(), SmallCrystalrenderer::new);
 
     }
 

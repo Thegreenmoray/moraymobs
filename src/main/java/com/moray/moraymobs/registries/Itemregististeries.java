@@ -170,6 +170,17 @@ public class Itemregististeries {
             ()->new Omnidensarmor(Morayarmormaterials.ModArmorMaterials.OMNIDENS_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,new Item.Properties().fireResistant().stacksTo(1).durability(500)));
 
 
+    final public static DeferredItem<Item> OMNIDENS_SWORD=ITEM.register("omnidens_blade",
+            ()->new Omnidens_Blade(Tiers.NETHERITE,new Item.Properties().attributes(Omnidens_Blade.createAttributes(Tiers.NETHERITE,4,-3f)).durability(1500)));
+
+    final public static DeferredItem<Item> OMNIDENS_SHOVEL=ITEM.register("omnidens_shovel",
+            ()->new Mega_Digger(Tiers.NETHERITE,new Item.Properties().attributes(Mega_Digger.createAttributes(Tiers.NETHERITE,0,-2f)).durability(1500)));
+
+    final public static DeferredItem<Item> BUCCANEER=ITEM.register("buccaneer_barrel",
+            ()->new Baccuneer(new Item.Properties().stacksTo(1).durability(600)));
+    final public static DeferredItem<Item> OMNI_BAG=ITEM.register("omnidens_bag",
+            ()->new Omnidensbag(new Item.Properties().stacksTo(64)));
+
 
     public static void register(IEventBus bus){
         ITEM.register(bus);

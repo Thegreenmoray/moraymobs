@@ -8,6 +8,8 @@ import com.moray.moraymobs.entity.living.dungeonentities.Schinderhannes;
 import com.moray.moraymobs.entity.living.dungeonentities.Walliserops;
 import com.moray.moraymobs.entity.living.monster.*;
 import com.moray.moraymobs.entity.projectiles.*;
+import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Bouncy_ball_Friend;
+import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Friendly_Boomerrang;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -115,9 +117,17 @@ public class Mobregistries {
           ENTITY_TYPE.register("sea_mine",()->EntityType.Builder.<Sea_Mine>of(Sea_Mine::new, MobCategory.MISC)
                   .sized(2F,2F).fireImmune().build("sea_mine"));
 
+  final public static Supplier<EntityType<Friendly_Boomerrang>> BOOMERANG_FRIEND=
+          ENTITY_TYPE.register("boomerang_f",()->EntityType.Builder.<Friendly_Boomerrang>of(Friendly_Boomerrang::new, MobCategory.MISC)
+                  .sized(1.5f,1F).fireImmune().build("boomerang_f"));
+
+  final public static Supplier<EntityType<Bouncy_ball_Friend>> BOUNCE_BALL_FRIEND=
+          ENTITY_TYPE.register("bouncy_ball_f",()->EntityType.Builder.<Bouncy_ball_Friend>of(Bouncy_ball_Friend::new, MobCategory.MISC)
+                  .sized(1F,1F).fireImmune().build("bouncy_ball_f"));
 
 
-    public static void register(IEventBus bus){
+
+  public static void register(IEventBus bus){
     ENTITY_TYPE.register(bus);
 }
 

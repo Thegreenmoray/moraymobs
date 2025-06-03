@@ -11,23 +11,19 @@ import java.util.List;
 public class Slamgoal extends Goal {
 
     Omnidens omnidens;
-    int groundpoundtime;
-    int amounttime;
 
-    public Slamgoal(Omnidens omnidens, int groundpoundtime){
+
+
+    public Slamgoal(Omnidens omnidens){
         this.omnidens=omnidens;
-        this.groundpoundtime=groundpoundtime;
+
     }
 
 
     @Override
     public void tick() {
-        amounttime++;
 
-
-
-
-        if (amounttime==24){
+        if (omnidens.getslam()==6){
 
             List<Entity> entities=this.omnidens.level().getEntities(this.omnidens,this.omnidens.getBoundingBox().inflate(4));
             for (Entity entity:entities){
@@ -49,38 +45,36 @@ public class Slamgoal extends Goal {
 
     @Override
     public void start() {
-        amounttime=0;
-
+       this.omnidens.setslam(50);
+        omnidens.setanimation(4);
     }
 
     @Override
     public boolean canUse() {
-
-
-
 
         if (omnidens.getTarget()==null){
             return false;
         }
 
         if (this.omnidens.distanceTo(this.omnidens.getTarget())>=9.5){
-          omnidens.setslam(50); //we'll set it to half-ish instead
+
             return false;
         }
 
 
 
-        return omnidens.getslam()>150;
+        return omnidens.canuseskill() &&omnidens.getHealth()<=omnidens.threeforths
+                &&omnidens.getslam()<=-151&&omnidens.level().random.nextInt(18)==7;
     }
 
     @Override
     public boolean canContinueToUse() {
-        return groundpoundtime > amounttime;
+        return omnidens.getslam()>0;
     }
 
     @Override
     public void stop() {
-        amounttime=0;
-        omnidens.setslam(0);
+        omnidens.setanimation(0);
+
     }
 }

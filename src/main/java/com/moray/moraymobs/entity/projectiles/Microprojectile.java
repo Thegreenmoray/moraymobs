@@ -1,6 +1,5 @@
 package com.moray.moraymobs.entity.projectiles;
 
-import com.moray.moraymobs.entity.living.boss.Omnidens;
 import com.moray.moraymobs.entity.living.dungeonentities.Microdictyon;
 import com.moray.moraymobs.registries.Mobregistries;
 import net.minecraft.nbt.CompoundTag;
@@ -13,7 +12,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
@@ -23,7 +21,7 @@ public class Microprojectile extends AbstractHurtingProjectile implements GeoEnt
 
     private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
 
-    private static final EntityDataAccessor<Integer> TIMER= SynchedEntityData.defineId(Boomerrang.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> TIMER= SynchedEntityData.defineId(Microprojectile.class, EntityDataSerializers.INT);
 
 
     public int gettimer(){
@@ -35,10 +33,10 @@ public class Microprojectile extends AbstractHurtingProjectile implements GeoEnt
 
     @Override
     public void tick() {
-
+        super.tick();
 settimer(gettimer()+1);
 
-
+setDeltaMovement(getDeltaMovement());
 
         if (gettimer()>=50){
             remove(RemovalReason.DISCARDED);

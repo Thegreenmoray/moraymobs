@@ -34,10 +34,13 @@ public class OmnidensJumpattackgoal extends Goal {
 
 
     public boolean isWithinMeleeAttackRange(LivingEntity entity) {
-        return this.omnidens.getHitbox().inflate(5.5,10,5.5).intersects(entity.getHitbox());
+        return this.omnidens.getHitbox().inflate(7.5,12,7.5).intersects(entity.getHitbox());
     }
 
-
+    @Override
+    public boolean isInterruptable() {
+        return false;
+    }
 
     public boolean canContinueToUse() {
         return timer>count;
@@ -45,11 +48,15 @@ public class OmnidensJumpattackgoal extends Goal {
 
     public void start() {
 count=0;
+        omnidens.setleap(true);
+        omnidens.setanimation(0);
+        omnidens.setPose(Pose.LONG_JUMPING);
     }
 
     public void stop() {
         count=0;
         omnidens.setleap(false);
+        omnidens.setanimation(1);
         omnidens.setPose(Pose.STANDING);
     }
 
@@ -58,16 +65,21 @@ count=0;
     public void tick() {
         LivingEntity livingentity = this.omnidens.getTarget();
         if (livingentity != null) {
-if (count==0){
-    omnidens.setleap(true);
-    omnidens.setPose(Pose.LONG_JUMPING);
-}
+
 
             count++;
 if (count==25){
 boolean flag=isWithinMeleeAttackRange(livingentity);
     if (flag){
 livingentity.hurt(omnidens.damageSources().generic(),15f);}
+    double d0 = (this.omnidens.getBoundingBox().minX + this.omnidens.getBoundingBox().maxX) / 2.0;
+    double d1 = (this.omnidens.getBoundingBox().minZ + this.omnidens.getBoundingBox().maxZ) / 2.0;
+    double d2 = livingentity.getX() - d0;
+    double d3 = livingentity.getZ() - d1;
+    double d4 = Math.max(d2 * d2 + d3 * d3, 0.1);
+
+    ((LivingEntity) livingentity).knockback(3,-(d2 / d4 * 4.0),-(d3 / d4 * 4.0));
+
 }
         }
 

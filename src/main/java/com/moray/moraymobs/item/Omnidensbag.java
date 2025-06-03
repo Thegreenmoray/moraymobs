@@ -24,6 +24,11 @@ public class Omnidensbag extends Boss_bag {
                 for (int i = 0; i < 2; i++) {
                     armordrops(player,itemstack);
                 }
+                 weapondrops(player,itemstack);
+
+                if (!player.getAbilities().instabuild) {
+                    itemstack.shrink(1);
+                }
 
 
             }
@@ -81,8 +86,39 @@ private void armordrops(Player player,ItemStack itemstack){
 
 
 private void weapondrops(Player player,ItemStack itemstack){
+    int random = player.level().random.nextInt(3);
 
-}
+    switch (random) {
+        case 0 -> {
+            if (itemstack.isEmpty()) {
+                player.addItem(Itemregististeries.OMNIDENS_SWORD.toStack());
+            } else if (!player.getInventory().add(Itemregististeries.OMNIDENS_SWORD.toStack())) {
+                player.drop(Itemregististeries.OMNIDENS_SWORD.toStack(), false);
+            }
+
+
+        }
+        case 1 -> {
+            if (itemstack.isEmpty()) {
+                player.addItem(Itemregististeries.OMNIDENS_SHOVEL.toStack());
+            } else if (!player.getInventory().add(Itemregististeries.OMNIDENS_SHOVEL.toStack())) {
+                player.drop(Itemregististeries.OMNIDENS_SHOVEL.toStack(), false);
+            }
+
+
+        }
+        case 2 -> {
+            if (itemstack.isEmpty()) {
+                player.addItem(Itemregististeries.BUCCANEER.toStack());
+            } else if (!player.getInventory().add(Itemregististeries.BUCCANEER.toStack())) {
+                player.drop(Itemregististeries.BUCCANEER.toStack(), false);
+            }
+        }
+
+    }
+
+
+        }
 
 
 

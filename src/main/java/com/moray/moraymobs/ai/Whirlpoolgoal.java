@@ -12,13 +12,10 @@ import net.minecraft.world.phys.Vec3;
 public class Whirlpoolgoal extends Goal {
 
     private Omnidens omnidens;
-    int timer;
-    int count;
     boolean ready=true;
     BlockPos newblockPos = BlockPos.ZERO;
-    public Whirlpoolgoal(Omnidens omnidens, int timer) {
+    public Whirlpoolgoal(Omnidens omnidens) {
         this.omnidens=omnidens;
-        this.timer=timer;
     }
 
 
@@ -28,12 +25,11 @@ public class Whirlpoolgoal extends Goal {
 
        if (living!=null) {
 
-           if (count % 10 == 0 && ready) {
+           if (omnidens.getwhirlpool() % 10 == 0 && ready) {
                newblockPos = living.blockPosition();
            }
 
-           count++;
-           if (count % 10 == 0 && count % 20 != 0) {
+           if (omnidens.getwhirlpool() % 10 == 0 && omnidens.getwhirlpool() % 20 != 0) {
                while (newblockPos.getY() > omnidens.level().getMinBuildHeight()) {
 
                    //create a start up to give the player a chance to escape
@@ -51,7 +47,7 @@ public class Whirlpoolgoal extends Goal {
 
            }
 
-           if (count % 20 == 0) {
+           if (omnidens.getwhirlpool() % 20 == 0) {
                if (!omnidens.level().isEmptyBlock(newblockPos)) {
                    Geyser geyser = new Geyser(this.omnidens.level());
                    geyser.setPos(Vec3.atLowerCornerOf(newblockPos));
@@ -64,33 +60,33 @@ public class Whirlpoolgoal extends Goal {
     }
 
 
-
-
     @Override
     public boolean canContinueToUse() {
-        return timer>count;
+        return omnidens.getwhirlpool()>0;
     }
 
     @Override
     public void start() {
-        count= 0;
+        omnidens.setanimation(8);
+        omnidens.setwhirlpool(120);
     }
 
     @Override
     public void stop() {
-        count=0;
-        omnidens.setwhirlpool(0);
+omnidens.setanimation(0);
     }
 
     @Override
     public boolean canUse() {
 
        if (omnidens.getTarget()==null){
-           omnidens.setwhirlpool(0);
            return false;
        }
 
 
-        return omnidens.getwhirlpool()>100;
+        return omnidens.getHealth()<=omnidens.oneforth
+                &&this.omnidens.getwhirlpool()<=-100
+                &&omnidens.canuseskill()
+                &&omnidens.level().random.nextInt(20)==10;
     }
 }
