@@ -20,8 +20,19 @@ public class MorayItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-tag(ItemTags.SWORDS)
-        .add(Itemregististeries.OMNIDENS_SWORD.get());
+tag(ItemTags.SWORDS).add(Itemregististeries.OMNIDENS_SWORD.get())
+        .add(Itemregististeries.EEL_WHIP.get());
+tag(ItemTags.SHOVELS).add(Itemregististeries.OMNIDENS_SHOVEL.get());
+tag(ItemTags.HEAD_ARMOR).add(Itemregististeries.BEETLE_HELMET.get())
+        .add(Itemregististeries.OMNIDENS_HELMET.get());
+tag(ItemTags.CHEST_ARMOR).add(Itemregististeries.BEETLE_CHESTPLATE.get())
+        .add(Itemregististeries.OMNIDENS_CHESTPLATE.get());
+tag(ItemTags.LEG_ARMOR).add(Itemregististeries.BEETLE_LEGGINGS.get())
+        .add(Itemregististeries.OMNIDENS_LEGGINGS.get());
+tag(ItemTags.FOOT_ARMOR).add(Itemregististeries.BEETLE_BOOTS.get())
+        .add(Itemregististeries.OMNIDENS_BOOTS.get());
+tag(ItemTags.DURABILITY_ENCHANTABLE).add(Itemregististeries.BUCCANEER.get())
+        .add(Itemregististeries.STUNGUN.get());
 
     }
 }

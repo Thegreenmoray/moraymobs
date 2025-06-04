@@ -245,10 +245,6 @@ this.setDeltaMovement(0,-1,0);
         }
 
         public void tick() {
-
-
-
-
 if(this.soulcatcher.getTarget()!=null &&this.soulcatcher.getbeamtimer()<140){
     if (this.floatDuration-- <= 0) {
         this.floatDuration += this.soulcatcher.getRandom().nextInt(1) + 2;

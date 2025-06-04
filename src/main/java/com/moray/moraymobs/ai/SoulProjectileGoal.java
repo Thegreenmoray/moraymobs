@@ -36,11 +36,11 @@ int count;
     public void tick() {
 
        LivingEntity entity=this.soulcatcher.getTarget();
-++count;
        if(entity!=null) {
+           ++count;
+           this.soulcatcher.lookAt(entity, (float) -entity.getY(), (float) entity.getX());
 
-
-if (count==14){
+if (count==10){
             Soulpiece soulpiece = new Soulpiece(this.soulcatcher.level());
     Vec3 vec3=soulcatcher.getViewVector(1);
             soulpiece.setPos(this.soulcatcher.getX() + vec3.x * 4.0, this.soulcatcher.getY(0.5) + 0.5, this.soulcatcher.getZ() + vec3.z * 4.0);
@@ -49,7 +49,7 @@ if (count==14){
             double d2 = entity.getZ() - this.soulcatcher.getZ();
             double d3 = Math.sqrt(d0 * d0 + d2 * d2);
             Vec3 vec31=new Vec3(d0, d1 + d3 * 0.20000000298023224, d2);
-            soulpiece.setDeltaMovement(vec31.normalize());
+            soulpiece.setDeltaMovement(vec31.normalize().scale(0.1));
             this.soulcatcher.level().addFreshEntity(soulpiece);}
         }
 

@@ -11,13 +11,13 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class MoaryDatapackprovider extends DatapackBuiltinEntriesProvider {
+public class MorayDatapackprovider extends DatapackBuiltinEntriesProvider {
 
         public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
                .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, MorayBiomeModifiers::bootstrap);
 
 
-    public MoaryDatapackprovider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+    public MorayDatapackprovider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries,BUILDER, Set.of(MorayMobs.MODID));
     }
 

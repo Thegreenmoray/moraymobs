@@ -36,7 +36,6 @@ public class BouncingBallgoal extends Goal {
                 double d3 = Math.sqrt(d0 * d0 + d2 * d2);
                 Vec3 vec31=new Vec3(Mth.floor(d0), Mth.floor(d1 + d3 * 0.20000000298023224)-0.05, Mth.floor(d2));
                 bouncyBall.setDeltaMovement(vec31.normalize().scale(0.0009));
-
                 this.omnidens.level().addFreshEntity(bouncyBall);
             }
         }

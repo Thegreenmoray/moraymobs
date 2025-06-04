@@ -13,6 +13,8 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 
@@ -136,6 +138,14 @@ public class Baccuneer extends ProjectileWeaponItem {
         tooltipComponents.add(Component.translatable("tooltip.moraymobs.buccaneer"));
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
+
+
+    @Override
+    public boolean canPerformAction(ItemStack stack, ItemAbility ItemAbility) {
+        return ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(ItemAbility) && ItemAbility != ItemAbilities.SWORD_SWEEP;
+    }
+
+
 
 
 
