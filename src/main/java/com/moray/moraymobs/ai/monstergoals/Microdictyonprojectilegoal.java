@@ -1,4 +1,4 @@
-package com.moray.moraymobs.ai;
+package com.moray.moraymobs.ai.monstergoals;
 
 import com.moray.moraymobs.entity.living.dungeonentities.Microdictyon;
 import com.moray.moraymobs.entity.projectiles.Microprojectile;

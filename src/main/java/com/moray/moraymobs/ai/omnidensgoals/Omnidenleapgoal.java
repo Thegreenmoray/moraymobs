@@ -1,8 +1,7 @@
-package com.moray.moraymobs.ai;
+package com.moray.moraymobs.ai.omnidensgoals;
 
 import com.moray.moraymobs.entity.living.boss.Omnidens;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.phys.Vec3;

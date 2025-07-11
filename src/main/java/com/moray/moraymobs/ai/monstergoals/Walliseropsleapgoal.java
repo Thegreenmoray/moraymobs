@@ -1,8 +1,6 @@
-package com.moray.moraymobs.ai;
+package com.moray.moraymobs.ai.monstergoals;
 
-import com.moray.moraymobs.entity.living.boss.Omnidens;
 import com.moray.moraymobs.entity.living.dungeonentities.Walliserops;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.phys.Vec3;

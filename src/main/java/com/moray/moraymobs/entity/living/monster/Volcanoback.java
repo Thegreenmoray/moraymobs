@@ -1,10 +1,10 @@
 package com.moray.moraymobs.entity.living.monster;
 
 
-import com.moray.moraymobs.ai.Eurptiongoal;
-import com.moray.moraymobs.ai.Groundpoundgoal;
-import com.moray.moraymobs.ai.VolcanobackMeleeAttackgoal;
-import com.moray.moraymobs.ai.VolcanobackMovetowardsGoal;
+import com.moray.moraymobs.ai.monstergoals.Eurptiongoal;
+import com.moray.moraymobs.ai.monstergoals.Groundpoundgoal;
+import com.moray.moraymobs.ai.monstergoals.VolcanobackMeleeAttackgoal;
+import com.moray.moraymobs.ai.monstergoals.VolcanobackMovetowardsGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;

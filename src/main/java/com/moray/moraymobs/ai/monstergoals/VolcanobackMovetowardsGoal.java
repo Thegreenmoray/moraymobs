@@ -1,4 +1,4 @@
-package com.moray.moraymobs.ai;
+package com.moray.moraymobs.ai.monstergoals;
 
 import com.moray.moraymobs.entity.living.monster.Volcanoback;
 import net.minecraft.world.entity.EntitySelector;
@@ -22,7 +22,6 @@ public class VolcanobackMovetowardsGoal extends Goal {
     private double pathedTargetZ;
     private int ticksUntilNextPathRecalculation;
     private int ticksUntilNextAttack;
-    private long lastCanUseCheck;
     private int failedPathFindingPenalty = 0;
     private boolean canPenalize = false;
 

@@ -1,6 +1,6 @@
 package com.moray.moraymobs.entity.living.dungeonentities;
 
-import com.moray.moraymobs.ai.Walliseropsleapgoal;
+import com.moray.moraymobs.ai.monstergoals.Walliseropsleapgoal;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;

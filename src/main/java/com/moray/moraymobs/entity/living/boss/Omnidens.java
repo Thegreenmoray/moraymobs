@@ -1,6 +1,7 @@
 package com.moray.moraymobs.entity.living.boss;
 
 import com.moray.moraymobs.ai.*;
+import com.moray.moraymobs.ai.omnidensgoals.*;
 import com.moray.moraymobs.entity.projectiles.Sea_Mine;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;

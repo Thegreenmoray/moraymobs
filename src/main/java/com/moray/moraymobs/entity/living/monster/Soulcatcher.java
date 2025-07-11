@@ -1,8 +1,8 @@
 package com.moray.moraymobs.entity.living.monster;
 
-import com.moray.moraymobs.ai.SoulBeamGoal;
-import com.moray.moraymobs.ai.SoulCatcherFloatAroundGoal;
-import com.moray.moraymobs.ai.SoulProjectileGoal;
+import com.moray.moraymobs.ai.monstergoals.SoulBeamGoal;
+import com.moray.moraymobs.ai.monstergoals.SoulCatcherFloatAroundGoal;
+import com.moray.moraymobs.ai.monstergoals.SoulProjectileGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

@@ -78,7 +78,6 @@ public class Mobregistries {
           ENTITY_TYPE.register("stunwave",()->EntityType.Builder.<Stunwave>of(Stunwave::new, MobCategory.MISC)
                   .sized(1.5f,1F).fireImmune().build("stunwave"));
 
-
   final public static Supplier<EntityType<Boomerrang>> BOOMERANG=
           ENTITY_TYPE.register("boomerang",()->EntityType.Builder.<Boomerrang>of(Boomerrang::new, MobCategory.MISC)
                   .sized(1.5f,1F).fireImmune().build("boomerang"));
@@ -91,7 +90,6 @@ public class Mobregistries {
           ENTITY_TYPE.register("omnidens",()->EntityType.Builder.of(Omnidens::new, MobCategory.MONSTER)
                   .sized(5F,1F).build("omnidens"));
 
-
   final public static Supplier<EntityType<Microdictyon>> MICRODICTYON=
           ENTITY_TYPE.register("microdictyon",()->EntityType.Builder.of(Microdictyon::new, MobCategory.MONSTER)
                   .sized(2F,1F).build("microdictyon"));
@@ -99,7 +97,6 @@ public class Mobregistries {
   final public static Supplier<EntityType<Microprojectile>> MICRODICTYON_PROJECTILE=
           ENTITY_TYPE.register("microdictyon_projectiles",()->EntityType.Builder.<Microprojectile>of(Microprojectile::new, MobCategory.MISC)
                   .sized(1F,1F).fireImmune().build("microdictyon_projectiles"));
-
 
   final public static Supplier<EntityType<Schinderhannes>> SCHINDERHANNES=
           ENTITY_TYPE.register("schinderhannes",()->EntityType.Builder.of(Schinderhannes::new, MobCategory.MONSTER)
@@ -124,6 +121,12 @@ public class Mobregistries {
   final public static Supplier<EntityType<Bouncy_ball_Friend>> BOUNCE_BALL_FRIEND=
           ENTITY_TYPE.register("bouncy_ball_f",()->EntityType.Builder.<Bouncy_ball_Friend>of(Bouncy_ball_Friend::new, MobCategory.MISC)
                   .sized(1F,1F).fireImmune().build("bouncy_ball_f"));
+
+  final public static Supplier<EntityType<Amber_golem>> AMBERGOLEM=
+          ENTITY_TYPE.register("ambergolem",()->EntityType.Builder.of(Amber_golem::new, MobCategory.MONSTER)
+                  .sized(1,3F).build("ambergolem"));
+
+
 
 
 

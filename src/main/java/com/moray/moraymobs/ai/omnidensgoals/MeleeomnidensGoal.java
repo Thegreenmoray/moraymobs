@@ -1,4 +1,4 @@
-package com.moray.moraymobs.ai;
+package com.moray.moraymobs.ai.omnidensgoals;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;

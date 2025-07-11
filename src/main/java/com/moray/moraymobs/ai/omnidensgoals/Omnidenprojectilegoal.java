@@ -1,4 +1,4 @@
-package com.moray.moraymobs.ai;
+package com.moray.moraymobs.ai.omnidensgoals;
 
 import com.moray.moraymobs.entity.living.boss.Omnidens;
 import com.moray.moraymobs.entity.projectiles.Boomerrang;

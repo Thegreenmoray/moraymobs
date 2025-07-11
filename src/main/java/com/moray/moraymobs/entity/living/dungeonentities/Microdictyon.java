@@ -1,15 +1,12 @@
 package com.moray.moraymobs.entity.living.dungeonentities;
 
-import com.moray.moraymobs.ai.Microdictyonprojectilegoal;
-import com.moray.moraymobs.entity.projectiles.Geyser;
-import com.moray.moraymobs.entity.projectiles.Sea_Mine;
+import com.moray.moraymobs.ai.monstergoals.Microdictyonprojectilegoal;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -27,8 +24,6 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
-
-import java.util.List;
 
 public class Microdictyon extends Monster implements GeoEntity {
 

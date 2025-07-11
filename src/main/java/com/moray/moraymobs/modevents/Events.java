@@ -74,6 +74,7 @@ event.put(Mobregistries.OMNIDENS.get(), Omnidens.createMonsterAttributes().build
 event.put(Mobregistries.MICRODICTYON.get(), Microdictyon.createAttributes().build());
 event.put(Mobregistries.SCHINDERHANNES.get(), Schinderhannes.createMonsterAttributes().build());
 event.put(Mobregistries.WALLISEROPS.get(), Walliserops.createMonsterAttributes().build());
+event.put(Mobregistries.AMBERGOLEM.get(),Amber_golem.createAttributes().build());
     }
 @EventBusSubscriber(modid = MorayMobs.MODID)
     public static class itemspawn{

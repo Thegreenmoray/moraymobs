@@ -1,9 +1,7 @@
-package com.moray.moraymobs.ai;
+package com.moray.moraymobs.ai.omnidensgoals;
 
 import com.moray.moraymobs.entity.living.boss.Omnidens;
-import com.moray.moraymobs.entity.living.dungeonentities.Microdictyon;
 import com.moray.moraymobs.entity.projectiles.Bouncy_ball;
-import com.moray.moraymobs.entity.projectiles.Microprojectile;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
