@@ -53,6 +53,9 @@ this.add(Mobregistries.SCHINDERHANNES.get(),LootTable.lootTable().withPool(LootP
  this.add(Mobregistries.WALLISEROPS.get(),LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
          .add(LootItem.lootTableItem(Itemregististeries.MIDDLE_KEY_PART)
                  .apply(SetItemCountFunction.setCount(UniformGenerator.between(1,1))))));
+
+  this.add(Mobregistries.AMBERGOLEM.get(),LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(Items.QUARTZ).apply(SetItemCountFunction.setCount(UniformGenerator.between(1,4))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries,UniformGenerator.between(0,1))).when(LootItemKilledByPlayerCondition.killedByPlayer()))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(Items.BLAZE_POWDER)).when(LootItemKilledByPlayerCondition.killedByPlayer()).when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(this.registries,0.50F, 0.02F)).add(LootItem.lootTableItem(Items.REDSTONE)).when(LootItemKilledByPlayerCondition.killedByPlayer()).when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(this.registries,0.75F, 0.01F)).apply(SetItemCountFunction.setCount(UniformGenerator.between(2,4))).add(LootItem.lootTableItem(Items.GLOWSTONE)).when(LootItemKilledByPlayerCondition.killedByPlayer()).when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(this.registries,0.75F, 0.01F)).apply(SetItemCountFunction.setCount(UniformGenerator.between(2,4)))));
+
    }
 
     @Override

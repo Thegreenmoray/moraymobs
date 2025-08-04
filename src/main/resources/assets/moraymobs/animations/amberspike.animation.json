@@ -1,0 +1,42 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.amberspike.rise": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.75,
+			"bones": {
+				"spike": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.25": {
+							"vector": [0, 90, 0]
+						},
+						"0.5": {
+							"vector": [0, 180, 0]
+						},
+						"0.75": {
+							"vector": [0, 270, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, -27, 0]
+						},
+						"0.25": {
+							"vector": [0, -12, 0]
+						},
+						"0.5": {
+							"vector": [0, -4, 0]
+						},
+						"0.75": {
+							"vector": [0, 1, 0]
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

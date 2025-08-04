@@ -43,7 +43,9 @@ EntityRenderers.register(Mobregistries.SEA_MINE.get(),Seaminerenderer::new);
 EntityRenderers.register(Mobregistries.BOUNCE_BALL_FRIEND.get(),Bouncefrender::new);
     BlockEntityRenderers.register(Morayblockentities.LARGE_CRYSTAL_ENTITY.get(), CrystalLargeRender::new);
     BlockEntityRenderers.register(Morayblockentities.SMALL_CRYSTAL_ENTITY.get(), SmallCrystalrenderer::new);
-
+EntityRenderers.register(Mobregistries.AMBERGOLEM.get(),Ambergolemrender::new);
+EntityRenderers.register(Mobregistries.AMBERCRYSTAL.get(),Ambercrystalrender::new);
+EntityRenderers.register(Mobregistries.AMBERPORTAL.get(),Amberportalrenderer::new);
     }
 
 

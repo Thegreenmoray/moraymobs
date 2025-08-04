@@ -8,6 +8,7 @@ import com.moray.moraymobs.entity.living.dungeonentities.Schinderhannes;
 import com.moray.moraymobs.entity.living.dungeonentities.Walliserops;
 import com.moray.moraymobs.entity.living.monster.*;
 import com.moray.moraymobs.entity.projectiles.*;
+import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Amberportal;
 import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Bouncy_ball_Friend;
 import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Friendly_Boomerrang;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -126,6 +127,13 @@ public class Mobregistries {
           ENTITY_TYPE.register("ambergolem",()->EntityType.Builder.of(Amber_golem::new, MobCategory.MONSTER)
                   .sized(1,3F).build("ambergolem"));
 
+  final public static Supplier<EntityType<Ambercrystal>> AMBERCRYSTAL=
+          ENTITY_TYPE.register("ambercrystal",()->EntityType.Builder.<Ambercrystal>of(Ambercrystal::new, MobCategory.MISC)
+                  .sized(1,2F).fireImmune().build("ambercrystal"));
+
+  final public static Supplier<EntityType<Amberportal>> AMBERPORTAL=
+          ENTITY_TYPE.register("amberportal",()->EntityType.Builder.<Amberportal>of(Amberportal::new, MobCategory.MISC)
+                  .sized(1,1F).fireImmune().build("amberportal"));
 
 
 

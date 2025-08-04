@@ -99,13 +99,13 @@ public class Bouncy_ball extends AbstractHurtingProjectile implements GeoEntity 
         double z = deltaMovement.z();
         switch (direction.getAxis()) {
             case X:
-                x = -x * 2.8F;
+                x = -x * 1.8F;
                 break;
             case Y:
-                y = -y * 2.5F;
+                y = -y * 1.5F;
                 break;
             case Z:
-                z = -z * 2.8F;
+                z = -z * 1.8F;
                 break;
 
 

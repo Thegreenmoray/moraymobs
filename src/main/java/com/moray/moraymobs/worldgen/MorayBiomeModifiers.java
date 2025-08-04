@@ -30,6 +30,8 @@ public class MorayBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> SPAWN_THRESHER= registerKey("spawn_thresher");
 
+    public static final ResourceKey<BiomeModifier> SPAWN_AMBERGOLEM= registerKey("spawn_ambergolem");
+
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
         return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, name));
@@ -71,6 +73,9 @@ public class MorayBiomeModifiers {
                 HolderSet.direct( biomes.getOrThrow(Biomes.WARM_OCEAN)),
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.THRESHER.get(), 30, 1, 2))));
 
+
+        context.register(SPAWN_AMBERGOLEM,new BiomeModifiers.AddSpawnsBiomeModifier(
+                HolderSet.direct( biomes.getOrThrow(Biomes.SWAMP)), List.of(new MobSpawnSettings.SpawnerData(Mobregistries.AMBERGOLEM.get(), 10, 1, 1))));
     }
 
 

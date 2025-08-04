@@ -17,12 +17,13 @@ public class AmbergolemMelee extends Goal {
 
     @Override
     public void start() {
-        ambergolem.setpunch(50);
+        ambergolem.setpunch(46);
+   ambergolem.setanimation(1);
     }
 
     @Override
     public void stop() {
-
+        ambergolem.setanimation(0);
 
     }
 
@@ -33,13 +34,17 @@ public class AmbergolemMelee extends Goal {
 
             this.ambergolem.getLookControl().setLookAt(this.ambergolem.getTarget(), 30.0F, 30.0F);
 
-            checkAndPerformAttack();}
+            if (ambergolem.getpunch()==22){
+                checkAndPerformAttack();}
+
+
+        }
         super.tick();
     }
 
     @Override
     public boolean canContinueToUse() {
-        return ambergolem.getpunch() >= 0;
+        return ambergolem.getpunch() > 0;
     }
 
     @Override
@@ -51,14 +56,21 @@ public class AmbergolemMelee extends Goal {
             return false;
         }
 
-        return this.ambergolem.distanceTo(livingentity)<=6.5;
+
+        if(ambergolem.isready()){
+
+        return this.ambergolem.distanceTo(livingentity)<=5.5&&ambergolem.getpunch()<=-80
+        &&this.ambergolem.level().random.nextInt(8)==3;}
+
+
+        return false;
     }
 
 
 
     protected void checkAndPerformAttack() {
 
-            List<Entity> damage = this.ambergolem.level().getEntities(this.ambergolem, this.ambergolem.getBoundingBox().inflate(1.5), e -> this.ambergolem.position().normalize().dot(e.position().normalize()) >= 0.25&& e instanceof LivingEntity);
+            List<Entity> damage = this.ambergolem.level().getEntities(this.ambergolem, this.ambergolem.getBoundingBox().inflate(2), e -> this.ambergolem.position().normalize().dot(e.position().normalize()) >= 0.5&& e instanceof LivingEntity);
             for (Entity entity : damage) {
 
                 this.ambergolem.doHurtTarget(entity);
@@ -69,8 +81,6 @@ public class AmbergolemMelee extends Goal {
                 double d4 = Math.max(d2 * d2 + d3 * d3, 0.1);
 
                 ((LivingEntity) entity).knockback(5,-(d2 / d4 * 4.0),-(d3 / d4 * 4.0));
-
-
 
         }
 
