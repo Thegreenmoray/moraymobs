@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:swamp",
+  "spawners": {
+    "type": "moraymobs:ambergolem",
+    "maxCount": 1,
+    "minCount": 1,
+    "weight": 10
+  }
+}

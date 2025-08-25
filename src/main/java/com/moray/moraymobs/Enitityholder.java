@@ -46,6 +46,7 @@ EntityRenderers.register(Mobregistries.BOUNCE_BALL_FRIEND.get(),Bouncefrender::n
 EntityRenderers.register(Mobregistries.AMBERGOLEM.get(),Ambergolemrender::new);
 EntityRenderers.register(Mobregistries.AMBERCRYSTAL.get(),Ambercrystalrender::new);
 EntityRenderers.register(Mobregistries.AMBERPORTAL.get(),Amberportalrenderer::new);
+EntityRenderers.register(Mobregistries.LESSER_TESSERACT.get(),Tesseractrender::new);
     }
 
 

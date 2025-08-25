@@ -60,6 +60,13 @@ public class Itemregististeries {
     final public static DeferredItem<Item> WALLISEROPS_SPAWN_EGG=ITEM.register
             ("spawn_walliserops",()-> new DeferredSpawnEggItem(Mobregistries.WALLISEROPS,0x964B00,0x800020,new Item.Properties()));
 
+    final public static DeferredItem<Item>  AMBERGOLEM_SPAWN_EGG=ITEM.register
+            ("spawn_ambergolem",()-> new DeferredSpawnEggItem(Mobregistries.AMBERGOLEM,0xFFBF00,0xCC5500,new Item.Properties()));
+
+    final public static DeferredItem<Item>  LESSER_TESERRACT_SPAWN_EGG=ITEM.register
+            ("spawn_lesser_teserract",()-> new DeferredSpawnEggItem(Mobregistries.LESSER_TESSERACT,0x000000,0x86B049,new Item.Properties()));
+
+
 
     final public static DeferredItem<Item> BRAIN=ITEM.register("brain",
            ()->new Brainitem(new Item.Properties().stacksTo(8)));
@@ -180,6 +187,7 @@ public class Itemregististeries {
             ()->new Baccuneer(new Item.Properties().stacksTo(1).durability(600)));
     final public static DeferredItem<Item> OMNI_BAG=ITEM.register("omnidens_bag",
             ()->new Omnidensbag(new Item.Properties().stacksTo(64)));
+
 
 
     public static void register(IEventBus bus){

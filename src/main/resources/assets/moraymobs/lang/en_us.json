@@ -48,6 +48,8 @@
   "item.moraymobs.spawn_microdictyon": "Spawn Microdictyon",
   "item.moraymobs.spawn_walliserops": "Spawn Walliserops",
   "item.moraymobs.spawn_schinderhannes": "Spawn Schinderhannes",
+  "item.moraymobs.spawn_ambergolem": "Spawn Amber Golem",
+   "item.moraymobs.spawn_lesser_teserract": "Spawn Lesser Tesseract",
 
   "block.moraymobs.basaltlamp": "Basalt Lamp",
   "block.moraymobs.blockscale": "Block of Scales",
@@ -75,6 +77,8 @@
   "entity.moraymobs.microdictyon": "Microdictyon",
   "entity.moraymobs.walliserops": "Walliserops",
   "entity.moraymobs.schinderhannes": "Schinderhannes",
+  "entity.moraymobs.ambergolem": "Amber Golem",
+  "entity.moraymobs.lesser_tesseract": "Lesser Tesseract",
 
 "creative.moray_tab": "Moray Items",
 "effect.moraymobs.stun": "Stun",

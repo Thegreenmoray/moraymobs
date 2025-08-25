@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:end_barrens",
+  "spawners": {
+    "type": "moraymobs:lesser_tesseract",
+    "maxCount": 1,
+    "minCount": 1,
+    "weight": 20
+  }
+}

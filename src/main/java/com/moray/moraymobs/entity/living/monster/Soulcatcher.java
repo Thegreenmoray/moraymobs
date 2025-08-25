@@ -1,7 +1,7 @@
 package com.moray.moraymobs.entity.living.monster;
 
+import com.moray.moraymobs.ai.monstergoals.FloatAroundGoal;
 import com.moray.moraymobs.ai.monstergoals.SoulBeamGoal;
-import com.moray.moraymobs.ai.monstergoals.SoulCatcherFloatAroundGoal;
 import com.moray.moraymobs.ai.monstergoals.SoulProjectileGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -140,7 +140,7 @@ if (gettimer()<50){
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, (p_289460_) -> {
             return Math.abs(p_289460_.getY() - this.getY()) <= 4.0;}));
         this.targetSelector.addGoal(1,new SoulLookGoal(this));
-        this.goalSelector.addGoal(5, new SoulCatcherFloatAroundGoal(this));
+        this.goalSelector.addGoal(5, new FloatAroundGoal(this));
   this.goalSelector.addGoal(2,new SoulProjectileGoal(this,15));
    this.goalSelector.addGoal(3,new SoulBeamGoal(this,30));
     }

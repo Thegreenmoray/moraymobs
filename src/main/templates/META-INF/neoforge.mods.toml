@@ -88,8 +88,7 @@ description='''${mod_description}'''
 [[dependencies.${mod_id}]]
 modId="geckolib"
 type="required"
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
-versionRange="[4.7.5.1]"
+versionRange="[4.7,)"
 ordering="NONE"
 side="BOTH"
 

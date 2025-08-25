@@ -19,6 +19,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.FlyingMob;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
@@ -55,7 +56,7 @@ public class Events {
         event.register(Mobregistries.PRONGHORN.get(),SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Animal::checkAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
    event.register(Mobregistries.THRESHER.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
    event.register(Mobregistries.AMBERGOLEM.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
-
+event.register(Mobregistries.LESSER_TESSERACT.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FlyingMob::checkMobSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 
 
@@ -77,6 +78,7 @@ event.put(Mobregistries.MICRODICTYON.get(), Microdictyon.createAttributes().buil
 event.put(Mobregistries.SCHINDERHANNES.get(), Schinderhannes.createMonsterAttributes().build());
 event.put(Mobregistries.WALLISEROPS.get(), Walliserops.createMonsterAttributes().build());
 event.put(Mobregistries.AMBERGOLEM.get(),Amber_golem.createAttributes().build());
+ event.put(Mobregistries.LESSER_TESSERACT.get(), Lesser_Tesseract.createAttributes().build());
     }
 @EventBusSubscriber(modid = MorayMobs.MODID)
     public static class itemspawn{

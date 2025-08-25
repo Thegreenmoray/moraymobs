@@ -32,6 +32,8 @@ public class MorayBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> SPAWN_AMBERGOLEM= registerKey("spawn_ambergolem");
 
+    public static final ResourceKey<BiomeModifier> SPAWN_LESSER_TESSERACT= registerKey("spawn_lesser_tesseract");
+
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
         return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, name));
@@ -76,6 +78,10 @@ public class MorayBiomeModifiers {
 
         context.register(SPAWN_AMBERGOLEM,new BiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct( biomes.getOrThrow(Biomes.SWAMP)), List.of(new MobSpawnSettings.SpawnerData(Mobregistries.AMBERGOLEM.get(), 10, 1, 1))));
+
+        context.register(SPAWN_LESSER_TESSERACT,new BiomeModifiers.AddSpawnsBiomeModifier(
+                HolderSet.direct( biomes.getOrThrow(Biomes.END_BARRENS)), List.of(new MobSpawnSettings.SpawnerData(Mobregistries.LESSER_TESSERACT.get(), 20, 1, 1))));
+
     }
 
 

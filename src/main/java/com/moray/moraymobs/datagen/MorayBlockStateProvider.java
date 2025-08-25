@@ -22,8 +22,8 @@ public class MorayBlockStateProvider extends BlockStateProvider {
     }
 
     @Override
-    protected void registerStatesAndModels() {
-blockWithItem(Blockregistrires.BASALTLAMP);
+    protected void registerStatesAndModels(){
+        blockWithItem(Blockregistrires.BASALTLAMP);
 blockWithItem(Blockregistrires.BLOCK_OF_SCALES);
 simpleBlockWithItem(Blockregistrires.END_CELSOSIA.get(), models().cross(blockTexture(Blockregistrires.END_CELSOSIA.get()).getPath(),
                 blockTexture(Blockregistrires.END_CELSOSIA.get())).renderType("cutout"));

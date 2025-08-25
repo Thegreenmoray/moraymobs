@@ -135,6 +135,9 @@ public class Mobregistries {
           ENTITY_TYPE.register("amberportal",()->EntityType.Builder.<Amberportal>of(Amberportal::new, MobCategory.MISC)
                   .sized(1,1F).fireImmune().build("amberportal"));
 
+  final public static Supplier<EntityType<Lesser_Tesseract>> LESSER_TESSERACT=
+          ENTITY_TYPE.register("lesser_tesseract",()->EntityType.Builder.of(Lesser_Tesseract::new, MobCategory.MONSTER)
+                  .sized(2,2F).build("lesser_tesseract"));
 
 
 

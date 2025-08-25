@@ -6,14 +6,20 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.item.enchantment.effects.PlaySoundEffect;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class Lesser_Tesseract extends Abstract_tesseract implements GeoEntity {
@@ -33,9 +39,13 @@ public class Lesser_Tesseract extends Abstract_tesseract implements GeoEntity {
 
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH,30).add(Attributes.FOLLOW_RANGE, 20.0).add(Attributes.MOVEMENT_SPEED, 0.25)
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH,25).add(Attributes.FOLLOW_RANGE, 20.0).add(Attributes.MOVEMENT_SPEED, 0.25)
                 .add(Attributes.ATTACK_DAMAGE, 12.0).add(Attributes.KNOCKBACK_RESISTANCE,0.7)
                 .add(Attributes.ARMOR,5);
+    }
+
+    protected PathNavigation createNavigation(Level pLevel) {
+        return new FlyingPathNavigation(this, pLevel);
     }
 
 
@@ -43,6 +53,7 @@ public class Lesser_Tesseract extends Abstract_tesseract implements GeoEntity {
     protected void registerGoals() {
         super.registerGoals();
 this.goalSelector.addGoal(5,new Tesseractattackgoal(this));
+//this.goalSelector.addGoal(5,new MeleeAttackGoal(this,0.5,false));
     }
 
     public int getanimation(){
@@ -99,8 +110,66 @@ this.goalSelector.addGoal(5,new Tesseractattackgoal(this));
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+    protected void tickDeath() {
+        ++this.deathTime;
 
+        if (this.deathTime==2){
+            this.playSound(SoundEvents.ENDER_DRAGON_DEATH,0.4f,1f);
+        }
+
+        if (this.deathTime==80){
+            this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, false, Level.ExplosionInteraction.MOB);
+        }
+
+
+        if (this.deathTime == 90 && !this.level().isClientSide()) {
+            this.level().broadcastEntityEvent(this, (byte) 60);
+
+            this.remove(RemovalReason.KILLED);
+        }
+    }
+
+
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<>(this,
+                "Controller",this::animations));
+    }
+
+    private PlayState animations(AnimationState<Lesser_Tesseract> lesserTesseractAnimationState) {
+
+        if (getHealth()<=0.01){
+            lesserTesseractAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.lesser_teseract.death", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
+
+       if (getanimation()==3){
+           lesserTesseractAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.lesser_teserract.reconvert", Animation.LoopType.HOLD_ON_LAST_FRAME));
+           return PlayState.CONTINUE;
+        }
+
+        if (getanimation()==1){
+            lesserTesseractAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.lesser_teserract.blade_shift", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
+        if (getanimation()==2){
+            lesserTesseractAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.lesser_teserract.attack", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
+        if (!lesserTesseractAnimationState.isMoving()){
+            lesserTesseractAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.lesser_teserract.idle", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
+
+
+
+
+        return PlayState.CONTINUE;
     }
 
     @Override

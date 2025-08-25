@@ -1,4 +1,6 @@
-// 1.21.1	2025-05-27T23:37:52.9795902	Registries
+// 1.21.1	2025-08-04T23:43:32.5890606	Registries
+29e4bb8a2e1457b65123159dea8bbd4dd9e998b4 data/moraymobs/neoforge/biome_modifier/spawn_ambergolem.json
+6d826c1c3da2e53067148392d181ed5c00881c4b data/moraymobs/neoforge/biome_modifier/spawn_lesser_tesseract.json
 8e99401b823a1d6cfb800fdabb1bba238ce55d5d data/moraymobs/neoforge/biome_modifier/spawn_moray.json
 aade148e53bdc8e7490dff1f219ce863cbfe4767 data/moraymobs/neoforge/biome_modifier/spawn_opossum.json
 dca67909447eb5d386417e458b26da3e32367273 data/moraymobs/neoforge/biome_modifier/spawn_paddlefish.json

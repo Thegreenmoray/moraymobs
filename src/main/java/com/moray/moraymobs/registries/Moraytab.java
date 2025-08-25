@@ -26,7 +26,9 @@ public static final Supplier<CreativeModeTab> MORAYTAB=
                         output.accept(Blockregistrires.BASALTLAMP.get());
                         output.accept(Blockregistrires.BLOCK_OF_SCALES.get());
                         output.accept(Blockregistrires.END_CELSOSIA.get());
-for(DeferredHolder<Item, ? extends Item> itemSupplier:Itemregististeries.ITEM.getEntries()){output.accept(itemSupplier.get());}})).build());
+for(DeferredHolder<Item, ? extends Item>
+        itemSupplier:Itemregististeries.ITEM.getEntries()){
+    output.accept(itemSupplier.get());}})).build());
 
 
 public static void register(IEventBus eventBus){
