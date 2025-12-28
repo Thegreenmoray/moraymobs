@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-27T21:20:53.5440397	Block States: moraymobs
+// 1.21.1	2025-12-28T10:59:53.3140366	Block States: moraymobs
 79ea2debd5e5bf9f199f0179d293b57114b1e9ba assets/moraymobs/blockstates/basaltlamp.json
 f84459adf45d982877c318e118ccab0bf9b1714a assets/moraymobs/blockstates/blockscale.json
 1634dd9f6dbf27efc06efbc5f1faaf1ab0aecb11 assets/moraymobs/blockstates/chorousgrass.json
@@ -7,7 +7,9 @@ f84459adf45d982877c318e118ccab0bf9b1714a assets/moraymobs/blockstates/blockscale
 e72d4938dbc02363c558b6ddf217c43b2d937f24 assets/moraymobs/blockstates/endercelosia.json
 e53a0e2fecc777edeca03510ad1e16844bf4755d assets/moraymobs/blockstates/keydownblock.json
 d10de60af70a88586a86ad00709c9f9a22dd4533 assets/moraymobs/blockstates/keytopblock.json
+fae399623865154e2b968b9b601cb830f7d02928 assets/moraymobs/blockstates/lava_sponge.json
 2a33be053d64dc9ba7706370256f6ce83e914663 assets/moraymobs/blockstates/shulkerberrycrop.json
+9841fa8164d423eeea495b1fe1d70b27e8fa3d6f assets/moraymobs/blockstates/super_lava_sponge.json
 44cf034213486248506256056ab1935b296efbc2 assets/moraymobs/models/block/basaltlamp.json
 149c981327ac26ce0754959ac94db21f0dd28441 assets/moraymobs/models/block/blockscale.json
 059af271fba3dfad9e19060622c48441b669c626 assets/moraymobs/models/block/chorousgrass.json
@@ -18,12 +20,14 @@ c5124f921314a233703021dba78029378ff27325 assets/moraymobs/models/block/dark_down
 e79bf8171b6a1ad6cdf1ffcf681ef329d68e8e20 assets/moraymobs/models/block/dark_prismarine_up_keyhole_empty.json
 bc3d965d7f1fa9d7cfdc230f2377a5a4e1b8ae11 assets/moraymobs/models/block/dark_up_prismarine_keyhole.json
 853c514c4324138a1d257e62e4c5c4af2bddfdfe assets/moraymobs/models/block/endercelosia.json
+e0d91dc65b97b30957ef2bc71b5dbe9e9b623c43 assets/moraymobs/models/block/lava_sponge.json
 d40e228f4b179742d095bde0a14b17d864c09116 assets/moraymobs/models/block/shulkerberrycrop_stage0.json
 22831bff44610ab8acddc429fc12b125da8fb835 assets/moraymobs/models/block/shulkerberrycrop_stage1.json
 6542c42fa816bccbfd6f101153618e2b69ddcf98 assets/moraymobs/models/block/shulkerberrycrop_stage2.json
 490f698a5324f70b1b9da5f85bd9ee1e7c37ab2f assets/moraymobs/models/block/shulkerberrycrop_stage3.json
 e697947989c7aee0a3bb036ac6bb10c017af5af7 assets/moraymobs/models/block/shulkerberrycrop_stage4.json
 adea680ff94ae33765c45fa92d3328d84672c469 assets/moraymobs/models/block/shulkerberrycrop_stage5.json
+40a068033cb52d1489e53c08dc68901bd5422ee1 assets/moraymobs/models/block/super_lava_sponge.json
 b1c4cee570a53fb91ad70ec7fead9ab1ed476cdf assets/moraymobs/models/item/basaltlamp.json
 87a57620b38a59c65a359dee2697341a64e6847d assets/moraymobs/models/item/blockscale.json
 1a0843db34761e08f414c11514b94b4656eb44f2 assets/moraymobs/models/item/chorousgrass.json
@@ -32,3 +36,5 @@ d7930340f05196b54f03ecc8e6946368440568a7 assets/moraymobs/models/item/chorousmos
 7cc59581848b72de01b83e89d4a5948fb61fe355 assets/moraymobs/models/item/endercelosia.json
 aeffb8586770c02b846d26e6b24922bab8128d18 assets/moraymobs/models/item/keydownblock.json
 9691ec007c0d2e13c1ba3d0f76f3f0be76d97f2a assets/moraymobs/models/item/keytopblock.json
+529c3d82975c4755ea911b9032ba64358e570551 assets/moraymobs/models/item/lava_sponge.json
+5acc26de721590919c8183bf0f110a7ee9fba05b assets/moraymobs/models/item/super_lava_sponge.json

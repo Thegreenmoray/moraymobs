@@ -3,6 +3,8 @@ package com.moray.moraymobs.entity.projectiles;
 import com.moray.moraymobs.entity.living.boss.Omnidens;
 import com.moray.moraymobs.registries.Mobregistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -20,6 +22,18 @@ import java.util.List;
 public class Sea_Mine extends AbstractHurtingProjectile implements GeoEntity {
     private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
 
+
+    private static final EntityDataAccessor<Integer> TIMER= SynchedEntityData.defineId(Sea_Mine.class, EntityDataSerializers.INT);
+
+
+    public int gettimer(){
+        return this.entityData.get(TIMER);
+    }
+    public void settimer(int timer){
+        this.entityData.set(TIMER,timer);
+    }
+
+
     public Sea_Mine(EntityType<? extends AbstractHurtingProjectile> entityType, Level level) {
         super(entityType, level);
     }
@@ -32,11 +46,9 @@ public class Sea_Mine extends AbstractHurtingProjectile implements GeoEntity {
     }
 
 
-
-
-
     @Override
     public void tick() {
+        settimer(gettimer()+1);
 
 
 
@@ -55,6 +67,9 @@ public class Sea_Mine extends AbstractHurtingProjectile implements GeoEntity {
                 return;
             }
         }
+        if (gettimer()>=70){
+            remove(RemovalReason.DISCARDED);
+        }
 
 
 
@@ -63,18 +78,18 @@ public class Sea_Mine extends AbstractHurtingProjectile implements GeoEntity {
 
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-
+        this.settimer(compound.getInt("timer"));
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-
+        compound.putInt("timer",this.gettimer());
     }
 
 
     protected void defineSynchedData (SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-
+        builder.define(TIMER,0);
     }
 
 

@@ -486,12 +486,14 @@ controllers.add(new AnimationController<>(this,
      float z_postion= (float) (this.getZ()+z_rotation);
 
         ejection++;
+        setgrip(true);
 moveFunc.accept(passenger,x_postion,this.getY(),z_postion);
 
 
 
 if (ejection==20){
    this.ejectPassengers();
+    setgrip(false);
    ejection=0;
 }
 

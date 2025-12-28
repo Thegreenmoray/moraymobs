@@ -94,11 +94,13 @@ if (getbeamtimer()==140||gettimer()==50){
 }
 
         if (getbeamtimer()<140){
-    settimer(gettimer()+1);}
+    settimer(gettimer()+1);
+        }
 
 
 if (gettimer()<50){
-    setBeamtimer(getbeamtimer()+1);}
+    setBeamtimer(getbeamtimer()+1);
+}
 
    super.aiStep();
 }
@@ -245,10 +247,10 @@ this.setDeltaMovement(0,-1,0);
         }
 
         public void tick() {
-if(this.soulcatcher.getTarget()!=null &&this.soulcatcher.getbeamtimer()<140){
+    if(this.soulcatcher.getTarget()!=null &&this.soulcatcher.getbeamtimer()<140){
     if (this.floatDuration-- <= 0) {
-        this.floatDuration += this.soulcatcher.getRandom().nextInt(1) + 2;
-        Vec3 $$0 = new Vec3(this.wantedX - this.soulcatcher.getX(), 0, this.wantedZ - this.soulcatcher.getZ());
+        this.floatDuration += this.soulcatcher.getRandom().nextInt(1) + 3;
+        Vec3 $$0 = new Vec3(this.wantedX - this.soulcatcher.getX(), this.wantedY - this.soulcatcher.getY(), this.wantedZ - this.soulcatcher.getZ());
         double $$1 = $$0.length();
         $$0 = $$0.normalize();
         if (this.canReach($$0, Mth.ceil($$1))) {

@@ -52,7 +52,7 @@ if (count>=25&&count<29) {
 if (count==29){
         for (int i = 1; i < Mth.floor(vec3d2.length()) + 7; ++i) {
             Vec3 vec3d4 = vec3d.add(vec3d3.scale((double) i));
-            ((ServerLevel) this.soulcatcher.level()).sendParticles(ParticleTypes.SOUL, vec3d4.x, vec3d4.y + 1.0D, vec3d4.z, i, 0.0D, 0.0D, 0.0D, 0.0D);
+            ((ServerLevel) this.soulcatcher.level()).sendParticles(ParticleTypes.SOUL, vec3d4.x, vec3d4.y + 0.5D, vec3d4.z, i, 0.0D, 0.0D, 0.0D, 0.0D);
       if (livingEntity.position().distanceTo(vec3d4)<2){
           livingEntity.hurt(this.soulcatcher.damageSources().sonicBoom(soulcatcher),10);
       }

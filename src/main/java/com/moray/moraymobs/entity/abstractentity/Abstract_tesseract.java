@@ -91,7 +91,7 @@ public abstract class Abstract_tesseract extends Monster {
 
 
             for(int i = 0; i < 3; ++i) {
-                BlockPos blockpos1 = blockpos.offset(Abstract_tesseract.this.random.nextInt(15) - 7, Abstract_tesseract.this.random.nextInt(11) - 5, Abstract_tesseract.this.random.nextInt(15) - 7);
+                BlockPos blockpos1 = blockpos.offset(Abstract_tesseract.this.random.nextInt(15) - 7, Abstract_tesseract.this.random.nextInt(11) + 5, Abstract_tesseract.this.random.nextInt(15) - 7);
                 if (Abstract_tesseract.this.level().isEmptyBlock(blockpos1)) {
                     Abstract_tesseract.this.moveControl.setWantedPosition((double)blockpos1.getX() + (double)0.5F, (double)blockpos1.getY() + (double)0.5F, (double)blockpos1.getZ() + (double)0.5F, (double)0.25F);
                     if (Abstract_tesseract.this.getTarget() == null) {

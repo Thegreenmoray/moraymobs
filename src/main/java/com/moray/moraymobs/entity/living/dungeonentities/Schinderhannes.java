@@ -1,13 +1,10 @@
 package com.moray.moraymobs.entity.living.dungeonentities;
 
-import com.moray.moraymobs.entity.abstractentity.Abstractfishmoray;
-import com.moray.moraymobs.entity.living.animal.Enderbowfin;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;

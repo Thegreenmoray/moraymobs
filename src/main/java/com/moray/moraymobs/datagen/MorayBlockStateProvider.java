@@ -32,7 +32,8 @@ simpleBlockWithItem(Blockregistrires.END_CELSOSIA.get(), models().cross(blockTex
         simpleBlockWithItem(Blockregistrires.END_GRASS.get(),
                 models().cross(blockTexture(Blockregistrires.END_GRASS.get()).getPath(), blockTexture(Blockregistrires.END_GRASS.get())).renderType("cutout"));
         makeshulkerberryCrop((CropBlock) Blockregistrires.SHULKERFRUIT_CROP.get(), "shulkerberrycrop_stage", "shulkerberrycrop_stage");
-
+blockWithItem(Blockregistrires.LAVASUCC);
+blockWithItem(Blockregistrires.LAVASUCCSUPER);
 simpleBlockWithItem(Blockregistrires.PADDED_MOSS.get(), models().carpet(blockTexture(Blockregistrires.PADDED_MOSS.get()).getPath(),blockTexture(Blockregistrires.PADDED_MOSS.get())).renderType("translucent"));
 
 customlock();

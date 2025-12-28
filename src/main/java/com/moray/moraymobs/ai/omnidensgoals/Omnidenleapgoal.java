@@ -12,6 +12,7 @@ public class Omnidenleapgoal extends Goal {
 
     float distance_x = 0;
     float distance_z = 0;
+
     public Omnidenleapgoal(Omnidens omnidens) {
         this.omnidens=omnidens;
 
@@ -49,12 +50,11 @@ public class Omnidenleapgoal extends Goal {
        if (omnidens.getjumpgrab()<=42&&omnidens.getjumpgrab()>30){
            Vec3 vec=new Vec3(-distance_x,0,-distance_z);
         Vec3 jump= vec.normalize().scale(0.1);
-         omnidens.addDeltaMovement(jump.add(-distance_x*0.00009,jump.y()+0.01,-distance_z*0.00009).normalize());}
+         omnidens.addDeltaMovement(jump.add(-distance_x*0.00009,jump.y()+0.0000001,-distance_z*0.00009).normalize());}
 
-if (omnidens.getjumpgrab()<=22) {
+if (omnidens.getjumpgrab()<=26) {
 
     if (omnidens.distanceTo(entity)<9&&!omnidens.hasPassenger(entity)){
-        omnidens.setgrip(true);
         entity.startRiding(omnidens,true);
     }
     if (omnidens.hasPassenger(entity)){
@@ -63,7 +63,7 @@ if (omnidens.getjumpgrab()<=22) {
         omnidens.stopInPlace();}
 
     if (!omnidens.hasPassenger(entity)){
-    omnidens.addDeltaMovement(new Vec3(distance_x * 0.00002, 0, distance_z * 0.00002).normalize());
+    omnidens.addDeltaMovement(new Vec3(distance_x * 0.00002,0.0000001 , distance_z * 0.00002).normalize());
 }}
 
         }

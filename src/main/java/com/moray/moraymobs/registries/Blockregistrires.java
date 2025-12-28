@@ -42,6 +42,7 @@ public class Blockregistrires {
 
     public static final DeferredBlock<Block> SHULKERFRUIT_CROP=BLOCKS.register("shulkerberrycrop",
             ()->new Shulkerberrycrop(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).noCollission().noOcclusion().instabreak()));
+
     public static final DeferredBlock<Block> LARGE_CRYSTAL =BLOCKS.register("large_orb",
             () -> new Largecrystal(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)));;
 
@@ -57,6 +58,11 @@ public class Blockregistrires {
     public static final DeferredBlock<Block> CRACKEDDARKPRISMANE= registerBlock("dark_prismarine_gate",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)));
 
+    public static final DeferredBlock<Block> LAVASUCC=registerBlock("lava_sponge",
+            ()->new Lavasucc(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE)));
+
+    public static final DeferredBlock<Block> LAVASUCCSUPER=registerBlock("super_lava_sponge",
+            ()->new Superlavasucc(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

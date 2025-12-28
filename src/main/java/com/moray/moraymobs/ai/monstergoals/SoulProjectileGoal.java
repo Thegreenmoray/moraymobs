@@ -43,14 +43,14 @@ int count;
 if (count==10){
             Soulpiece soulpiece = new Soulpiece(this.soulcatcher.level());
     Vec3 vec3=soulcatcher.getViewVector(1);
-            soulpiece.setPos(this.soulcatcher.getX() + vec3.x * 4.0, this.soulcatcher.getY(0.5) + 0.5, this.soulcatcher.getZ() + vec3.z * 4.0);
+            soulpiece.setPos(this.soulcatcher.getX() + vec3.x * 3.0, this.soulcatcher.getY(0.5) + 0.5, this.soulcatcher.getZ() + vec3.z * 3.0);
             double d0 = entity.getX() - this.soulcatcher.getX();
-            double d1 = entity.getY(0.3333333333333333) - soulpiece.getY();
+            double d1 = entity.getY(0.33333333) - soulpiece.getY();
             double d2 = entity.getZ() - this.soulcatcher.getZ();
             double d3 = Math.sqrt(d0 * d0 + d2 * d2);
-            Vec3 vec31=new Vec3(d0, d1 + d3 * 0.20000000298023224, d2);
+            Vec3 vec31=new Vec3(d0, (d1 + d3)-5, d2);
             soulpiece.setDeltaMovement(vec31.normalize().scale(0.1));
-            this.soulcatcher.level().addFreshEntity(soulpiece);}
+           this.soulcatcher.level().addFreshEntity(soulpiece);}
         }
 
 

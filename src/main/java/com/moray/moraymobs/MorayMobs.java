@@ -1,6 +1,8 @@
 package com.moray.moraymobs;
 
+import com.moray.moraymobs.client.Beamparticle;
 import com.moray.moraymobs.registries.*;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -50,7 +52,7 @@ public class MorayMobs
         //Structureregisteries.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
         //MorayStructurePlacements.DEFERRED_REGISTRY_STRUCTURE_PLACEMENT_TYPE.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
-
+        Particlesregistries.register(modEventBus);
 
        NeoForge.EVENT_BUS.register(this);
 
@@ -100,8 +102,21 @@ public class MorayMobs
         {
             // Some client setup code
             Enitityholder.setup(event);
+
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
+
+
+        @SubscribeEvent
+        public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+            event.registerSpriteSet(Particlesregistries.BEAM_PARTICLES.get(), Beamparticle.Provider::new);
+
+        }
+
+
+
+
+
     }
 }

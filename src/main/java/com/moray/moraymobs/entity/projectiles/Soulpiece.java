@@ -31,9 +31,10 @@ public class Soulpiece extends AbstractHurtingProjectile implements GeoEntity {
     public void tick() {
         super.tick();
 
-        Vec3 vec3=new Vec3(this.getX(),this.getY()-0.05,this.getZ());
+       Vec3 vec3 =this.getDeltaMovement();
+       Vec3 vec32=new Vec3(vec3.x(),vec3.y()-0.05,vec3.z());
 
-   this.setDeltaMovement(vec3.normalize());
+   this.setDeltaMovement(vec32.normalize());
 
     }
 

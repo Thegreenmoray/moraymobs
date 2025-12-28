@@ -1,6 +1,7 @@
-// 1.21.1	2025-05-28T20:53:27.219582	Recipes
+// 1.21.1	2025-12-28T10:59:53.3140366	Recipes
 2aa49926afa4dcbbc3390289f029e84385e511bd data/minecraft/advancement/recipes/misc/bone.json
 0c145cfd294305691883779c9e44981928a6b01e data/minecraft/recipe/bone.json
+334164880aa4fa2c9f91178234f6db1b31b7a08f data/moraymobs/advancement/recipes/building_blocks/lava_sponge.json
 4fe40a191fe8bc3aae716d998d54a69be374b000 data/moraymobs/advancement/recipes/combat/beetleboots.json
 7c00ac6c9150143b10d3908dc869865bdc48ca1e data/moraymobs/advancement/recipes/combat/beetlechestplate.json
 02b2f835cdf39536ca38bcc8680a8c385c46f631 data/moraymobs/advancement/recipes/combat/beetleleggings.json
@@ -29,6 +30,7 @@ ceb87ed24bd867f637e3cbcd553d0031f920e00f data/moraymobs/recipe/food/smelted_meef
 daff055f9b87d64eb8f1adabc3ed393f803409ff data/moraymobs/recipe/food/smelted_venison.json
 d32ae15fedfe84295bb39a1426cb4a095fff1b35 data/moraymobs/recipe/food/smoked_meef.json
 81386c33e153546f717e7aacef5de84f7cb690cb data/moraymobs/recipe/food/smoked_venison.json
+c5efa193f69e19a9bee5ca1d5b62c49db67d299b data/moraymobs/recipe/lava_sponge.json
 80c3ac0bd9c8580a40dad9d8fa4fa172016325a1 data/moraymobs/recipe/red_key.json
 1f683ce3e674e8055de4cc04ebce3f727b63dc00 data/moraymobs/recipe/scale.json
 4faa767818cc10ab2358ab3e48b9961363a088f5 data/moraymobs/recipe/soulbeamjewel.json

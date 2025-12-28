@@ -1,6 +1,6 @@
 package com.moray.moraymobs.ai;
 
-import com.moray.moraymobs.entity.living.animal.Basaltlisk;
+import com.moray.moraymobs.entity.living.animalornpc.Basaltlisk;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;

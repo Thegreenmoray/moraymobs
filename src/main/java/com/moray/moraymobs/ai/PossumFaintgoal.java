@@ -1,6 +1,6 @@
 package com.moray.moraymobs.ai;
 
-import com.moray.moraymobs.entity.living.animal.Opossum;
+import com.moray.moraymobs.entity.living.animalornpc.Opossum;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;

@@ -1,6 +1,6 @@
 package com.moray.moraymobs.ai;
 
-import com.moray.moraymobs.entity.living.animal.Thresher_shark;
+import com.moray.moraymobs.entity.living.animalornpc.Thresher_shark;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;

@@ -1,7 +1,7 @@
 package com.moray.moraymobs.registries;
 
 import com.moray.moraymobs.MorayMobs;
-import com.moray.moraymobs.entity.living.animal.*;
+import com.moray.moraymobs.entity.living.animalornpc.*;
 import com.moray.moraymobs.entity.living.boss.Omnidens;
 import com.moray.moraymobs.entity.living.dungeonentities.Microdictyon;
 import com.moray.moraymobs.entity.living.dungeonentities.Schinderhannes;
@@ -11,6 +11,7 @@ import com.moray.moraymobs.entity.projectiles.*;
 import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Amberportal;
 import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Bouncy_ball_Friend;
 import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Friendly_Boomerrang;
+import com.moray.moraymobs.item.basis.Pawpawbomb;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -139,9 +140,20 @@ public class Mobregistries {
           ENTITY_TYPE.register("lesser_tesseract",()->EntityType.Builder.of(Lesser_Tesseract::new, MobCategory.MONSTER)
                   .sized(2,2F).build("lesser_tesseract"));
 
+    final public static Supplier<EntityType<Spriggan>> SPRIGGAN=
+            ENTITY_TYPE.register("spriggan",()->EntityType.Builder.of(Spriggan::new, MobCategory.CREATURE)
+                    .sized(2,3F).build("spriggan"));
+
+    final public static Supplier<EntityType<Treebeam>> TREE_BEAM=
+            ENTITY_TYPE.register("tree_beam",()->EntityType.Builder.<Treebeam>of(Treebeam::new, MobCategory.MISC)
+                    .sized(8F,4F).fireImmune().build("tree_beam"));
+
+    final public static Supplier<EntityType<Pawpawbomb>> BOMBA=
+            ENTITY_TYPE.register("acid_bomb",()->EntityType.Builder.<Pawpawbomb>of(Pawpawbomb::new, MobCategory.MISC)
+                    .sized(1,1F).fireImmune().build("acid_bomb"));
 
 
-  public static void register(IEventBus bus){
+    public static void register(IEventBus bus){
     ENTITY_TYPE.register(bus);
 }
 

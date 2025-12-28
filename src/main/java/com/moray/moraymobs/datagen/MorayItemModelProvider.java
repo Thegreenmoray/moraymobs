@@ -28,7 +28,7 @@ withExistingParent(Itemregististeries.SCHINDERHANNES_SPAWN_EGG.getId().getPath()
 withExistingParent(Itemregististeries.WALLISEROPS_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
 withExistingParent(Itemregististeries.AMBERGOLEM_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
 withExistingParent(Itemregististeries.LESSER_TESERRACT_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
-
+withExistingParent(Itemregististeries.SPRIGGAN_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
 
 basicItem(Itemregististeries.BRAIN.get());
      basicItem(Itemregististeries.JAW.get());
@@ -67,6 +67,8 @@ handheldItem(Itemregististeries.OMNIDENS_SWORD.get());
 handheldItem(Itemregististeries.OMNIDENS_SHOVEL.get());
 handheldItem(Itemregististeries.BUCCANEER.get());
 basicItem(Itemregististeries.OMNI_BAG.get());
+basicItem(Itemregististeries.PAWPAW.get());
+basicItem(Itemregististeries.PAWPAW_BOMB.get());
     }
 
 

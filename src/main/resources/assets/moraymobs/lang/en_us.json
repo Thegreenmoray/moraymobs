@@ -35,6 +35,8 @@
   "item.moraymobs.omnidens_blade": "Cambrian Blade",
   "item.moraymobs.omnidens_shovel": "Sand Crusher",
   "item.moraymobs.buccaneer_barrel": "Buccaneer Barrel",
+  "item.moraymobs.pawpaw": "Pawpaw",
+  "item.moraymobs.acid_bomb": "Acid Bomb",
   "item.moraymobs.spawn_basaltlisk": "Spawn Basaltlisk",
   "item.moraymobs.spawn_body_snatcher": "Spawn Body Snatcher",
   "item.moraymobs.spawn_opposum": "Spawn Opossum",
@@ -50,6 +52,7 @@
   "item.moraymobs.spawn_schinderhannes": "Spawn Schinderhannes",
   "item.moraymobs.spawn_ambergolem": "Spawn Amber Golem",
    "item.moraymobs.spawn_lesser_teserract": "Spawn Lesser Tesseract",
+  "item.moraymobs.spawn_spriggan": "Spawn Spriggan",
 
   "block.moraymobs.basaltlamp": "Basalt Lamp",
   "block.moraymobs.blockscale": "Block of Scales",
@@ -62,6 +65,8 @@
 "block.moraymobs.dark_prismarine_gate": "Dark Prismarine Gate",
 "block.moraymobs.keydownblock":"Key Down Block",
 "block.moraymobs.keytopblock": "Key Top Block",
+  "block.moraymobs.lava_sponge": "Lava Sponge",
+  "block.moraymobs.super_lava_sponge": "Super Lava Sponge",
 
   "entity.moraymobs.bodysnatcher": "Body Snatcher",
   "entity.moraymobs.opossum": "Opossum",
@@ -79,6 +84,7 @@
   "entity.moraymobs.schinderhannes": "Schinderhannes",
   "entity.moraymobs.ambergolem": "Amber Golem",
   "entity.moraymobs.lesser_tesseract": "Lesser Tesseract",
+  "entity.moraymobs.spriggan": "Spriggan",
 
 "creative.moray_tab": "Moray Items",
 "effect.moraymobs.stun": "Stun",

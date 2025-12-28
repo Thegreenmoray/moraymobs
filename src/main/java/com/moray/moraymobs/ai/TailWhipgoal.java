@@ -1,6 +1,6 @@
 package com.moray.moraymobs.ai;
 
-import com.moray.moraymobs.entity.living.animal.Thresher_shark;
+import com.moray.moraymobs.entity.living.animalornpc.Thresher_shark;
 import com.moray.moraymobs.entity.projectiles.Stunwave;
 import com.moray.moraymobs.registries.Effectregisteries;
 import net.minecraft.world.entity.Entity;

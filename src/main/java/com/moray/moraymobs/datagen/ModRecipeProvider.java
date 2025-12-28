@@ -10,6 +10,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.List;
@@ -106,7 +108,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 unlockedBy(getHasName(Itemregististeries.MIDDLE_KEY_PART.get()),has(Itemregististeries.MIDDLE_KEY_PART.get()))
                 .save(recipeOutput);
 
-
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, Blockregistrires.LAVASUCC.get())
+                .pattern("%*%")
+                .pattern("*@*")
+                .pattern("%*%").define('@', Items.NETHER_STAR).define('*', Blocks.MAGMA_BLOCK)
+                .define('%', Items.BLAZE_POWDER).
+                unlockedBy(getHasName(Items.NETHER_STAR),has(Items.NETHER_STAR))
+                .save(recipeOutput);
 
 cookingRecipes(recipeOutput,"smelted", RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new,200);
         cookingRecipes(recipeOutput,"smoked", RecipeSerializer.SMOKING_RECIPE,SmokingRecipe::new, 100);

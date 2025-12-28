@@ -3,6 +3,9 @@ package com.moray.moraymobs.ai.omnidensgoals;
 import com.moray.moraymobs.entity.living.boss.Omnidens;
 import com.moray.moraymobs.entity.projectiles.Sea_Mine;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 
@@ -26,28 +29,31 @@ List<Sea_Mine> seaMines=new ArrayList<>();
 int seamines= omnidens.getseamine();
 
 
+           if (seamines==93) {
 
-           if (seamines==109) {
-               for (int i = 2; i < this.seaMines.toArray().length-1; i++) {
+               for (int i = 0; i < this.seaMines.toArray().length-1; i++) {
+                   //update this so that mine feild is more dense
+                   Sea_Mine seamine = seaMines.get(i);
 
-                       float radian=livingEntity.level().random.nextInt(360)*Mth.DEG_TO_RAD;
-                       float x_sign= (float) (livingEntity.getX()+i*Mth.sin(radian));
-                       float z_sign= (float) (livingEntity.getZ()+i*Mth.cos(radian));
+                   List<Entity> damage= seamine.level().getEntities(seamine, seamine.getBoundingBox().inflate(3), e -> seamine.position().distanceTo(e.position()) <= 2 && ( e instanceof Sea_Mine||e instanceof LivingEntity));
+                   ;
+                   float x_sign;
+                   float z_sign;
+                   do {
+                       int postion = omnidens.level().getRandom().nextInt(4) + 4;
+                       float radian = livingEntity.level().random.nextInt(360) * Mth.DEG_TO_RAD;
+                       x_sign = (float) (livingEntity.getX() + postion * Mth.sin(radian));
+                       z_sign = (float) (livingEntity.getZ() + postion * Mth.cos(radian));
+                       seamine.setPos(x_sign, livingEntity.getY(), z_sign);
+                       damage = seamine.level().getEntities(seamine, seamine.getBoundingBox().inflate(3), e -> seamine.position().distanceTo(e.position()) <= 2 && ( e instanceof Sea_Mine||e instanceof LivingEntity));
 
-
-                   Sea_Mine seamine=seaMines.get(i);
-                   seamine.setPos(x_sign, livingEntity.getY(), z_sign);
+                   } while (!damage.isEmpty());
 
 
 
                    this.omnidens.level().addFreshEntity(seamine);
                }
            }
-
-
-
-
-
 
         }
 
@@ -59,8 +65,8 @@ int seamines= omnidens.getseamine();
 
      omnidens.setseamine(121);
         omnidens.setanimation(7);
-
-        for (int i = 0; i < 18; i++) {
+// test this
+        for (int i = 0; i < 25; i++) {
             Sea_Mine seamine = new Sea_Mine(this.omnidens.level());
         seaMines.add(seamine);
         }

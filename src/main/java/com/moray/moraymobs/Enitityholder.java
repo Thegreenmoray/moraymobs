@@ -1,4 +1,5 @@
 package com.moray.moraymobs;
+import com.moray.moraymobs.entity.projectiles.Treebeam;
 import com.moray.moraymobs.registries.Mobregistries;
 import com.moray.moraymobs.registries.Morayblockentities;
 import com.moray.moraymobs.rendersandmodels.render.*;
@@ -8,6 +9,7 @@ import com.moray.moraymobs.rendersandmodels.render.entities.projectiles.*;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import org.apache.http.cookie.SM;
 
@@ -41,12 +43,15 @@ EntityRenderers.register(Mobregistries.BOUNCE_BALL.get(),Bouncerender::new);
 EntityRenderers.register(Mobregistries.SEA_MINE.get(),Seaminerenderer::new);
  EntityRenderers.register(Mobregistries.BOOMERANG_FRIEND.get(),BoomerangFriendlyRender::new);
 EntityRenderers.register(Mobregistries.BOUNCE_BALL_FRIEND.get(),Bouncefrender::new);
-    BlockEntityRenderers.register(Morayblockentities.LARGE_CRYSTAL_ENTITY.get(), CrystalLargeRender::new);
-    BlockEntityRenderers.register(Morayblockentities.SMALL_CRYSTAL_ENTITY.get(), SmallCrystalrenderer::new);
+BlockEntityRenderers.register(Morayblockentities.LARGE_CRYSTAL_ENTITY.get(), CrystalLargeRender::new);
+BlockEntityRenderers.register(Morayblockentities.SMALL_CRYSTAL_ENTITY.get(), SmallCrystalrenderer::new);
 EntityRenderers.register(Mobregistries.AMBERGOLEM.get(),Ambergolemrender::new);
 EntityRenderers.register(Mobregistries.AMBERCRYSTAL.get(),Ambercrystalrender::new);
 EntityRenderers.register(Mobregistries.AMBERPORTAL.get(),Amberportalrenderer::new);
 EntityRenderers.register(Mobregistries.LESSER_TESSERACT.get(),Tesseractrender::new);
+ EntityRenderers.register(Mobregistries.SPRIGGAN.get(),Sprigganrender::new);
+ EntityRenderers.register(Mobregistries.TREE_BEAM.get(), Beamrender::new);
+ EntityRenderers.register(Mobregistries.BOMBA.get(), ThrownItemRenderer::new);
     }
 
 

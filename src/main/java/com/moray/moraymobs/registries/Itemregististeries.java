@@ -1,21 +1,15 @@
 package com.moray.moraymobs.registries;
 
 import com.moray.moraymobs.MorayMobs;
-import com.moray.moraymobs.block.Smallcrystal;
 import com.moray.moraymobs.item.*;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.security.cert.Extension;
 
 
 public class Itemregististeries {
@@ -66,6 +60,9 @@ public class Itemregististeries {
     final public static DeferredItem<Item>  LESSER_TESERRACT_SPAWN_EGG=ITEM.register
             ("spawn_lesser_teserract",()-> new DeferredSpawnEggItem(Mobregistries.LESSER_TESSERACT,0x000000,0x86B049,new Item.Properties()));
 
+    final public static DeferredItem<Item>  SPRIGGAN_SPAWN_EGG=ITEM.register
+            ("spawn_spriggan",()-> new DeferredSpawnEggItem(Mobregistries.SPRIGGAN,0x966F33,0x059033,new Item.Properties()));
+
 
 
     final public static DeferredItem<Item> BRAIN=ITEM.register("brain",
@@ -95,7 +92,6 @@ public class Itemregististeries {
     final public static DeferredItem<Item> MOSS=ITEM.register("chorousmoss",
             ()->new PlaceOnWaterBlockItem(Blockregistrires.PADDED_MOSS.get(),
                     new Item.Properties().stacksTo(64)));
-
 
     final public static DeferredItem<Item> BEETLE_SCALE= ITEM.register("scale",
             ()->new Item(new Item.Properties().stacksTo(64)));
@@ -151,7 +147,6 @@ public class Itemregististeries {
     final public static DeferredItem<Item> TOP_KEY=ITEM.register("red_key",
             ()->new Item(new Item.Properties()));
 
-
     final public static DeferredItem<Item> TOP_KEY_PART=ITEM.register("topofkey",
             ()->new Item(new Item.Properties()));
 
@@ -176,7 +171,6 @@ public class Itemregististeries {
     final public static DeferredItem<Item> OMNIDENS_BOOTS=ITEM.register("omnidensboots",
             ()->new Omnidensarmor(Morayarmormaterials.ModArmorMaterials.OMNIDENS_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,new Item.Properties().fireResistant().stacksTo(1).durability(500)));
 
-
     final public static DeferredItem<Item> OMNIDENS_SWORD=ITEM.register("omnidens_blade",
             ()->new Omnidens_Blade(Tiers.NETHERITE,new Item.Properties().attributes(Omnidens_Blade.createAttributes(Tiers.NETHERITE,4,-3f)).durability(1500)));
 
@@ -188,6 +182,11 @@ public class Itemregististeries {
     final public static DeferredItem<Item> OMNI_BAG=ITEM.register("omnidens_bag",
             ()->new Omnidensbag(new Item.Properties().stacksTo(64)));
 
+    final public static DeferredItem<Item> PAWPAW=ITEM.register("pawpaw",
+            ()->new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(2).build()).stacksTo(64)));
+
+    final public static DeferredItem<Item> PAWPAW_BOMB=ITEM.register("acid_bomb",
+            ()->new Pawpaw_bomb_item(new Item.Properties().stacksTo(16)));
 
 
     public static void register(IEventBus bus){

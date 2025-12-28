@@ -1,4 +1,4 @@
-package com.moray.moraymobs.entity.living.animal;
+package com.moray.moraymobs.entity.living.animalornpc;
 
 import com.moray.moraymobs.ai.PossumFaintgoal;
 import com.moray.moraymobs.ai.PossumScreamgoal;

@@ -1,7 +1,7 @@
 package com.moray.moraymobs.rendersandmodels.render.entities.animals;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.moray.moraymobs.entity.living.animal.Pronghorn;
+import com.moray.moraymobs.entity.living.animalornpc.Pronghorn;
 import com.moray.moraymobs.rendersandmodels.model.entities.animals.Pronghornmodel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

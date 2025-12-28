@@ -1,7 +1,7 @@
 package com.moray.moraymobs.rendersandmodels.model.entities.animals;
 
 import com.moray.moraymobs.MorayMobs;
-import com.moray.moraymobs.entity.living.animal.Basaltlisk;
+import com.moray.moraymobs.entity.living.animalornpc.Basaltlisk;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import software.bernie.geckolib.animation.AnimationState;

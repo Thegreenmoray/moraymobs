@@ -1,6 +1,6 @@
 package com.moray.moraymobs.ai;
 
-import com.moray.moraymobs.entity.living.animal.Pronghorn;
+import com.moray.moraymobs.entity.living.animalornpc.Pronghorn;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.Level;

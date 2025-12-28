@@ -1,7 +1,7 @@
 package com.moray.moraymobs.rendersandmodels.model.entities.animals;
 
 import com.moray.moraymobs.MorayMobs;
-import com.moray.moraymobs.entity.living.animal.Enderbowfin;
+import com.moray.moraymobs.entity.living.animalornpc.Enderbowfin;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

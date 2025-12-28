@@ -54,14 +54,14 @@ Vec3 vec3=Vec3.ZERO;
               if (((Lesser_Tesseract) tesseract).getcharge()<=40&&((Lesser_Tesseract) tesseract).getcharge()>=20){
                float x = radius * Mth.sin(theta);
                float z = radius * Mth.cos(theta);
-               Vec3 vec = tesseract.getDeltaMovement().normalize().add(x, 0, z).scale(0.09);
+               Vec3 vec = tesseract.getDeltaMovement().normalize().add(x, livingEntity.getY() - tesseract.getY(), z).scale(0.09);
 
                tesseract.setDeltaMovement(vec);
                if (tesseract.distanceTo(livingEntity)<2){
                tesseract.doHurtTarget(livingEntity);}
 
-                   tesseract.getNavigation().moveTo(vec3.x() + Mth.cos(theta) * radius, vec3.y(),
-                           vec3.z() + Mth.sin(theta) * radius, 2);}
+                   tesseract.getNavigation().moveTo(vec.x() + Mth.cos(theta) * radius, livingEntity.getY(),
+                           vec.z() + Mth.sin(theta) * radius, 2);}
 
 
               if (((Lesser_Tesseract) tesseract).getcharge()==18){

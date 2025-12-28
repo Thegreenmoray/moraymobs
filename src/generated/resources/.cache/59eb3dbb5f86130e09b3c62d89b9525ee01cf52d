@@ -1,12 +1,14 @@
-// 1.21.1	2025-08-04T21:21:19.0096866	Loot Tables
+// 1.21.1	2025-12-28T10:59:53.3140366	Loot Tables
 f0d2e92677d34968cd9211b990b317ab40d3821f data/moraymobs/loot_table/blocks/basaltlamp.json
 a076d08baa9c7a9aa3b87d83fcf6f95349b22d6b data/moraymobs/loot_table/blocks/blockscale.json
 ccbddaca81987c675522e2ba69ecc2583f04f43d data/moraymobs/loot_table/blocks/chorousgrass.json
 7675aa0e996b29310553932f189faa861255c165 data/moraymobs/loot_table/blocks/chorousmoss.json
 7a9f6ccc4013f6b72ffc980a05a3187026dc8bbf data/moraymobs/loot_table/blocks/endercelosia.json
+96b1f25ce2a240bc89af39fa641a1e90dcecfc51 data/moraymobs/loot_table/blocks/lava_sponge.json
 6416c1bdcbd66d7f7e2af06c1671f0b7655d01b6 data/moraymobs/loot_table/blocks/potted_endercelosia.json
 8d05cfbe8796cdcc26230b05af61d04c458da7dc data/moraymobs/loot_table/blocks/shulkerberrycrop.json
-ac310c8e3a4e8b3238d7f10a9ed5daa4c8d5b9ef data/moraymobs/loot_table/entities/ambergolem.json
+5cc81797ec1fc6cf04cdb74bd80371c0ec124428 data/moraymobs/loot_table/blocks/super_lava_sponge.json
+ffb85933dfb1b1c247fe9b4c31380552d7c1a698 data/moraymobs/loot_table/entities/ambergolem.json
 92e4e7c531c7de0fda3a32b3a249e848b7313c6d data/moraymobs/loot_table/entities/basaltlisk.json
 a2105ad688d637fbcc0d9f551418fedcf317d632 data/moraymobs/loot_table/entities/bodysnatcher.json
 9de24bba6e4a11f53dad062ddad36d573d0accad data/moraymobs/loot_table/entities/bonymoray.json
@@ -19,6 +21,7 @@ abed4ec70f96ba4349ff3d5c3a05cc6aa31f9195 data/moraymobs/loot_table/entities/padd
 8f6e9ef89035c70b514d052978c6d3ec5a51c76c data/moraymobs/loot_table/entities/pronghorn.json
 0e6bf05f564349571ab51ee7c75ca65a2343faa7 data/moraymobs/loot_table/entities/schinderhannes.json
 fc31e1f1b986c97972aec602f456755ef0ba7c6b data/moraymobs/loot_table/entities/soulcatcher.json
+d63f587edf72bfed962b9bb038d7509c861b0ce4 data/moraymobs/loot_table/entities/spriggan.json
 a29127864d5984388702682118636a9979a337e8 data/moraymobs/loot_table/entities/threshershark.json
 8e1020d5393e4555fc56d859e0c8c8c4484e8d80 data/moraymobs/loot_table/entities/volcanoback.json
 90112b940a0c4e5a4de8c45c3e109e415e762d8b data/moraymobs/loot_table/entities/walliserops.json

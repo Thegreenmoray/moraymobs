@@ -1,7 +1,7 @@
 package com.moray.moraymobs.rendersandmodels.render.entities.animals;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.moray.moraymobs.entity.living.animal.Opossum;
+import com.moray.moraymobs.entity.living.animalornpc.Opossum;
 import com.moray.moraymobs.rendersandmodels.model.entities.animals.Opossummodel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
