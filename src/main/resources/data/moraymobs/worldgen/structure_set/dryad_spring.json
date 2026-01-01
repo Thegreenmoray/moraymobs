@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "moraymobs:dryad_spring",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+
+    "salt": 913467464,
+
+    "spacing": 100,
+
+    "separation": 65
+  }
+}

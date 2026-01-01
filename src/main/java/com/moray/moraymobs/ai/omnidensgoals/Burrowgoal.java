@@ -50,7 +50,7 @@ public class Burrowgoal extends Goal {
               omnidens.setPos(entity.getX(),entity.getY(),entity.getZ());
           }
 
-          if (omnidens.getBurrow()==10){
+          if (omnidens.getBurrow()==4){
               omnidens.setInvisible(false);
               omnidens.setInvulnerable(false);
               omnidens.setnonvisble(false);
@@ -63,7 +63,7 @@ public class Burrowgoal extends Goal {
              double d4 = Math.max(d2 * d2 + d3 * d3, 0.1);
              if (entity instanceof Player player&&!player.isBlocking()) {
                  ((LivingEntity) entity).knockback(2, -(d2 / d4 * 3.0), -(d3 / d4 * 3.0));
-                 entity1.hurt(this.omnidens.damageSources().generic(),20);
+                 entity1.hurt(this.omnidens.damageSources().mobAttack(omnidens),15);
              }
 
              if (entity instanceof Player player&&player.isBlocking()) {

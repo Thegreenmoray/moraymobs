@@ -1,13 +1,9 @@
 package com.moray.moraymobs.ai.monstergoals;
 
 import com.moray.moraymobs.entity.living.monster.Amber_golem;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 

@@ -97,6 +97,7 @@
   "tooltip.moraymobs.armor": "Set bonus: gain Resistance 1 at below half health, press the r key preform a roar that inflicts weakness/slowness (depending if above or below half health, respectively) on all nearby mobs",
   "tooltip.moraymobs.cambrian_blade": "Right click to propel yourself forward, jump to gain more distance. 3 second cooldown.",
   "tooltip.moraymobs.sand_crusher": "Digs 5x5.",
-  "tooltip.moraymobs.buccaneer": "Shoots out the projectiles of the Beast of the Sea, No ammo required. Warning, Projectiles can bounce back and hurt you, use at your own risk."
+  "tooltip.moraymobs.buccaneer": "Shoots out the projectiles of the Beast of the Sea, No ammo required. Warning, Projectiles can bounce back and hurt you, use at your own risk.",
+"tooltip.moraymobs.super_sponge": "Creative only, sucks up A LOT of lava, may lag weaker computers"
 
 }

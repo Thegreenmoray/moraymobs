@@ -115,7 +115,7 @@ private int ejection=0;
     }
 
     public static AttributeSupplier.@NotNull Builder createMonsterAttributes() {
-        return Monster.createMobAttributes().add(Attributes.ATTACK_DAMAGE,5).add(Attributes.MAX_HEALTH,600)
+        return Monster.createMobAttributes().add(Attributes.ATTACK_DAMAGE,5).add(Attributes.MAX_HEALTH,350)
                 .add(Attributes.WATER_MOVEMENT_EFFICIENCY,0.4f).add(Attributes.ARMOR,15f).add(Attributes.ARMOR_TOUGHNESS,5f)
                 .add(Attributes.MOVEMENT_SPEED,0.4f).add(Attributes.STEP_HEIGHT,1).add(Attributes.FOLLOW_RANGE,50f).add(Attributes.ATTACK_KNOCKBACK,3);
     }

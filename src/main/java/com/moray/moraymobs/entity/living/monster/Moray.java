@@ -1,7 +1,7 @@
 package com.moray.moraymobs.entity.living.monster;
 
 import com.moray.moraymobs.ai.monstergoals.Eelmeeleeattackgoal;
-import com.moray.moraymobs.ai.omnidensgoals.Grabjawgoal;
+import com.moray.moraymobs.ai.Grabjawgoal;
 import com.moray.moraymobs.ai.monstergoals.MoraySwimGoal;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

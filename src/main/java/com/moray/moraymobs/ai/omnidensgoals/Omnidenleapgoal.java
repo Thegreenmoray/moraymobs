@@ -59,7 +59,7 @@ if (omnidens.getjumpgrab()<=26) {
     }
     if (omnidens.hasPassenger(entity)){
         if (omnidens.getjumpgrab()%2==0){
-        entity.hurt(omnidens.damageSources().generic(),4);}
+        entity.hurt(omnidens.damageSources().mobAttack(entity),4);}
         omnidens.stopInPlace();}
 
     if (!omnidens.hasPassenger(entity)){

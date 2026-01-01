@@ -13,6 +13,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -132,6 +134,12 @@ public class Amber_golem extends Raider implements GeoEntity {
     public boolean isready(){
         return getpunch()<=0&&getsucc()<=0&&getslam()<=0;
     }
+
+    @Override
+    public boolean isInvulnerableTo(DamageSource pSource) {
+        return pSource.is(DamageTypes.DROWN) || super.isInvulnerableTo(pSource);
+    }
+
 
 
     @Override

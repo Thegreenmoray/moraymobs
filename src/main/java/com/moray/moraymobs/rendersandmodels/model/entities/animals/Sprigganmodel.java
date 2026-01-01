@@ -37,9 +37,9 @@ public class Sprigganmodel extends GeoModel<Spriggan> {
             EntityModelData entityModelData=animationState.getData(DataTickets.ENTITY_MODEL_DATA);
 
             assert entityModelData != null;
-           // head.setRotX(entityModelData.headPitch()* Mth.DEG_TO_RAD);
+            head.setRotX(entityModelData.headPitch()* Mth.DEG_TO_RAD);
             head.setRotY(entityModelData.headPitch()* Mth.DEG_TO_RAD);
-            //head.setRotZ(entityModelData.headPitch()* Mth.DEG_TO_RAD);
+            head.setRotZ(entityModelData.headPitch()* Mth.DEG_TO_RAD);
 
         }
 

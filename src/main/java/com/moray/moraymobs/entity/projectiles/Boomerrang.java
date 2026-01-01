@@ -72,7 +72,7 @@ public  class Boomerrang extends AbstractHurtingProjectile implements GeoEntity 
         double d3 = entity.getZ() - d1;
         double d4 = Math.max(d2 * d2 + d3 * d3, 0.1);
         if (entity instanceof LivingEntity entity1&&getbackwards()<20&& !(entity1 instanceof Omnidens)){
-            entity1.hurt(this.damageSources().generic(),5);
+            entity1.hurt(this.damageSources().magic(),5);
 
 
 
@@ -81,8 +81,8 @@ public  class Boomerrang extends AbstractHurtingProjectile implements GeoEntity 
         }
 
         if (entity instanceof LivingEntity entity1&&getbackwards()>=20&& !(entity1 instanceof Omnidens)){
-            entity1.hurt(this.damageSources().generic(),10);
-            ((LivingEntity) entity).knockback(2,-(d2 / d4*2 ),-(d3 / d4*2 ));
+            entity1.hurt(this.damageSources().magic(),10);
+            ((LivingEntity) entity).knockback(1,-(d2 / d4*2 ),-(d3 / d4*2 ));
         }
     }
 

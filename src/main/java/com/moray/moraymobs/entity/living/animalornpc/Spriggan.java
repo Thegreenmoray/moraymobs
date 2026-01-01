@@ -21,6 +21,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -89,6 +90,7 @@ public class Spriggan extends AbstractVillager implements GeoEntity, NeutralMob 
     }
 
     protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
         this.goalSelector.addGoal(9, new InteractGoal(this, Player.class, 3.0F, 1.0F){
 
@@ -113,6 +115,7 @@ this.goalSelector.addGoal(5,new Sleep_goal(this));
 this.goalSelector.addGoal(5,new Yawn_goal(this));
 this.goalSelector.addGoal(5,new Spriggan_laser_goal(this));
 this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
+this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,this::isAngryAt));
 
     }
 
@@ -121,6 +124,12 @@ this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false))
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 100.0).add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.ATTACK_DAMAGE, 10.0).add(Attributes.FOLLOW_RANGE, 64.0);
     }
 
+    @Override
+    protected void customServerAiStep() {
+        this.updatePersistentAnger((ServerLevel)this.level(), true);
+
+        super.customServerAiStep();
+    }
 
     @Override
     public void aiStep() {
@@ -167,6 +176,36 @@ if (source.getEntity() instanceof Pawpawbomb){
             this.remove(RemovalReason.KILLED);
         }
     }
+
+
+    @Override
+    public void startPersistentAngerTimer() {
+        this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
+    }
+
+    @Override
+    public void setRemainingPersistentAngerTime(int time) {
+        this.remainingPersistentAngerTime = time;
+    }
+
+    @Override
+    public int getRemainingPersistentAngerTime() {
+        return this.remainingPersistentAngerTime;
+    }
+
+    @Override
+    public void setPersistentAngerTarget(@Nullable UUID target) {
+        this.persistentAngerTarget = target;
+    }
+
+    @Nullable
+    @Override
+    public UUID getPersistentAngerTarget() {
+        return this.persistentAngerTarget;
+    }
+
+
+
 
 
     @Override
@@ -299,6 +338,7 @@ pCompound.putInt("attack",this.getattacktime());
 pCompound.putInt("beam",this.getbeamtime());
 pCompound.putBoolean("issleeping",this.issleeping());
 pCompound.putInt("isstreching",this.isstreching());
+        this.readPersistentAngerSaveData(this.level(), pCompound);
     }
 
     public void readAdditionalSaveData(CompoundTag pCompound) {
@@ -307,6 +347,7 @@ this.setattacktime(pCompound.getInt("attack"));
 this.setbeamtime(pCompound.getInt("beam"));
 this.setIssleeping(pCompound.getBoolean("issleeping"));
 this.setIsstreching(pCompound.getInt("isstreching"));
+        this.addPersistentAngerSaveData(pCompound);
     }
 
 
@@ -320,26 +361,4 @@ this.setIsstreching(pCompound.getInt("isstreching"));
         return null;
     }
 
-    public void setRemainingPersistentAngerTime(int time) {
-        this.remainingPersistentAngerTime = time;
-    }
-
-    public int getRemainingPersistentAngerTime() {
-        return this.remainingPersistentAngerTime;
-    }
-
-    public void setPersistentAngerTarget(@Nullable UUID target) {
-        this.persistentAngerTarget = target;
-    }
-
-    @Override
-    public void startPersistentAngerTimer() {
-        this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
-
-    }
-
-    @Nullable
-    public UUID getPersistentAngerTarget() {
-        return this.persistentAngerTarget;
-    }
 }

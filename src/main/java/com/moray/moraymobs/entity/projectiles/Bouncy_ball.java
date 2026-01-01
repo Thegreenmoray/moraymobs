@@ -137,7 +137,7 @@ public class Bouncy_ball extends AbstractHurtingProjectile implements GeoEntity 
         double d3 = entity.getZ() - d1;
         double d4 = Math.max(d2 * d2 + d3 * d3, 0.1);
         if (entity instanceof LivingEntity entity1&&!(entity1 instanceof Omnidens)){
-            entity1.hurt(this.damageSources().generic(),5+getbounce());
+            entity1.hurt(this.damageSources().magic(),5+getbounce());
             entity1.knockback(2.5,-(d2 / d4*3 ),-(d3 / d4*3 ));
             remove(RemovalReason.DISCARDED);
         }

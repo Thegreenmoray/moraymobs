@@ -27,7 +27,7 @@ public class Slamgoal extends Goal {
             List<Entity> entities=this.omnidens.level().getEntities(this.omnidens,this.omnidens.getBoundingBox().inflate(4));
             for (Entity entity:entities){
                 if(entity instanceof LivingEntity){
-                    entity.hurt(this.omnidens.damageSources().generic(),15f);
+                    entity.hurt(this.omnidens.damageSources().mobAttack(omnidens),8f);
                     double d0 = (this.omnidens.getBoundingBox().minX + this.omnidens.getBoundingBox().maxX) / 2.0;
                     double d1 = (this.omnidens.getBoundingBox().minZ + this.omnidens.getBoundingBox().maxZ) / 2.0;
                     double d2 = entity.getX() - d0;

@@ -1,4 +1,4 @@
-package com.moray.moraymobs.ai.omnidensgoals;
+package com.moray.moraymobs.ai;
 
 import com.moray.moraymobs.entity.living.monster.Moray;
 import com.moray.moraymobs.entity.living.monster.Morayjaw;
