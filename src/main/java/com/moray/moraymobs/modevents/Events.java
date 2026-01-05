@@ -46,7 +46,7 @@ public class Events {
 
     @SubscribeEvent
     public static void entitySpawnRestrictions(RegisterSpawnPlacementsEvent event) {
-        event.register(Mobregistries.MORAY.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(Mobregistries.MORAY.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Moray::checkDrownedSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.OPOSSUM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.VOLCANOBACK.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Volcanoback::checkMonsterSpawnRuleschance,RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.PADDLEFISH.get(),SpawnPlacementTypes.IN_LAVA,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,LavaPaddleFish::checkPaddlefishSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
@@ -55,7 +55,7 @@ public class Events {
         event.register(Mobregistries.PRONGHORN.get(),SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Animal::checkAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
    event.register(Mobregistries.THRESHER.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
    event.register(Mobregistries.AMBERGOLEM.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
-event.register(Mobregistries.LESSER_TESSERACT.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FlyingMob::checkMobSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
+event.register(Mobregistries.LESSER_TESSERACT.get(),SpawnPlacementTypes.NO_RESTRICTIONS,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FlyingMob::checkMobSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 
 

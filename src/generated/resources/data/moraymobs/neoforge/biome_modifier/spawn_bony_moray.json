@@ -1,0 +1,15 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "minecraft:deep_ocean",
+    "minecraft:frozen_ocean",
+    "minecraft:cold_ocean",
+    "minecraft:desert"
+  ],
+  "spawners": {
+    "type": "moraymobs:bony_moray",
+    "maxCount": 9,
+    "minCount": 4,
+    "weight": 1000
+  }
+}

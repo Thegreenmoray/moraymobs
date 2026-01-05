@@ -35,6 +35,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
@@ -117,12 +118,15 @@ public class Moray extends Monster implements GeoEntity {
         return pSource.is(DamageTypes.DROWN) || pSource.is(DamageTypes.IN_WALL)||super.isInvulnerableTo(pSource);
     }
 
+    public static boolean checkDrownedSpawnRules(EntityType<Moray> drowned, ServerLevelAccessor serverLevel, MobSpawnType mobSpawnType, BlockPos pos, RandomSource random) {
+        int i = serverLevel.getSeaLevel();
+        int j = i - 13;
+        return pos.getY() >= j && pos.getY() <= i && serverLevel.getFluidState(pos.below()).is(FluidTags.WATER) && serverLevel.getBlockState(pos.above()).is(Blocks.WATER);
 
-    public static boolean checkMoraySpawnRules(EntityType<Moray> moray, ServerLevelAccessor serverLevel, MobSpawnType mobSpawnType, BlockPos pos, RandomSource random) {
-        if (!serverLevel.getFluidState(pos.below()).is(FluidTags.WATER) && !MobSpawnType.isSpawner(mobSpawnType)) {
-            return false;
-        }
-        return true;
+    }
+
+    private static boolean isDeepEnoughToSpawn(LevelAccessor level, BlockPos pos) {
+        return pos.getY() < level.getSeaLevel() - 5;
     }
 
 

@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-30T00:57:58.8257833	Tags for minecraft:entity_type mod id vanilla
+// 1.21.1	2026-01-04T21:28:38.8167241	Tags for minecraft:entity_type mod id vanilla
 c2c355dcc367a1c94022723aee37d206d3a355b7 data/minecraft/tags/entity_type/aquatic.json
 0bbeb07059ee1e779eb6e762c565e34ac6915032 data/minecraft/tags/entity_type/arrows.json
 8610c7b840621515b496add463a688b195760147 data/minecraft/tags/entity_type/arthropod.json
@@ -30,7 +30,7 @@ f91cbde94cdeade285561d65ea83bbcd815c7e82 data/minecraft/tags/entity_type/raiders
 fd03792012d037b2783775c9b14e51362fd43a4f data/minecraft/tags/entity_type/sensitive_to_impaling.json
 e2f26c4696552a05feacf8eaadfb3b41a8907161 data/minecraft/tags/entity_type/sensitive_to_smite.json
 966d6c3a0c97a5ee98ddbb27e5e17002d9b87480 data/minecraft/tags/entity_type/skeletons.json
-d6012f744124822e6bf0eb6ed5e6eb02404190bf data/minecraft/tags/entity_type/undead.json
+2601219ffc9b813166298ca8ebef79c1cbcf5c11 data/minecraft/tags/entity_type/undead.json
 e2f26c4696552a05feacf8eaadfb3b41a8907161 data/minecraft/tags/entity_type/wither_friends.json
 a8c7becc7c5d6e4b65492a5736c8fd7e72f795d3 data/minecraft/tags/entity_type/zombies.json
 c75c9a2ae4a7329dec1d9c694371a9d5cfc6791d data/moraymobs/tags/entity_type/assimilable.json

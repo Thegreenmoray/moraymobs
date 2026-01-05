@@ -45,8 +45,8 @@ public class Mobregistries {
                   .sized(2,0.5F).fireImmune().build("fireheap"));
 
   final public static Supplier<EntityType<Moray>> MORAY=
-          ENTITY_TYPE.register("bonymoray",()->EntityType.Builder.of(Moray::new, MobCategory.MONSTER)
-                  .sized(3,1F).build("bonymoray"));
+          ENTITY_TYPE.register("bony_moray",()->EntityType.Builder.of(Moray::new, MobCategory.MONSTER)
+                  .sized(3,1F).build("bony_moray"));
 
   final public static Supplier<EntityType<Morayjaw>> MORAYJAW=
           ENTITY_TYPE.register("bonymorayjaw",()->EntityType.Builder.<Morayjaw>of(Morayjaw::new, MobCategory.MISC)
