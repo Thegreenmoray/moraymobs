@@ -10,14 +10,14 @@ public class Beamparticle extends TextureSheetParticle {
     protected Beamparticle(ClientLevel level, double x, double y, double z,
       double xSpeed, double ySpeed, double zSpeed,SpriteSet setsprite) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed);
-        this.rCol = 1;  //mess around this these
-        this.gCol = 1;
-        this.bCol = 1;
-        this.alpha= 0.4F;
+        this.rCol = 1.0F;
+        this.gCol = 1.0F;
+        this.bCol = 1.0F;
+        this.alpha= 0.9F;
         this.setSpriteFromAge(setsprite);
         this.lifetime=30;
-
-
+        this.friction = 0.70F;
+        this.setSize(0.5F, 0.5F);
     }
 
     @OnlyIn(Dist.CLIENT)

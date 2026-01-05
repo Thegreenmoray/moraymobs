@@ -23,6 +23,8 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
+import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
@@ -38,12 +40,11 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class Spriggan extends AbstractVillager implements GeoEntity, NeutralMob {
+public class Spriggan extends AbstractVillager implements  NeutralMob,GeoEntity {
 
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
    // private static final EntityDataAccessor<Optional<GlobalPos>> HOME_POINT = SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.OPTIONAL_GLOBAL_POS);
-
-    private static final EntityDataAccessor<Integer> BEAM= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.INT);
+ private static final EntityDataAccessor<Integer> BEAM= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> ATTACKTIME= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.INT);
    private static final EntityDataAccessor<Boolean> ISSLEEPING= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> ISSTRECHING= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.INT);
@@ -51,6 +52,8 @@ public class Spriggan extends AbstractVillager implements GeoEntity, NeutralMob 
     private int remainingPersistentAngerTime;
     @javax.annotation.Nullable
     private UUID persistentAngerTarget;
+
+
 
     public int getattacktime(){
         return this.entityData.get(ATTACKTIME);
@@ -91,7 +94,7 @@ public class Spriggan extends AbstractVillager implements GeoEntity, NeutralMob 
 
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
+        this.goalSelector.addGoal(2, new LookAtTradingPlayerGoal(this));
         this.goalSelector.addGoal(9, new InteractGoal(this, Player.class, 3.0F, 1.0F){
 
             @Override
@@ -114,8 +117,9 @@ this.targetSelector.addGoal(4,new Sprigganattackgoal(this));
 this.goalSelector.addGoal(5,new Sleep_goal(this));
 this.goalSelector.addGoal(5,new Yawn_goal(this));
 this.goalSelector.addGoal(5,new Spriggan_laser_goal(this));
-this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
-this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,this::isAngryAt));
+this.targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, false));
+//why isnt this working??????
+this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,this::isAngryAt));
 
     }
 
@@ -124,15 +128,14 @@ this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.cl
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 100.0).add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.ATTACK_DAMAGE, 10.0).add(Attributes.FOLLOW_RANGE, 64.0);
     }
 
-    @Override
-    protected void customServerAiStep() {
-        this.updatePersistentAnger((ServerLevel)this.level(), true);
 
-        super.customServerAiStep();
-    }
 
     @Override
     public void aiStep() {
+
+        if (!this.level().isClientSide) {
+            this.updatePersistentAnger((ServerLevel)this.level(), true);
+        }
 
 
         if(isstreching()>0){
@@ -152,9 +155,7 @@ this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.cl
         if(source.is(DamageTypes.ON_FIRE)){
             return super.hurt(source,2*amount);
         }
-if (source.getEntity() instanceof Pawpawbomb){
-    return false;
-}
+
 
         return super.hurt(source, amount);
     }
@@ -166,11 +167,6 @@ if (source.getEntity() instanceof Pawpawbomb){
     @Override
     protected void tickDeath() {
         ++this.deathTime;
-
-
-        if ( this.deathTime==1){
-
-        }
         if (this.deathTime == 60 && !this.level().isClientSide()) {
             this.level().broadcastEntityEvent(this, (byte) 60);
             this.remove(RemovalReason.KILLED);
@@ -205,9 +201,6 @@ if (source.getEntity() instanceof Pawpawbomb){
     }
 
 
-
-
-
     @Override
     protected void rewardTradeXp(MerchantOffer merchantOffer) {
 
@@ -235,10 +228,10 @@ if (source.getEntity() instanceof Pawpawbomb){
       && !issleeping()&&!this.level().isClientSide&&!isAggressive()) { //should be more like !issleeping but this will do for now
             if (!this.getOffers().isEmpty()) {
                 if (!this.level().isClientSide) {
-                    this.setTradingPlayer(player);
+                   this.setTradingPlayer(player);
                     this.openTradingScreen(player, this.getDisplayName(), 1);
                  }
-            }
+           }
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
         else {
@@ -292,9 +285,15 @@ if (source.getEntity() instanceof Pawpawbomb){
             return PlayState.CONTINUE;
         }
 
-        if(getbeamtime()>0){
+        if(getbeamtime()>=60 && getbeamtime() <=50){
+           sprigganAnimationState.getController().setAnimation(RawAnimation.begin().then("laser2", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;}
+
+
+        if(getbeamtime()>0&&getbeamtime()<=49){
             sprigganAnimationState.getController().setAnimation(RawAnimation.begin().then("laser", Animation.LoopType.PLAY_ONCE));
             return PlayState.CONTINUE;}
+
 
 
         if(isstreching()>0){
@@ -338,7 +337,8 @@ pCompound.putInt("attack",this.getattacktime());
 pCompound.putInt("beam",this.getbeamtime());
 pCompound.putBoolean("issleeping",this.issleeping());
 pCompound.putInt("isstreching",this.isstreching());
-        this.readPersistentAngerSaveData(this.level(), pCompound);
+        this.addPersistentAngerSaveData(pCompound);
+
     }
 
     public void readAdditionalSaveData(CompoundTag pCompound) {
@@ -347,7 +347,7 @@ this.setattacktime(pCompound.getInt("attack"));
 this.setbeamtime(pCompound.getInt("beam"));
 this.setIssleeping(pCompound.getBoolean("issleeping"));
 this.setIsstreching(pCompound.getInt("isstreching"));
-        this.addPersistentAngerSaveData(pCompound);
+        this.readPersistentAngerSaveData(this.level(), pCompound);
     }
 
 

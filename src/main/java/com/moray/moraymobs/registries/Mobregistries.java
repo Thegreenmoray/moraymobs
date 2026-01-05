@@ -142,7 +142,7 @@ public class Mobregistries {
 
     final public static Supplier<EntityType<Spriggan>> SPRIGGAN=
             ENTITY_TYPE.register("spriggan",()->EntityType.Builder.of(Spriggan::new, MobCategory.CREATURE)
-                    .sized(2,3F).build("spriggan"));
+                    .sized(1.2f,3F).build("spriggan"));
 
     final public static Supplier<EntityType<Treebeam>> TREE_BEAM=
             ENTITY_TYPE.register("tree_beam",()->EntityType.Builder.<Treebeam>of(Treebeam::new, MobCategory.MISC)

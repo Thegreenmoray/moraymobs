@@ -3,17 +3,23 @@ package com.moray.moraymobs.entity.living.monster;
 import com.moray.moraymobs.ai.monstergoals.Eelmeeleeattackgoal;
 import com.moray.moraymobs.ai.Grabjawgoal;
 import com.moray.moraymobs.ai.monstergoals.MoraySwimGoal;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
@@ -22,9 +28,13 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.animal.TropicalFish;
+import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
@@ -106,6 +116,15 @@ public class Moray extends Monster implements GeoEntity {
     public boolean isInvulnerableTo(DamageSource pSource) {
         return pSource.is(DamageTypes.DROWN) || pSource.is(DamageTypes.IN_WALL)||super.isInvulnerableTo(pSource);
     }
+
+
+    public static boolean checkMoraySpawnRules(EntityType<Moray> moray, ServerLevelAccessor serverLevel, MobSpawnType mobSpawnType, BlockPos pos, RandomSource random) {
+        if (!serverLevel.getFluidState(pos.below()).is(FluidTags.WATER) && !MobSpawnType.isSpawner(mobSpawnType)) {
+            return false;
+        }
+        return true;
+    }
+
 
     @Override
     public void aiStep() {
