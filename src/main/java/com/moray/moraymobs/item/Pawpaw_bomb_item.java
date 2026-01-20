@@ -1,6 +1,6 @@
 package com.moray.moraymobs.item;
 
-import com.moray.moraymobs.item.basis.Pawpawbomb;
+import com.moray.moraymobs.entity.projectiles.Pawpawbomb;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.sounds.SoundEvents;

@@ -1,6 +1,6 @@
 package com.moray.moraymobs.entity.living.animalornpc;
 
-import com.moray.moraymobs.ai.Pronghorneatgoal;
+import com.moray.moraymobs.ai.animalsornpcgoals.Pronghorneatgoal;
 import com.moray.moraymobs.registries.Mobregistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

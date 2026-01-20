@@ -29,5 +29,6 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new MorayItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new MorayDatapackprovider(packOutput, lookupProvider));
    generator.addProvider(event.includeServer(),new EntityTagGenerator(packOutput,lookupProvider));
+        generator.addProvider(event.includeServer(),new DamageTagGenerator(packOutput,lookupProvider));
     }
 }

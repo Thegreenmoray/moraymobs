@@ -63,6 +63,8 @@ public class Itemregististeries {
     final public static DeferredItem<Item>  SPRIGGAN_SPAWN_EGG=ITEM.register
             ("spawn_spriggan",()-> new DeferredSpawnEggItem(Mobregistries.SPRIGGAN,0x966F33,0x059033,new Item.Properties()));
 
+    public static final DeferredItem<Item> LAMPREY_SPAWN_EGG = ITEM.register
+            ("spawn_lamprey",()-> new DeferredSpawnEggItem(Mobregistries.LAMPREY,0x808080,0xD3D3D3,new Item.Properties()));
 
 
     final public static DeferredItem<Item> BRAIN=ITEM.register("brain",
@@ -187,6 +189,7 @@ public class Itemregististeries {
 
     final public static DeferredItem<Item> PAWPAW_BOMB=ITEM.register("acid_bomb",
             ()->new Pawpaw_bomb_item(new Item.Properties().stacksTo(16)));
+
 
 
     public static void register(IEventBus bus){

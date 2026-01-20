@@ -20,8 +20,6 @@ public class MorayBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> SPAWN_VOLCANOBACK= registerKey("spawn_volcanoback");
 
-    public static final ResourceKey<BiomeModifier> SPAWN_MORAY= registerKey("spawn_bony_moray");
-
     public static final ResourceKey<BiomeModifier> SPAWN_PADDLEFISH= registerKey("spawn_paddlefish");
 
     public static final ResourceKey<BiomeModifier> SPAWN_SOULCATCHER= registerKey("spawn_soulcatcher");
@@ -50,16 +48,6 @@ public class MorayBiomeModifiers {
         context.register(SPAWN_VOLCANOBACK, new BiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct( biomes.getOrThrow(Biomes.NETHER_WASTES)),
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.VOLCANOBACK.get(), 5, 1, 1))));
-
-        context.register(SPAWN_MORAY, new BiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct(biomes.getOrThrow(Biomes.BEACH),biomes.getOrThrow(Biomes.DEEP_OCEAN),
-                        biomes.getOrThrow(Biomes.FROZEN_OCEAN),
-                        biomes.getOrThrow(Biomes.COLD_OCEAN),
-                biomes.getOrThrow(Biomes.DESERT)),
-                List.of(new MobSpawnSettings.
-                SpawnerData(Mobregistries.MORAY.get(), 1000, 4, 9))));
-
-
 
 
         context.register(SPAWN_PADDLEFISH, new BiomeModifiers.AddSpawnsBiomeModifier(

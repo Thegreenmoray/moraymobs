@@ -1,8 +1,6 @@
 package com.moray.moraymobs.rendersandmodels.model.entities.projectiles;
 
 import com.moray.moraymobs.MorayMobs;
-import com.moray.moraymobs.entity.living.animalornpc.Spriggan;
-import com.moray.moraymobs.entity.projectiles.Ambercrystal;
 import com.moray.moraymobs.entity.projectiles.Treebeam;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;

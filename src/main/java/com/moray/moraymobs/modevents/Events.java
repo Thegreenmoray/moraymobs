@@ -7,7 +7,7 @@ import com.moray.moraymobs.entity.living.dungeonentities.Microdictyon;
 import com.moray.moraymobs.entity.living.dungeonentities.Schinderhannes;
 import com.moray.moraymobs.entity.living.dungeonentities.Walliserops;
 import com.moray.moraymobs.entity.living.monster.*;
-import com.moray.moraymobs.entity.projectiles.Stunwave;
+import com.moray.moraymobs.entity.projectiles.Pawpawbomb;
 import com.moray.moraymobs.item.Mega_Digger;
 import com.moray.moraymobs.registries.Itemregististeries;
 import com.moray.moraymobs.registries.Mobregistries;
@@ -46,7 +46,7 @@ public class Events {
 
     @SubscribeEvent
     public static void entitySpawnRestrictions(RegisterSpawnPlacementsEvent event) {
-        event.register(Mobregistries.MORAY.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Moray::checkDrownedSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(Mobregistries.MORAY.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.OPOSSUM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.VOLCANOBACK.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Volcanoback::checkMonsterSpawnRuleschance,RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.PADDLEFISH.get(),SpawnPlacementTypes.IN_LAVA,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,LavaPaddleFish::checkPaddlefishSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
@@ -56,6 +56,8 @@ public class Events {
    event.register(Mobregistries.THRESHER.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
    event.register(Mobregistries.AMBERGOLEM.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
 event.register(Mobregistries.LESSER_TESSERACT.get(),SpawnPlacementTypes.NO_RESTRICTIONS,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FlyingMob::checkMobSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(Mobregistries.LAMPREY.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
+
     }
 
 
@@ -79,6 +81,7 @@ event.put(Mobregistries.WALLISEROPS.get(), Walliserops.createMonsterAttributes()
 event.put(Mobregistries.AMBERGOLEM.get(),Amber_golem.createAttributes().build());
 event.put(Mobregistries.LESSER_TESSERACT.get(), Lesser_Tesseract.createAttributes().build());
 event.put(Mobregistries.SPRIGGAN.get(), Spriggan.createAttributes().build());
+event.put(Mobregistries.LAMPREY.get(), Lamprey.createAttributes().build());
 
     }
 @EventBusSubscriber(modid = MorayMobs.MODID)
@@ -89,7 +92,7 @@ event.put(Mobregistries.SPRIGGAN.get(), Spriggan.createAttributes().build());
             Entity entity =item.getTarget();
             Player player=item.getEntity();
             ItemStack $$2 = player.getItemInHand(item.getHand());
-            if ($$2.is(Items.GLASS_BOTTLE)&&entity instanceof Stunwave stunwave) {
+            if ($$2.is(Items.GLASS_BOTTLE)&&entity instanceof Pawpawbomb stunwave) {
                 ItemStack $$3 = ItemUtils.createFilledResult($$2, player, Itemregististeries.BOTTLE_OF_SHOCK.get().getDefaultInstance());
                 player.setItemInHand(item.getHand(), $$3);
            stunwave.remove(Entity.RemovalReason.DISCARDED);

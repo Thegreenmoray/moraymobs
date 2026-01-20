@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "moraymobs:dead_aquarium",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+
+    "salt": 9134567325,
+
+    "spacing": 40,
+
+    "separation": 36
+  }
+}

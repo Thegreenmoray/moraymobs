@@ -26,7 +26,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 public class Enderbowfin extends Abstractfishmoray implements GeoEntity {
     public Enderbowfin(EntityType<? extends WaterAnimal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        this.setPathfindingMalus(PathType.WATER,0.0f);
+        this.setPathfindingMalus(PathType.WATER,1.0f);
         this.moveControl = new FishMoveControl(this);
        this.navigation=new WaterBoundPathNavigation(this,this.level());
         this.xpReward=5;

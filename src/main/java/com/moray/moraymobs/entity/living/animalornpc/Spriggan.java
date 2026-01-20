@@ -1,8 +1,10 @@
 package com.moray.moraymobs.entity.living.animalornpc;
 
-import com.moray.moraymobs.ai.*;
-import com.moray.moraymobs.item.basis.Pawpawbomb;
+import com.moray.moraymobs.ai.animalsornpcgoals.*;
+import com.moray.moraymobs.datagen.Moraydamagetags;
+import com.moray.moraymobs.entity.projectiles.Pawpawbomb;
 import com.moray.moraymobs.trades.Spriggan_trades;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -23,14 +25,13 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
-import net.minecraft.world.entity.animal.Bee;
-import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
@@ -48,12 +49,36 @@ public class Spriggan extends AbstractVillager implements  NeutralMob,GeoEntity 
     private static final EntityDataAccessor<Integer> ATTACKTIME= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.INT);
    private static final EntityDataAccessor<Boolean> ISSLEEPING= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> ISSTRECHING= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> ISSLASHING= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> BOMBTIME= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.INT);
+
+
     private static final UniformInt PERSISTENT_ANGER_TIME= TimeUtil.rangeOfSeconds(20, 39);
     private int remainingPersistentAngerTime;
     @javax.annotation.Nullable
     private UUID persistentAngerTarget;
+    boolean caramelldasen;
+    @Nullable
+    private BlockPos jukebox;
 
 
+    public int getslashingtime(){
+        return this.entityData.get(ISSLASHING);
+    }
+
+    public void setslashingtime(int slashingtime){
+        this.entityData.set(ISSLASHING,slashingtime);
+    }
+
+
+    public int getbombtime(){
+        return this.entityData.get(BOMBTIME);
+    }
+
+    public void setbombtime(int bombtime){
+
+        this.entityData.set(BOMBTIME,bombtime);
+    }
 
     public int getattacktime(){
         return this.entityData.get(ATTACKTIME);
@@ -99,7 +124,7 @@ public class Spriggan extends AbstractVillager implements  NeutralMob,GeoEntity 
 
             @Override
             public boolean canUse() {
-                return super.canUse()&&!issleeping()&&isstreching()<=0&&getbeamtime()<=0;
+                return super.canUse()&&getbombtime()<=0&&!issleeping()&&isstreching()<=0&&getbeamtime()<=0&&getslashingtime()<=0;
             }
         });
         this.goalSelector.addGoal(2, new Spriggan_move_goal(this, 0.7, false));
@@ -108,25 +133,40 @@ public class Spriggan extends AbstractVillager implements  NeutralMob,GeoEntity 
 
             @Override
             public boolean canUse() {
-                return super.canUse()&&!issleeping()&&isstreching()<=0&&getbeamtime()<=0;
+                return super.canUse()&&!issleeping()&&isstreching()<=0&&getbeamtime()<=0&&getslashingtime()<=0&&getbombtime()<=0;
             }
         });
-        // add slash in later time
   this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 this.targetSelector.addGoal(4,new Sprigganattackgoal(this));
 this.goalSelector.addGoal(5,new Sleep_goal(this));
 this.goalSelector.addGoal(5,new Yawn_goal(this));
-this.goalSelector.addGoal(5,new Spriggan_laser_goal(this));
+this.goalSelector.addGoal(5,new Spriggan_laser_goal(this,70));
 this.targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, false));
-//why isnt this working??????
+        this.goalSelector.addGoal(2,new Spriggan_slash_goal(this,55));
 this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,this::isAngryAt));
-
+        this.goalSelector.addGoal(2,new Spriggan_bomb_goal(this,20));
     }
 
 
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 100.0).add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.ATTACK_DAMAGE, 10.0).add(Attributes.FOLLOW_RANGE, 64.0);
     }
+
+    public void setRecordPlayingNearby(BlockPos pos, boolean isdancing) {
+        this.jukebox = pos;
+        this.caramelldasen = isdancing;
+    }
+
+
+
+
+    public boolean isInvulnerableTo(DamageSource source) {
+
+        return source.is(Moraydamagetags.PAWPAWBOMB)||source.getEntity() instanceof Pawpawbomb||super.isInvulnerableTo(source);
+    }
+
+
+
 
 
 
@@ -137,13 +177,37 @@ this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.cl
             this.updatePersistentAnger((ServerLevel)this.level(), true);
         }
 
+        if (this.jukebox == null || !this.jukebox.closerToCenterThan(this.position(), 5) || !this.level().getBlockState(this.jukebox).is(Blocks.JUKEBOX)||isAngry()) {
+            this.caramelldasen = false;
+            this.jukebox = null;
+        }
 
-        if(isstreching()>0){
-         setIsstreching(isstreching()-1);
+
+        if (this.tickCount % 5 == 0&&this.level().isDay()) {
+            this.heal(1F);
         }
-        if(getbeamtime()>=-200){
-            setbeamtime(getbeamtime()-1);
-        }
+
+
+
+        if (getslashingtime()>=-200 && getbeamtime() <=0 &&getbombtime()<=0&&!caramelldasen){
+            setslashingtime(getslashingtime()-1);}
+
+
+        if(isstreching()>0&&!caramelldasen){
+        setIsstreching(isstreching()-1);}
+
+
+       if(getbeamtime()>=-200 &&getbombtime()<=0&&getslashingtime()<=0&&!caramelldasen){
+           setbeamtime(getbeamtime()-1);}
+
+
+
+       if (getbombtime()>=-200&&getslashingtime()<=0
+               &&getbeamtime()<=0&&!caramelldasen){
+           setbombtime(getbombtime()-1);
+       }
+
+
 
         super.aiStep();
     }
@@ -272,6 +336,7 @@ this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.cl
     }
 
 
+
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this,
@@ -285,6 +350,25 @@ this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.cl
             return PlayState.CONTINUE;
         }
 
+        if(caramelldasen){
+            sprigganAnimationState.getController().setAnimation(RawAnimation.begin().then("caramelldasen", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
+
+
+        if(getbombtime()>0){
+            sprigganAnimationState.getController().setAnimation(RawAnimation.begin().then("bomb", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
+        if(getslashingtime()>0&&getslashingtime()<25){
+            sprigganAnimationState.getController().setAnimation(RawAnimation.begin().then("slash", Animation.LoopType.HOLD_ON_LAST_FRAME));
+           return PlayState.CONTINUE;
+        }
+
+
+
         if(getbeamtime()>=60 && getbeamtime() <=50){
            sprigganAnimationState.getController().setAnimation(RawAnimation.begin().then("laser2", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;}
@@ -293,7 +377,6 @@ this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.cl
         if(getbeamtime()>0&&getbeamtime()<=49){
             sprigganAnimationState.getController().setAnimation(RawAnimation.begin().then("laser", Animation.LoopType.PLAY_ONCE));
             return PlayState.CONTINUE;}
-
 
 
         if(isstreching()>0){
@@ -307,9 +390,9 @@ this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.cl
             return PlayState.CONTINUE;
         }
 
-        if(sprigganAnimationState.isMoving()&& !issleeping()){ //&& !issleeping()
-            sprigganAnimationState.getController().setAnimation(RawAnimation.begin().then("spriggan.walk", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
+       if(sprigganAnimationState.isMoving()&& !issleeping()){
+           sprigganAnimationState.getController().setAnimation(RawAnimation.begin().then("spriggan.walk", Animation.LoopType.LOOP));
+           return PlayState.CONTINUE;
         }
         if (!sprigganAnimationState.isMoving()){
             sprigganAnimationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
@@ -329,25 +412,33 @@ this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.cl
         builder.define(BEAM,0);
         builder.define(ISSLEEPING,false);
         builder.define(ISSTRECHING,0);
+        builder.define(ISSLASHING,0);
+        builder.define(BOMBTIME,0);
     }
 
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-pCompound.putInt("attack",this.getattacktime());
+        pCompound.putInt("slash",this.getslashingtime());
+  pCompound.putInt("attack",this.getattacktime());
 pCompound.putInt("beam",this.getbeamtime());
 pCompound.putBoolean("issleeping",this.issleeping());
 pCompound.putInt("isstreching",this.isstreching());
-        this.addPersistentAngerSaveData(pCompound);
+pCompound.putInt("bombtime",this.getbombtime());
+
+this.addPersistentAngerSaveData(pCompound);
 
     }
 
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-this.setattacktime(pCompound.getInt("attack"));
+   this.setslashingtime(pCompound.getInt("slash"));
+ this.setattacktime(pCompound.getInt("attack"));
 this.setbeamtime(pCompound.getInt("beam"));
 this.setIssleeping(pCompound.getBoolean("issleeping"));
 this.setIsstreching(pCompound.getInt("isstreching"));
-        this.readPersistentAngerSaveData(this.level(), pCompound);
+this.setbombtime(pCompound.getInt("bombtime"));
+this.readPersistentAngerSaveData(this.level(), pCompound);
+
     }
 
 

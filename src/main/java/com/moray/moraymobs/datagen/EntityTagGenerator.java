@@ -9,7 +9,9 @@ import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -36,6 +38,7 @@ public class EntityTagGenerator extends EntityTypeTagsProvider {
                 .add(Mobregistries.WALLISEROPS.get())
                 .add(Mobregistries.SCHINDERHANNES.get());
     this.tag(EntityTypeTags.UNDEAD).add(Mobregistries.MORAY.get());
+
     }
 
 

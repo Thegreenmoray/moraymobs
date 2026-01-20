@@ -1,6 +1,6 @@
 package com.moray.moraymobs.entity.living.animalornpc;
 
-import com.moray.moraymobs.ai.Basaltliskeatgoal;
+import com.moray.moraymobs.ai.animalsornpcgoals.Basaltliskeatgoal;
 import com.moray.moraymobs.registries.Blockregistrires;
 import com.moray.moraymobs.registries.Mobregistries;
 import net.minecraft.core.BlockPos;

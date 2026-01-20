@@ -1,7 +1,7 @@
 package com.moray.moraymobs.entity.living.animalornpc;
 
-import com.moray.moraymobs.ai.TailWhipgoal;
-import com.moray.moraymobs.ai.Threshermeleeattackgoal;
+import com.moray.moraymobs.ai.animalsornpcgoals.TailWhipgoal;
+import com.moray.moraymobs.ai.animalsornpcgoals.Threshermeleeattackgoal;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;

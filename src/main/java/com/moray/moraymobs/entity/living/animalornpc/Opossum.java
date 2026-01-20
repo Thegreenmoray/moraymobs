@@ -1,7 +1,7 @@
 package com.moray.moraymobs.entity.living.animalornpc;
 
-import com.moray.moraymobs.ai.PossumFaintgoal;
-import com.moray.moraymobs.ai.PossumScreamgoal;
+import com.moray.moraymobs.ai.animalsornpcgoals.PossumFaintgoal;
+import com.moray.moraymobs.ai.animalsornpcgoals.PossumScreamgoal;
 import com.moray.moraymobs.registries.Mobregistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

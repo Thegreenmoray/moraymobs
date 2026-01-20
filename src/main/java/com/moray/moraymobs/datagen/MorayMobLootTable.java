@@ -67,6 +67,9 @@ this.add(Mobregistries.SCHINDERHANNES.get(),LootTable.lootTable().withPool(LootP
 
         this.add(Mobregistries.SPRIGGAN.get(),LootTable.lootTable());
 
+
+        this.add(Mobregistries.LAMPREY.get(),LootTable.lootTable());
+
    }
 
     @Override

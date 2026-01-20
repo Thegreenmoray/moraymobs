@@ -1,6 +1,6 @@
 package com.moray.moraymobs.entity.living.animalornpc;
 
-import com.moray.moraymobs.ai.Navigaton;
+import com.moray.moraymobs.ai.animalsornpcgoals.Navigaton;
 import com.moray.moraymobs.entity.abstractentity.Abstractfishmoray;
 import com.moray.moraymobs.registries.Itemregististeries;
 import net.minecraft.core.BlockPos;
@@ -38,7 +38,7 @@ public class LavaPaddleFish extends Abstractfishmoray implements GeoEntity {
 
     public LavaPaddleFish(EntityType<? extends Abstractfishmoray> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-      this.setPathfindingMalus(PathType.LAVA,0.0f);
+      this.setPathfindingMalus(PathType.LAVA,1.0f);
        this.moveControl = new FishMoveControl(this);
         this.navigation=new Navigaton(this,this.level());
         this.xpReward=5;
@@ -85,7 +85,7 @@ public class LavaPaddleFish extends Abstractfishmoray implements GeoEntity {
 
     @Override
     public boolean isInvulnerableTo(DamageSource source) {
-        return source.is(DamageTypes.FALL) || source.is(DamageTypes.IN_WALL) ||source.is(DamageTypes.LAVA) ||super.isInvulnerableTo(source);
+        return source.is(DamageTypes.IN_WALL) ||source.is(DamageTypes.LAVA) ||super.isInvulnerableTo(source);
     }
 
 

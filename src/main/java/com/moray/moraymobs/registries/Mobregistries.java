@@ -11,7 +11,7 @@ import com.moray.moraymobs.entity.projectiles.*;
 import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Amberportal;
 import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Bouncy_ball_Friend;
 import com.moray.moraymobs.entity.projectiles.friendlyprojectile.Friendly_Boomerrang;
-import com.moray.moraymobs.item.basis.Pawpawbomb;
+import com.moray.moraymobs.entity.projectiles.Pawpawbomb;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -152,6 +152,9 @@ public class Mobregistries {
             ENTITY_TYPE.register("acid_bomb",()->EntityType.Builder.<Pawpawbomb>of(Pawpawbomb::new, MobCategory.MISC)
                     .sized(1,1F).fireImmune().build("acid_bomb"));
 
+  final public static Supplier<EntityType<Lamprey>> LAMPREY=
+          ENTITY_TYPE.register("lamprey",()->EntityType.Builder.of(Lamprey::new, MobCategory.WATER_CREATURE)
+                  .sized(0.5f,0.5F).build("lamprey"));
 
     public static void register(IEventBus bus){
     ENTITY_TYPE.register(bus);

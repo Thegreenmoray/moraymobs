@@ -51,7 +51,7 @@ public class Treebeam extends AbstractHurtingProjectile implements GeoEntity {
         settimer(gettimer()+1);
 
         if(gettimer()>=70){
-            //this.remove(RemovalReason.DISCARDED);
+            this.remove(RemovalReason.DISCARDED);
 
         }
 

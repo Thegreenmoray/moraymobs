@@ -29,6 +29,7 @@ withExistingParent(Itemregististeries.WALLISEROPS_SPAWN_EGG.getId().getPath(),mc
 withExistingParent(Itemregististeries.AMBERGOLEM_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
 withExistingParent(Itemregististeries.LESSER_TESERRACT_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
 withExistingParent(Itemregististeries.SPRIGGAN_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
+withExistingParent(Itemregististeries.LAMPREY_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
 
 basicItem(Itemregististeries.BRAIN.get());
      basicItem(Itemregististeries.JAW.get());

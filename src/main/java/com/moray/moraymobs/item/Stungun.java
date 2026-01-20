@@ -1,12 +1,10 @@
 package com.moray.moraymobs.item;
 
+import com.moray.moraymobs.entity.projectiles.Pawpawbomb;
 import com.moray.moraymobs.entity.projectiles.Stunwave;
 import com.moray.moraymobs.rendersandmodels.render.Stungunrender;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,7 +20,6 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 public class Stungun extends Item implements GeoItem {
