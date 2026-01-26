@@ -68,7 +68,8 @@ this.add(Mobregistries.SCHINDERHANNES.get(),LootTable.lootTable().withPool(LootP
         this.add(Mobregistries.SPRIGGAN.get(),LootTable.lootTable());
 
 
-        this.add(Mobregistries.LAMPREY.get(),LootTable.lootTable());
+        this.add(Mobregistries.LAMPREY.get(),LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(Itemregististeries.RAW_LAMPREY.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1,3))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries,UniformGenerator.between(0,3))))).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries,UniformGenerator.between(0.0F, 3.0F))).apply(SmeltItemFunction.smelted().when(this.shouldSmeltLoot())));
+        this.add(Mobregistries.ROCKPUP.get(), LootTable.lootTable());
 
    }
 

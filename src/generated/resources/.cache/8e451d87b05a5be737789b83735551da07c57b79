@@ -1,8 +1,9 @@
-// 1.21.1	2025-06-04T15:19:59.0856189	Tags for minecraft:item mod id moraymobs
+// 1.21.1	2026-01-25T14:38:35.2378524	Tags for minecraft:item mod id moraymobs
 531a542a2fd4c63d291cd490511db8b597f579a5 data/minecraft/tags/item/chest_armor.json
 662f7b8fc77e38f19a3b613d3f1a0b4baa7ebb7d data/minecraft/tags/item/enchantable/durability.json
 38b9e11be008d3f4016999866a40b460326b91a3 data/minecraft/tags/item/foot_armor.json
 9690653de51fbbea3fb3f3c5b4da40eb5dbea61a data/minecraft/tags/item/head_armor.json
 ff4b84bb9c0b9ed6230f12172cdb5c905eb51605 data/minecraft/tags/item/leg_armor.json
+568145a8fa1633c03c6a10195dbd9aba4082907d data/minecraft/tags/item/meat.json
 cc1fda253c5547a056e4014cb87f1db51591972c data/minecraft/tags/item/shovels.json
 3f8750af8d84f6c5bc48bce2259fdfb6336b8123 data/minecraft/tags/item/swords.json

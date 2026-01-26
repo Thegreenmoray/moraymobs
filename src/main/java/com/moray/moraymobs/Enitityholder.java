@@ -53,6 +53,7 @@ EntityRenderers.register(Mobregistries.LESSER_TESSERACT.get(),Tesseractrender::n
  EntityRenderers.register(Mobregistries.TREE_BEAM.get(), Beamrender::new);
  EntityRenderers.register(Mobregistries.BOMBA.get(), ThrownItemRenderer::new);
  EntityRenderers.register(Mobregistries.LAMPREY.get(), Lampreyrender::new);
+ EntityRenderers.register(Mobregistries.ROCKPUP.get(), Rockrender::new);
     }
 
 

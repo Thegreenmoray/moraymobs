@@ -37,6 +37,9 @@
   "item.moraymobs.buccaneer_barrel": "Buccaneer Barrel",
   "item.moraymobs.pawpaw": "Pawpaw",
   "item.moraymobs.acid_bomb": "Acid Bomb",
+  "item.moraymobs.raw_lamprey": "Raw Lamprey",
+  "item.moraymobs.cooked_lamprey": "Cooked Lamprey",
+  "item.moraymobs.lamprey_pie": "Lamprey Pie",
   "item.moraymobs.spawn_basaltlisk": "Spawn Basaltlisk",
   "item.moraymobs.spawn_body_snatcher": "Spawn Body Snatcher",
   "item.moraymobs.spawn_opposum": "Spawn Opossum",
@@ -53,6 +56,8 @@
   "item.moraymobs.spawn_ambergolem": "Spawn Amber Golem",
    "item.moraymobs.spawn_lesser_teserract": "Spawn Lesser Tesseract",
   "item.moraymobs.spawn_spriggan": "Spawn Spriggan",
+  "item.moraymobs.spawn_lamprey": "Spawn Lamprey",
+  "item.moraymobs.spawn_rockpup": "Spawn Rockpup",
 
   "block.moraymobs.basaltlamp": "Basalt Lamp",
   "block.moraymobs.blockscale": "Block of Scales",
@@ -85,6 +90,8 @@
   "entity.moraymobs.ambergolem": "Amber Golem",
   "entity.moraymobs.lesser_tesseract": "Lesser Tesseract",
   "entity.moraymobs.spriggan": "Spriggan",
+  "entity.moraymobs.lamprey": "Lamprey",
+  "entity.moraymobs.rockpup": "Rockpup",
 
 "creative.moray_tab": "Moray Items",
 "effect.moraymobs.stun": "Stun",

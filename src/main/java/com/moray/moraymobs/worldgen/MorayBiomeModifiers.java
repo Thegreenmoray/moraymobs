@@ -32,6 +32,11 @@ public class MorayBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> SPAWN_LESSER_TESSERACT= registerKey("spawn_lesser_tesseract");
 
+    public static final ResourceKey<BiomeModifier> SPAWN_LAMPREY= registerKey("spawn_lamprey");
+
+    public static final ResourceKey<BiomeModifier> SPAWN_ROCKPUP= registerKey("spawn_rockpup");
+
+
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
         return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, name));
@@ -42,11 +47,11 @@ public class MorayBiomeModifiers {
         var biomes = context.lookup(Registries.BIOME);
 
         context.register(SPAWN_OPPOSSUM, new BiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct( biomes.getOrThrow(Biomes.FOREST)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.OPOSSUM.get(), 40, 2, 4))));
 
         context.register(SPAWN_VOLCANOBACK, new BiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct( biomes.getOrThrow(Biomes.NETHER_WASTES)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.NETHER_WASTES)),
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.VOLCANOBACK.get(), 5, 1, 1))));
 
 
@@ -59,11 +64,11 @@ public class MorayBiomeModifiers {
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.PADDLEFISH.get(), 25, 2, 5))));
 
         context.register(SPAWN_SOULCATCHER, new BiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct( biomes.getOrThrow(Biomes.SOUL_SAND_VALLEY)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.SOUL_SAND_VALLEY)),
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.SOULCATCHER.get(), 20, 1, 3))));
 
         context.register(SPAWN_PRONGHORN, new BiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct( biomes.getOrThrow(Biomes.PLAINS)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS)),
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.PRONGHORN.get(), 25, 1, 3))));
 
         context.register(SPAWN_THRESHER, new BiomeModifiers.AddSpawnsBiomeModifier(
@@ -72,14 +77,23 @@ public class MorayBiomeModifiers {
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.THRESHER.get(), 30, 1, 2))));
 
 
-        context.register(SPAWN_AMBERGOLEM,new BiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct( biomes.getOrThrow(Biomes.SWAMP)),
+        context.register(SPAWN_AMBERGOLEM, new BiomeModifiers.AddSpawnsBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.SWAMP)),
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.AMBERGOLEM.get(), 10, 1, 1))));
 
-        context.register(SPAWN_LESSER_TESSERACT,new BiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct( biomes.getOrThrow(Biomes.END_BARRENS)),
+        context.register(SPAWN_LESSER_TESSERACT, new BiomeModifiers.AddSpawnsBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.END_BARRENS)),
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.LESSER_TESSERACT.get(), 20, 1, 1))));
 
+        context.register(SPAWN_LAMPREY, new BiomeModifiers.AddSpawnsBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.FROZEN_RIVER)),
+                List.of(new MobSpawnSettings.SpawnerData(Mobregistries.LAMPREY.get(), 15, 1, 1))));
+
+
+
+        context.register(SPAWN_ROCKPUP, new BiomeModifiers.AddSpawnsBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.DRIPSTONE_CAVES)),
+                List.of(new MobSpawnSettings.SpawnerData(Mobregistries.ROCKPUP.get(), 20, 3, 6))));
     }
 
 

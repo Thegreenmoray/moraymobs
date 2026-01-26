@@ -156,6 +156,9 @@ public class Mobregistries {
           ENTITY_TYPE.register("lamprey",()->EntityType.Builder.of(Lamprey::new, MobCategory.WATER_CREATURE)
                   .sized(0.5f,0.5F).build("lamprey"));
 
+  final public static Supplier<EntityType<Rockpup>> ROCKPUP=
+          ENTITY_TYPE.register("rockpup",()->EntityType.Builder.of(Rockpup::new, MobCategory.CREATURE)
+                  .sized(1f,1F).build("rockpup"));
     public static void register(IEventBus bus){
     ENTITY_TYPE.register(bus);
 }

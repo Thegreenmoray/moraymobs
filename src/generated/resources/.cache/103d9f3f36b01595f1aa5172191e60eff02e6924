@@ -1,9 +1,11 @@
-// 1.21.1	2026-01-18T15:21:27.758265	Registries
+// 1.21.1	2026-01-26T11:54:26.9778424	Registries
 29e4bb8a2e1457b65123159dea8bbd4dd9e998b4 data/moraymobs/neoforge/biome_modifier/spawn_ambergolem.json
+65767e37fdf91177a009b8e1ef2790441eb0722b data/moraymobs/neoforge/biome_modifier/spawn_lamprey.json
 6d826c1c3da2e53067148392d181ed5c00881c4b data/moraymobs/neoforge/biome_modifier/spawn_lesser_tesseract.json
 aade148e53bdc8e7490dff1f219ce863cbfe4767 data/moraymobs/neoforge/biome_modifier/spawn_opossum.json
 dca67909447eb5d386417e458b26da3e32367273 data/moraymobs/neoforge/biome_modifier/spawn_paddlefish.json
 74a9bc3761e41d24ec24822b0c795bc47c6ed0d7 data/moraymobs/neoforge/biome_modifier/spawn_pronghorn.json
+e977b7fd81c9c27b65259c3ff8106be5366cd11b data/moraymobs/neoforge/biome_modifier/spawn_rockpup.json
 3f3ee403834f15b0f121634d0f710c43055d0ef7 data/moraymobs/neoforge/biome_modifier/spawn_soulcatcher.json
 0158cc1da8c5f9b95b8c3125cd7cf99790fd606b data/moraymobs/neoforge/biome_modifier/spawn_threshershark.json
 9f2dfc4ae71bec956d03f44af0e4c16f07be1ba7 data/moraymobs/neoforge/biome_modifier/spawn_volcanoback.json

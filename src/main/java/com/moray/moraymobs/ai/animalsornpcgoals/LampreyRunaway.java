@@ -22,8 +22,8 @@ Lamprey lamprey;
            float x = (float) (entity.getX()-lamprey.getX());
            float z = (float) (entity.getZ()-lamprey.getZ());
            float theta= (float) Mth.atan2(z,x);
-           lamprey.setYBodyRot(-theta);
-           lamprey.addDeltaMovement(new Vec3(x,0,z).normalize().scale(0.5));
+           lamprey.setYBodyRot(-theta*Mth.RAD_TO_DEG);
+           lamprey.addDeltaMovement(new Vec3(-x,0,-z).normalize().scale(0.5));
 
         }
     }
@@ -35,6 +35,6 @@ Lamprey lamprey;
         if (entity == null) return false;
 
 
-        return lamprey.getbloodsackstorage()>=0;
+        return lamprey.getbloodsackstorage()>0;
     }
 }

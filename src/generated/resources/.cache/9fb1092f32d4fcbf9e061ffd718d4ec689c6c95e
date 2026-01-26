@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-28T10:59:53.3140366	Recipes
+// 1.21.1	2026-01-25T14:38:35.2418548	Recipes
 2aa49926afa4dcbbc3390289f029e84385e511bd data/minecraft/advancement/recipes/misc/bone.json
 0c145cfd294305691883779c9e44981928a6b01e data/minecraft/recipe/bone.json
 334164880aa4fa2c9f91178234f6db1b31b7a08f data/moraymobs/advancement/recipes/building_blocks/lava_sponge.json
@@ -10,13 +10,17 @@
 1f26ed3209e5a628a4c1fdf5a78c9961a19223d3 data/moraymobs/advancement/recipes/combat/red_key.json
 ecbbd22a4114040d20a2481cd6c50bc1cf1876ce data/moraymobs/advancement/recipes/combat/soulbeamjewel.json
 1de0bb779d3b7ac9e60789dc36658788c90b2822 data/moraymobs/advancement/recipes/combat/stungun3.json
-aba9d3aff31a4e4880ae92f30f78876a010152d8 data/moraymobs/advancement/recipes/food/food/campfired_meef.json
-2c3bc4b34ccbe70b15d8e5fa6815c88315bc0c3f data/moraymobs/advancement/recipes/food/food/campfired_venison.json
-e4f40a1318e7918f4014b7fb63cb6593abdc25e9 data/moraymobs/advancement/recipes/food/food/smelted_meef.json
-a0766885233d089bd1e68401db0328aa9b4c1318 data/moraymobs/advancement/recipes/food/food/smelted_venison.json
-e660181461b62ed5a24e7e9c1e808c850cb515f1 data/moraymobs/advancement/recipes/food/food/smoked_meef.json
-4f1015fbd88aedc10b76cb18de06a0f69612e3d2 data/moraymobs/advancement/recipes/food/food/smoked_venison.json
+4e66937bd345ecfabd9298dbc2ea13cfd446ddce data/moraymobs/advancement/recipes/food/food/campfired_bowfin.json
+2382f1b9d37b2cc2b95b4457d8d88f2a10d0b510 data/moraymobs/advancement/recipes/food/food/campfired_lamprey.json
+68cc986adc74fbe780111b2b4ca4925626057c3e data/moraymobs/advancement/recipes/food/food/campfired_pronghorn.json
+1fa59e0b556445bc3611df8e617778a85597c0b9 data/moraymobs/advancement/recipes/food/food/smelted_bowfin.json
+82e02c41088b0f25d20a34593655d150a50e88f1 data/moraymobs/advancement/recipes/food/food/smelted_lamprey.json
+d677a67cb0218fa924a40aa0b4e68ad2aff8ac1e data/moraymobs/advancement/recipes/food/food/smelted_pronghorn.json
+7c33305ba74b1c203d2595de5191ea251e5d5d5c data/moraymobs/advancement/recipes/food/food/smoked_bowfin.json
+a49dc266d6f4176cb1185c4b7a40ffb72bdb34ae data/moraymobs/advancement/recipes/food/food/smoked_lamprey.json
+c134e2fdde16cbda63d8ae902c76fa9ed9c5942f data/moraymobs/advancement/recipes/food/food/smoked_pronghorn.json
 540a55825df49e12753616673c4188b0aa105289 data/moraymobs/advancement/recipes/misc/blockscale.json
+3597392fee3b3f3d23acb98db96a82c63ea11ea6 data/moraymobs/advancement/recipes/misc/lamprey_pie.json
 5108c5fb301ca74fc3ff833d4a6861602f2f68ea data/moraymobs/advancement/recipes/misc/scale.json
 67bba7fb1e25e284a26b8620b0b928ffacf8f33a data/moraymobs/recipe/beetleboots.json
 f71bc4d46b9120785c4f6c0edf5850089a3b7c59 data/moraymobs/recipe/beetlechestplate.json
@@ -24,12 +28,16 @@ b69d5117e6abc069e29c988a6a3cd7cced5558c5 data/moraymobs/recipe/beetleleggings.js
 726c6191909cbb4117a9d3e58b267b0b8166a88f data/moraymobs/recipe/beetlemask.json
 60040935858198a5863eafd5ca205f5e40f0b0d1 data/moraymobs/recipe/blockscale.json
 e0bc9c15c397d7eb6f71608127b2c1265479bd7c data/moraymobs/recipe/eelwhip.json
-9dffc265e0319ac58d2eda78f2e91016dbc24cb8 data/moraymobs/recipe/food/campfired_meef.json
-d1b13b031334129f4878653a0d7570d8301e6b56 data/moraymobs/recipe/food/campfired_venison.json
-ceb87ed24bd867f637e3cbcd553d0031f920e00f data/moraymobs/recipe/food/smelted_meef.json
-daff055f9b87d64eb8f1adabc3ed393f803409ff data/moraymobs/recipe/food/smelted_venison.json
-d32ae15fedfe84295bb39a1426cb4a095fff1b35 data/moraymobs/recipe/food/smoked_meef.json
-81386c33e153546f717e7aacef5de84f7cb690cb data/moraymobs/recipe/food/smoked_venison.json
+9dffc265e0319ac58d2eda78f2e91016dbc24cb8 data/moraymobs/recipe/food/campfired_bowfin.json
+dd4118ca99120caf745f5c1febbcd6ac27b2e221 data/moraymobs/recipe/food/campfired_lamprey.json
+d1b13b031334129f4878653a0d7570d8301e6b56 data/moraymobs/recipe/food/campfired_pronghorn.json
+ceb87ed24bd867f637e3cbcd553d0031f920e00f data/moraymobs/recipe/food/smelted_bowfin.json
+61c9b5d3142c5e83ddd7005334bfb699bdbeb8dd data/moraymobs/recipe/food/smelted_lamprey.json
+daff055f9b87d64eb8f1adabc3ed393f803409ff data/moraymobs/recipe/food/smelted_pronghorn.json
+d32ae15fedfe84295bb39a1426cb4a095fff1b35 data/moraymobs/recipe/food/smoked_bowfin.json
+38ebbcb847d7f7d5cbfe0b5cc39b3d03063f99df data/moraymobs/recipe/food/smoked_lamprey.json
+81386c33e153546f717e7aacef5de84f7cb690cb data/moraymobs/recipe/food/smoked_pronghorn.json
+0b308efd4ab91502500b0d809b5821845520aadc data/moraymobs/recipe/lamprey_pie.json
 c5efa193f69e19a9bee5ca1d5b62c49db67d299b data/moraymobs/recipe/lava_sponge.json
 80c3ac0bd9c8580a40dad9d8fa4fa172016325a1 data/moraymobs/recipe/red_key.json
 1f683ce3e674e8055de4cc04ebce3f727b63dc00 data/moraymobs/recipe/scale.json

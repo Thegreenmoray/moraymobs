@@ -13,6 +13,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -90,7 +91,8 @@ public class Lamprey extends Abstractfishmoray implements GeoEntity {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return AbstractFish.createMobAttributes().add(Attributes.MAX_HEALTH,10).add(Attributes.MOVEMENT_SPEED, 1.75).add(Attributes.FOLLOW_RANGE,30);
+        return AbstractFish.createMobAttributes().add(Attributes.MAX_HEALTH,10).add(Attributes.MOVEMENT_SPEED, 1.75).add(Attributes.FOLLOW_RANGE,30)
+                .add(Attributes.WATER_MOVEMENT_EFFICIENCY,0.7);
     }
 
     protected void handleAirSupply(int pAirSupply) {
@@ -112,14 +114,14 @@ public class Lamprey extends Abstractfishmoray implements GeoEntity {
     protected void registerGoals() {
         this.goalSelector.addGoal(4, new Lamprey.FishSwimGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(
-                this, Mob.class, true){
+                this, LivingEntity.class, true){
             @Override
             public boolean canUse() {
                 return super.canUse()&&getbloodsackstorage()<=0&& !(target instanceof Lamprey);
             }
         });
         this.goalSelector.addGoal(2,new LampreyLatch(this));
-        //this.goalSelector.addGoal(6,new LampreyRunaway(this));
+        this.goalSelector.addGoal(6,new LampreyRunaway(this));
 
 
     }
@@ -202,7 +204,16 @@ public class Lamprey extends Abstractfishmoray implements GeoEntity {
             return PlayState.CONTINUE;
         }
 
+        if (getVehicle()!=null){
+            lampreyAnimationState.getController().setAnimation(RawAnimation.begin().then("blood_suck", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
 
+
+        if (lampreyAnimationState.isMoving()){
+            lampreyAnimationState.getController().setAnimation(RawAnimation.begin().then("swim", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
 
 
         return PlayState.STOP;

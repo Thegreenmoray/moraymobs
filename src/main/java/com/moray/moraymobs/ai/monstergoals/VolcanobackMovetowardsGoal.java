@@ -9,7 +9,10 @@ import net.minecraft.world.level.pathfinder.Node;
 import net.minecraft.world.level.pathfinder.Path;
 
 import java.util.EnumSet;
-
+//honest just merge most of the move classes into one class
+//this is fine for now, but next major update rework this
+//make most mobs an abstract class of something,
+//unless its unique enough in order require separate code
 public class VolcanobackMovetowardsGoal extends Goal {
 
     final double speedModifier;

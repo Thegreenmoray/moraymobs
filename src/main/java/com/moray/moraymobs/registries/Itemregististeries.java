@@ -66,6 +66,11 @@ public class Itemregististeries {
     public static final DeferredItem<Item> LAMPREY_SPAWN_EGG = ITEM.register
             ("spawn_lamprey",()-> new DeferredSpawnEggItem(Mobregistries.LAMPREY,0x808080,0xD3D3D3,new Item.Properties()));
 
+    public static final DeferredItem<Item> ROCKPUP_SPAWN_EGG = ITEM.register
+            ("spawn_rockpup",()-> new DeferredSpawnEggItem(Mobregistries.ROCKPUP,0x9E814D,0x9966CC,new Item.Properties()));
+
+
+
 
     final public static DeferredItem<Item> BRAIN=ITEM.register("brain",
            ()->new Brainitem(new Item.Properties().stacksTo(8)));
@@ -189,6 +194,15 @@ public class Itemregististeries {
 
     final public static DeferredItem<Item> PAWPAW_BOMB=ITEM.register("acid_bomb",
             ()->new Pawpaw_bomb_item(new Item.Properties().stacksTo(16)));
+
+    final public static DeferredItem<Item> RAW_LAMPREY=ITEM.register("raw_lamprey",
+            ()->new Item(new Item.Properties().food(new FoodProperties.Builder().saturationModifier(2).nutrition(3).build()).stacksTo(64)));
+
+    final public static DeferredItem<Item> COOKED_LAMPREY=ITEM.register("cooked_lamprey",
+            ()->new Item(new Item.Properties().food(new FoodProperties.Builder().saturationModifier(6).nutrition(8).build()).stacksTo(64)));
+
+    final public static DeferredItem<Item> LAMPREY_PIE=ITEM.register("lamprey_pie",
+            ()->new Item(new Item.Properties().food(new FoodProperties.Builder().saturationModifier(8).nutrition(10).build()).stacksTo(64)));
 
 
 

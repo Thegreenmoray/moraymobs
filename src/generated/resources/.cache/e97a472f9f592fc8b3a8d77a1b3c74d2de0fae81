@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-19T20:39:21.5628974	Item Models: moraymobs
+// 1.21.1	2026-01-25T15:29:31.5069664	Item Models: moraymobs
 1533c94c96d962cc58c4006ae29a0d6d50adb3c7 assets/moraymobs/models/item/acid_bomb.json
 620d1057bbc305de467830ba2d799f70dc3ff86e assets/moraymobs/models/item/basalt_crystal.json
 2aaafccd2f9caa60c26546840130703bf4027450 assets/moraymobs/models/item/beetleboots.json
@@ -12,8 +12,10 @@ aea342caeb496305e1b66379bc97c3ff8bf8e43f assets/moraymobs/models/item/brain.json
 106a929641644196c56e4f3029b30e0166754b7c assets/moraymobs/models/item/chorousmoss.json
 85cda535d69b7377900279fbf7c93ec4977d8751 assets/moraymobs/models/item/cookedbowfin.json
 f7eff0b14d456279aaa0d6a023f86bc776c98b51 assets/moraymobs/models/item/cookedpronghorn.json
+76167ba5d0a28ec78def5d7afb682e0f6323974a assets/moraymobs/models/item/cooked_lamprey.json
 c06249a3e02827d12195fbe2f2ca7f1c6e876fc2 assets/moraymobs/models/item/glassofstunwave.json
 9d1395e062361b3f52f1da3f25e533504d78a2db assets/moraymobs/models/item/jawloose.json
+c503da72262787a9c03dc0d9ad21a4d2165a9317 assets/moraymobs/models/item/lamprey_pie.json
 80479972005332b23bf7fe3c568cc2db2bec23b9 assets/moraymobs/models/item/middleofkey.json
 0d6e90d613ad7765fca9604b5a0dbd9ead717436 assets/moraymobs/models/item/omnidensboots.json
 996631e7d8cf1be5e9267c9c8bb2d71a4a20c7f6 assets/moraymobs/models/item/omnidenschest.json
@@ -28,6 +30,7 @@ afcf0ff0d8b63c4c49b27c235b651b821aa9cada assets/moraymobs/models/item/pawpaw.jso
 e07da74025e8f47349be7a5c7008c4375e6d38e0 assets/moraymobs/models/item/pronghornantler.json
 c8aa8ff05bde82d562e7620daf3f64d3bf59abaf assets/moraymobs/models/item/rawbowfin.json
 6eee8b25646836fc613108f0efb6bf04700eefae assets/moraymobs/models/item/rawpronghorn.json
+be0ea730bff49483d3aa99e585857a1e396b2fb7 assets/moraymobs/models/item/raw_lamprey.json
 11891df69890c815df702a24edcc7d20ca7c8cf8 assets/moraymobs/models/item/red_key.json
 9667441bf175707749a542a48f771b5fd5f0f599 assets/moraymobs/models/item/scale.json
 33d4aff33cf4d2ec70aed115c38bad33299240c5 assets/moraymobs/models/item/shulkerberry.json
@@ -45,6 +48,7 @@ db8eb6e7da4476f3d2c0194741a8ed9e931b3ec8 assets/moraymobs/models/item/shulkerber
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_moray.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_opposum.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_pronghorn.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_rockpup.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_schinderhannes.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_soulcatcher.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/moraymobs/models/item/spawn_spriggan.json

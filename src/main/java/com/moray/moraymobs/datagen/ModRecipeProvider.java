@@ -116,6 +116,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 unlockedBy(getHasName(Items.NETHER_STAR),has(Items.NETHER_STAR))
                 .save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,Itemregististeries.LAMPREY_PIE,1)
+                .requires(Itemregististeries.COOKED_LAMPREY,1).requires(Items.BREAD,1)
+                .unlockedBy(getHasName(Itemregististeries.COOKED_LAMPREY),
+                        has(Itemregististeries.COOKED_LAMPREY))
+                .save(recipeOutput);
+
+
 cookingRecipes(recipeOutput,"smelted", RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new,200);
         cookingRecipes(recipeOutput,"smoked", RecipeSerializer.SMOKING_RECIPE,SmokingRecipe::new, 100);
 cookingRecipes(recipeOutput,"campfired", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new,500);
@@ -124,8 +131,11 @@ cookingRecipes(recipeOutput,"campfired", RecipeSerializer.CAMPFIRE_COOKING_RECIP
     }
 
     private <T extends AbstractCookingRecipe> void cookingRecipes(RecipeOutput recipeOutput,String processName, RecipeSerializer<T> process, AbstractCookingRecipe.Factory<T> factory, int smeltingTime) {
-        SimpleCookingRecipeBuilder.generic(Ingredient.of(Itemregististeries.RAW_BOWFIN.get()), RecipeCategory.FOOD, Itemregististeries.COOKED_BOWFIN.get(), 0.35F, smeltingTime, process, factory).unlockedBy("has_food", has(Itemregististeries.RAW_BOWFIN.get())).save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"food/" + processName + "_meef"));
-        SimpleCookingRecipeBuilder.generic(Ingredient.of(Itemregististeries.RAW_PRONGHORN.get()), RecipeCategory.FOOD, Itemregististeries.COOKED_PRONGHORN.get(), 0.35F, smeltingTime, process, factory).unlockedBy("has_food", has(Itemregististeries.RAW_PRONGHORN.get())).save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"food/" + processName + "_venison"));
+     //credit to twilight forest for this
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(Itemregististeries.RAW_BOWFIN.get()), RecipeCategory.FOOD, Itemregististeries.COOKED_BOWFIN.get(), 0.35F, smeltingTime, process, factory).unlockedBy("has_food", has(Itemregististeries.RAW_BOWFIN.get())).save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"food/" + processName + "_bowfin"));
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(Itemregististeries.RAW_PRONGHORN.get()), RecipeCategory.FOOD, Itemregististeries.COOKED_PRONGHORN.get(), 0.35F, smeltingTime, process, factory).unlockedBy("has_food", has(Itemregististeries.RAW_PRONGHORN.get())).save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"food/" + processName + "_pronghorn"));
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(Itemregististeries.RAW_LAMPREY.get()), RecipeCategory.FOOD, Itemregististeries.COOKED_LAMPREY.get(), 0.35F, smeltingTime, process, factory).unlockedBy("has_food", has(Itemregististeries.RAW_LAMPREY.get())).save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"food/" + processName + "_lamprey"));
+
     }
 
 

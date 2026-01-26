@@ -24,16 +24,16 @@ public class LampreyLatch extends Goal {
 
 
             if (lamprey.getVehicle()== null) {
-            lamprey.startRiding(entity);}
+            lamprey.startRiding(entity);
 
             lamprey.rotate(Rotation.CLOCKWISE_180);
 
-            lamprey.setPos(entity.getBoundingBox().getCenter());
+            lamprey.setPos(entity.getBoundingBox().getCenter());}
 //perhaps add some kind blood suck counter so it can run away later?
 
            if (lamprey.tickCount%20==0) {
             entity.hurt(entity.level().damageSources().mobAttack(lamprey),1f);
-           entity.knockback(0.0F,0.0F,0.0F);
+
 
 
             lamprey.setbloodsackstorage(lamprey.getbloodsackstorage()+1);
@@ -75,7 +75,8 @@ if(entity==null) {return false;}
 
 
 
-        return entity.getHealth()>1&&entity.isInWater()&&lamprey.getAirSupply()>50
+        return entity.getHealth()>1&&entity.isInWater()
+                &&lamprey.getAirSupply()>50
                 &&entity.position().distanceTo(lamprey.position())<4;
     }
 }
