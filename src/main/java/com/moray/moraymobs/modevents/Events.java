@@ -55,7 +55,7 @@ public class Events {
    event.register(Mobregistries.AMBERGOLEM.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
 event.register(Mobregistries.LESSER_TESSERACT.get(),SpawnPlacementTypes.NO_RESTRICTIONS,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FlyingMob::checkMobSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.LAMPREY.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
-        event.register(Mobregistries.ROCKPUP.get(),SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Rockpup::checkRockpupSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+        event.register(Mobregistries.ROCKPUP.get(),SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Rockpup::checkRockpupSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 
     }
 

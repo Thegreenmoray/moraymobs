@@ -345,7 +345,8 @@ this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
 
 
 
-    public static boolean checkRockpupSpawnRules(EntityType<Rockpup> pup, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom){
+    public static boolean checkRockpupSpawnRules(EntityType<Rockpup> pup, LevelAccessor pLevel, MobSpawnType pSpawnType,
+                                                 BlockPos pPos, RandomSource pRandom){
 
 
 
