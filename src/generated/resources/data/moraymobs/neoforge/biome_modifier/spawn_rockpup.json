@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:dripstone_caves",
+  "spawners": {
+    "type": "moraymobs:rockpup",
+    "maxCount": 6,
+    "minCount": 3,
+    "weight": 20
+  }
+}
