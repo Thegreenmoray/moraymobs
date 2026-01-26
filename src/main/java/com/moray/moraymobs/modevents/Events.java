@@ -17,7 +17,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.WaterAnimal;
@@ -26,10 +25,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -60,33 +55,11 @@ public class Events {
    event.register(Mobregistries.AMBERGOLEM.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
 event.register(Mobregistries.LESSER_TESSERACT.get(),SpawnPlacementTypes.NO_RESTRICTIONS,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FlyingMob::checkMobSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.LAMPREY.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
-        event.register(Mobregistries.ROCKPUP.get(),SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Events::checkRockpupSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(Mobregistries.ROCKPUP.get(),SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Rockpup::checkRockpupSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
 
     }
 
 
-
-
-    public static boolean isDarkEnoughToSpawn(ServerLevelAccessor level, BlockPos pos, RandomSource random) {
-        if (level.getBrightness(LightLayer.SKY, pos) > random.nextInt(32)) {
-            return false;
-        } else {
-            DimensionType dimensiontype = level.dimensionType();
-            int i = dimensiontype.monsterSpawnBlockLightLimit();
-            if (i < 15 && level.getBrightness(LightLayer.BLOCK, pos) > i) {
-                return false;
-            } else {
-                int j = level.getLevel().isThundering() ? level.getMaxLocalRawBrightness(pos, 10) : level.getMaxLocalRawBrightness(pos);
-                return j <= dimensiontype.monsterSpawnLightTest().sample(random);
-            }
-        }
-    }
-
-
-    public static boolean checkRockpupSpawnRules(EntityType<Rockpup> pup, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom){
-
-        return pPos.getY() < pLevel.getSeaLevel()   && isDarkEnoughToSpawn((ServerLevelAccessor) pLevel, pPos, pRandom) && Mob.checkMobSpawnRules(pup, pLevel, pSpawnType, pPos, pRandom);
-    }
 @SubscribeEvent
 public static void entityattrubitonevent(EntityAttributeCreationEvent event){
     event.put(Mobregistries.BODY_SNATCHER.get(), Body_Snatcher.createAttributes().build());

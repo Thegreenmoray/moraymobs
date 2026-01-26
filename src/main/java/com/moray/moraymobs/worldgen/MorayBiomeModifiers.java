@@ -46,6 +46,7 @@ public class MorayBiomeModifiers {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
 
+
         context.register(SPAWN_OPPOSSUM, new BiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
                 List.of(new MobSpawnSettings.SpawnerData(Mobregistries.OPOSSUM.get(), 40, 2, 4))));
