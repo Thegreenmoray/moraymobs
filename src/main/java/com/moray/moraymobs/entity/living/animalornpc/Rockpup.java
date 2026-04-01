@@ -12,6 +12,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -24,21 +25,19 @@ import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Wolf;
-import net.minecraft.world.entity.monster.ZombifiedPiglin;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.event.EventHooks;
@@ -51,11 +50,10 @@ import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Rockpup extends TamableAnimal implements GeoEntity, NeutralMob {
     private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
-    private static final Direction[] ALL_DIRECTIONS = Direction.values();
+
     protected static final EntityDataAccessor<Boolean> DIZZY= SynchedEntityData.defineId(Rockpup.class, EntityDataSerializers.BOOLEAN);
     protected static final EntityDataAccessor<Boolean> INTIMDATING= SynchedEntityData.defineId(Rockpup.class, EntityDataSerializers.BOOLEAN);
     protected static final EntityDataAccessor<Boolean> ROLL= SynchedEntityData.defineId(Rockpup.class, EntityDataSerializers.BOOLEAN);
@@ -265,6 +263,8 @@ this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 0.5F, 10.0F, 2.0F));
 this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
   this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, (double)1.0F));
         this.goalSelector.addGoal(7, new BreedGoal(this, (double)1.0F));
+        this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
 
     }
 
@@ -350,10 +350,43 @@ this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
 
 
 
-        return pLevel.getBlockState(pPos.below()).is(Blocks.DRIPSTONE_BLOCK);
+        return pLevel.getBlockState(pPos.below()).is(BlockTags.BASE_STONE_OVERWORLD)||pLevel.getBlockState(pPos.below()).is(Blocks.DRIPSTONE_BLOCK)&&pPos.getY() <= 64;
     }
 
+    public boolean wantsToAttack(LivingEntity target, LivingEntity owner) {
+        if (!(target instanceof Creeper) && !(target instanceof Ghast) && !(target instanceof ArmorStand)) {
+            if (!(target instanceof Rockpup)) {
+                if (target instanceof Player) {
+                    Player player = (Player)target;
+                    if (owner instanceof Player) {
+                        Player player1 = (Player)owner;
+                        if (!player1.canHarmPlayer(player)) {
+                            return false;
+                        }
+                    }
+                }
 
+                if (target instanceof AbstractHorse) {
+                    AbstractHorse abstracthorse = (AbstractHorse)target;
+                    if (abstracthorse.isTamed()) {
+                        return false;
+                    }
+                }
+
+                if (target instanceof TamableAnimal) {
+                    TamableAnimal tamableanimal = (TamableAnimal)target;
+                    if (tamableanimal.isTame()) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
 
 
 

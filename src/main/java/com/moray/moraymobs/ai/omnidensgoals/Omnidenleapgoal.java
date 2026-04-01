@@ -73,7 +73,7 @@ if (omnidens.getjumpgrab()<=26) {
 
     @Override
     public boolean canContinueToUse() {
-        return omnidens.getjumpgrab()>0;
+        return omnidens.getjumpgrab()>0||omnidens.getTarget()!=null||this.omnidens.getTarget().isAlive();
     }
 
     @Override

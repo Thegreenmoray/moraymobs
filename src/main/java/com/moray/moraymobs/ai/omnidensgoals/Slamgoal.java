@@ -68,7 +68,7 @@ public class Slamgoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return omnidens.getslam()>0;
+        return omnidens.getslam()>0||omnidens.getTarget()!=null||this.omnidens.getTarget().isAlive();
     }
 
     @Override

@@ -44,7 +44,8 @@ public class AmbergolemMelee extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return ambergolem.getpunch() > 0;
+        LivingEntity livingentity=this.ambergolem.getTarget();
+        return ambergolem.getpunch() > 0||livingentity==null||!livingentity.isAlive();
     }
 
     @Override

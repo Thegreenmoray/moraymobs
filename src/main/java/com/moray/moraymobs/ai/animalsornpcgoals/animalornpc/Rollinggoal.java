@@ -106,7 +106,7 @@ int go;
     @Override
     public boolean canContinueToUse() {
         LivingEntity livingentity = this.rockpup.getTarget();
-        if (livingentity == null) {return false;}
+        if (livingentity == null||!livingentity.isAlive()) {return false;}
 
         return timee>go||rockpup.getdizzy();
     }

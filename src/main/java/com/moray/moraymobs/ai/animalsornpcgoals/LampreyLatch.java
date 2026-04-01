@@ -59,7 +59,7 @@ public class LampreyLatch extends Goal {
     public boolean canContinueToUse() {
         LivingEntity entity =lamprey.getTarget();
 
-        if (entity == null) return false;
+        if (entity == null||!entity.isAlive()) return false;
 
 int healthcheck= entity.getHealth()<=1?1:(int) (100*entity.getHealth()/entity.getMaxHealth());
 

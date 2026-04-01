@@ -3,9 +3,15 @@ package com.moray.moraymobs.datagen;
 import com.moray.moraymobs.MorayMobs;
 import com.moray.moraymobs.registries.Itemregististeries;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -17,6 +23,14 @@ public class MorayItemTagGenerator extends ItemTagsProvider {
                                  CompletableFuture<TagLookup<Block>> p_275322_, @Nullable ExistingFileHelper existingFileHelper) {
         super(p_275343_, p_275729_, p_275322_, MorayMobs.MODID, existingFileHelper);
     }
+
+    public static final TagKey<Item> GOLDEN = create(ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"is_golden"));
+
+
+    private static TagKey<Item> create(ResourceLocation rl) {
+        return TagKey.create(Registries.ITEM, rl);
+    }
+
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
@@ -37,6 +51,8 @@ tag(ItemTags.MEAT).add(Itemregististeries.RAW_BOWFIN.get())
         .add(Itemregististeries.RAW_PRONGHORN.get()).add(Itemregististeries.RAW_LAMPREY.get())
         .add(Itemregististeries.COOKED_BOWFIN.get()).add(Itemregististeries.COOKED_PRONGHORN.get())
         .add(Itemregististeries.COOKED_LAMPREY.get()).add(Itemregististeries.LAMPREY_PIE.get());
+tag(GOLDEN).add(Items.GOLDEN_SWORD,Items.GOLDEN_AXE,Items.GOLDEN_HOE,Items.GOLDEN_PICKAXE,Items.GOLDEN_SHOVEL
+,Items.GOLDEN_BOOTS,Items.GOLDEN_LEGGINGS,Items.GOLDEN_HELMET,Items.GOLDEN_CHESTPLATE);
 
 
     }

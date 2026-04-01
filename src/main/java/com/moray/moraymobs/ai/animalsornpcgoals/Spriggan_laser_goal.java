@@ -115,7 +115,7 @@ int go;
     public boolean canContinueToUse() {
         LivingEntity livingEntity=this.spriggan.getTarget();
 
-        if (livingEntity==null){
+        if (livingEntity==null||!livingEntity.isAlive()){
             return false;
         }
 

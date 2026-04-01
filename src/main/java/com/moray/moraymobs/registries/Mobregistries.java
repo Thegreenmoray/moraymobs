@@ -146,7 +146,7 @@ public class Mobregistries {
 
     final public static Supplier<EntityType<Treebeam>> TREE_BEAM=
             ENTITY_TYPE.register("tree_beam",()->EntityType.Builder.<Treebeam>of(Treebeam::new, MobCategory.MISC)
-                    .sized(8F,4F).fireImmune().build("tree_beam"));
+                    .sized(4F,4F).fireImmune().build("tree_beam"));
 
     final public static Supplier<EntityType<Pawpawbomb>> BOMBA=
             ENTITY_TYPE.register("acid_bomb",()->EntityType.Builder.<Pawpawbomb>of(Pawpawbomb::new, MobCategory.MISC)
@@ -159,6 +159,16 @@ public class Mobregistries {
   final public static Supplier<EntityType<Rockpup>> ROCKPUP=
           ENTITY_TYPE.register("rockpup",()->EntityType.Builder.of(Rockpup::new, MobCategory.CREATURE)
                   .sized(1f,1F).build("rockpup"));
+
+  final public static Supplier<EntityType<Dullahan>> DULLAHAN=
+          ENTITY_TYPE.register("dullahan",()->EntityType.Builder.of(Dullahan::new, MobCategory.CREATURE)
+                  .sized(2F,3F).build("dullahan"));
+
+  final public static Supplier<EntityType<DullanhanAxe>> DULLAHAN_AXE=
+          ENTITY_TYPE.register("dullahan_axe",()->EntityType.Builder.<DullanhanAxe>of(DullanhanAxe::new, MobCategory.MISC)
+                  .sized(1.5f,1F).fireImmune().build("dullahan_axe"));
+
+
     public static void register(IEventBus bus){
     ENTITY_TYPE.register(bus);
 }

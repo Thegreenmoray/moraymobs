@@ -1,6 +1,7 @@
 package com.moray.moraymobs.registries;
 
 import com.moray.moraymobs.MorayMobs;
+import com.moray.moraymobs.effect.Dischantment;
 import com.moray.moraymobs.effect.Stun;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
@@ -17,7 +18,8 @@ public class Effectregisteries {
     final public static DeferredHolder<MobEffect, Stun> STUN=MOB_EFFECT.register("stun",()->
             new Stun(MobEffectCategory.HARMFUL,0xD6D84F));
 
-
+    final public static DeferredHolder<MobEffect, Dischantment> DISENCHANTMENT=MOB_EFFECT.register("disenchament",()->
+            new Dischantment(MobEffectCategory.HARMFUL,0x00D0CBF));
 
 
     public static void register(IEventBus eventBus) {

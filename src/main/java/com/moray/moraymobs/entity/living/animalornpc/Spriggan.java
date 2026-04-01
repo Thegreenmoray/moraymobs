@@ -43,7 +43,7 @@ import java.util.UUID;
 
 public class Spriggan extends AbstractVillager implements  NeutralMob,GeoEntity {
 
-    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
    // private static final EntityDataAccessor<Optional<GlobalPos>> HOME_POINT = SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.OPTIONAL_GLOBAL_POS);
  private static final EntityDataAccessor<Integer> BEAM= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> ATTACKTIME= SynchedEntityData.defineId(Spriggan.class, EntityDataSerializers.INT);

@@ -17,6 +17,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.WaterAnimal;
@@ -55,7 +56,11 @@ public class Events {
    event.register(Mobregistries.AMBERGOLEM.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
 event.register(Mobregistries.LESSER_TESSERACT.get(),SpawnPlacementTypes.NO_RESTRICTIONS,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FlyingMob::checkMobSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.LAMPREY.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
-        event.register(Mobregistries.ROCKPUP.get(),SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Rockpup::checkRockpupSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+
+
+        event.register(Mobregistries.ROCKPUP.get(),SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Rockpup::checkRockpupSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.REPLACE);
 
     }
 
@@ -103,6 +108,27 @@ event.put(Mobregistries.ROCKPUP.get(), Rockpup.createMobAttributes().build());
 
     @EventBusSubscriber(modid = MorayMobs.MODID)
  public static class deathspawn{
+
+        @SubscribeEvent
+        public static void damage(LivingDamageEvent.Pre event){
+            Entity entity = event.getEntity();
+
+
+            if (entity instanceof Player player&& event.getSource().getDirectEntity() instanceof Dullahan ) {
+                float new_damage = event.getOriginalDamage();
+                for(ItemStack itemStack:player.getArmorSlots()){
+                    if(itemStack.is(MorayKeys.IS_GOLDEN)){
+                        new_damage = (float) (new_damage *0.9);
+                    }
+                }
+                event.setNewDamage(new_damage);
+
+            }
+
+
+        }
+
+
 
        @SubscribeEvent
         public static void armorevent(LivingDamageEvent.Pre event) {

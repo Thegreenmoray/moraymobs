@@ -39,7 +39,7 @@ public class Intimidatetargetgoal extends Goal {
     @Override
     public boolean canContinueToUse() {
         LivingEntity livingentity = this.rockpup.getTarget();
-        if (livingentity == null||rockpup.getdizzy()
+        if (livingentity == null||!livingentity.isAlive()||rockpup.getdizzy()
         ||rockpup.isstartrolling()||rockpup.isrolling()) {return false;}
 
         return rockpup.distanceTo(livingentity) > 3.0F;

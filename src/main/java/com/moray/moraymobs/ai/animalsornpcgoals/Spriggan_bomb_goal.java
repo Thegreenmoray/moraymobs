@@ -66,7 +66,7 @@ public class Spriggan_bomb_goal extends Goal {
     public boolean canContinueToUse() {
 
         LivingEntity entity=spriggan.getTarget();
-        if (entity==null) {return false;}
+        if (entity==null||!entity.isAlive()) {return false;}
 
 
 

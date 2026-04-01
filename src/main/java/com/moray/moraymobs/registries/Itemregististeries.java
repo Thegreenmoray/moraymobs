@@ -204,6 +204,8 @@ public class Itemregististeries {
     final public static DeferredItem<Item> LAMPREY_PIE=ITEM.register("lamprey_pie",
             ()->new Item(new Item.Properties().food(new FoodProperties.Builder().saturationModifier(8).nutrition(10).build()).stacksTo(64)));
 
+    final public static DeferredItem<Item> DULLAHAN_AXE=ITEM.register("dullahan_axe",
+            ()->new Eelwhip(Tiers.NETHERITE,new Item.Properties().attributes(SwordItem.createAttributes(Tiers.NETHERITE,3f,11f)).durability(3000)));
 
 
     public static void register(IEventBus bus){

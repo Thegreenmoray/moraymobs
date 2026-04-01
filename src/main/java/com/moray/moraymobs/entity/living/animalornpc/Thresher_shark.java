@@ -108,6 +108,15 @@ public class Thresher_shark extends WaterAnimal implements GeoEntity {
         super.tick();
     }
 
+
+    @Override
+    public void aiStep() {
+
+
+
+        super.aiStep();
+    }
+
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new Threshermeleeattackgoal(this, 1.2000000476837158, true));
