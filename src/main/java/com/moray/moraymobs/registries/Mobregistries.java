@@ -166,7 +166,7 @@ public class Mobregistries {
 
   final public static Supplier<EntityType<DullanhanAxe>> DULLAHAN_AXE=
           ENTITY_TYPE.register("dullahan_axe",()->EntityType.Builder.<DullanhanAxe>of(DullanhanAxe::new, MobCategory.MISC)
-                  .sized(1.5f,1F).fireImmune().build("dullahan_axe"));
+                  .sized(1.5f,2F).fireImmune().build("dullahan_axe"));
 
   final public static Supplier<EntityType<Icice_projectile>> ICICE=
           ENTITY_TYPE.register("icice",()->EntityType.Builder.<Icice_projectile>of(Icice_projectile::new, MobCategory.MISC)

@@ -212,10 +212,12 @@ final int Max_rage=6;
 
     if (this.getmarkiplierpuch()<75&&this.getmarkiplierpuch()>0){
         dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("markpilierpunch", Animation.LoopType.HOLD_ON_LAST_FRAME));
+        return PlayState.CONTINUE;
     }
 
         if (this.getmarkiplierpuch()<100&&this.getmarkiplierpuch()>=75){
             dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("markipilerpunchjump", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
         }
 
 
@@ -322,9 +324,9 @@ final int Max_rage=6;
     protected void registerGoals() {
     goalSelector.addGoal(0, new FloatGoal(this));
    // goalSelector.addGoal(0,new Funnygoal(this));
-    goalSelector.addGoal(5,new MarkiplierpunchGoal(this,50));
-  //  goalSelector.addGoal(3,new AxeslashGoal(this,25));
-  //  goalSelector.addGoal(3,new Axethrowgoal(this,25));
+ //   goalSelector.addGoal(5,new MarkiplierpunchGoal(this,25));
+ //   goalSelector.addGoal(3,new AxeslashGoal(this,25));
+    goalSelector.addGoal(3,new Axethrowgoal(this,25));
    // goalSelector.addGoal(3,new AxespinGoal(this,40));
    // goalSelector.addGoal(3,new SoulfireballGoal(this,45));
   //  goalSelector.addGoal(3,new IceattackGoal(this,30));
@@ -475,7 +477,7 @@ float z_diff=0;
     @Override
         public void start() {
             go=time;
-        this.dullahan.setaxethrow(150);
+        this.dullahan.setaxethrow(50);
         }
 
         @Override
@@ -532,7 +534,8 @@ go--;
      }
 
             return dullahan.getaxethrow()<-100&&livingEntity.distanceTo(dullahan)>6&&
-                    dullahan.hasaxe()&&dullahan.level().random.nextInt(10)==2;
+                    dullahan.hasaxe()&&dullahan.level().random.nextInt(10)==2
+                    ;
         }
     }
 
@@ -567,34 +570,43 @@ boolean stop;
         if (livingEntity != null){
 
 
-         if (go>40){
+         if (go>20){
            if (!ismarked){
            jump_vector=getjumpvector();
            ismarked=true;
            }
 
-            dullahan.setDeltaMovement(jump_vector.normalize().scale(2).x,jump_vector.normalize().scale(2).y,jump_vector.normalize().scale(2).z);
+
+
+          dullahan.setDeltaMovement(jump_vector.x,jump_vector.y,jump_vector.z);
 
          }
 
-         if (go==40){
-             postionx= (int) livingEntity.position().normalize().x();
-             postiony= (int) livingEntity.position().normalize().y();
-             postionz= (int) livingEntity.position().normalize().z();
+         if (go==15){
+             postionx= (int) livingEntity.position().x();
+             postiony= (int) livingEntity.position().y();
+             postionz= (int) livingEntity.position().z();
          }
 
 
-         if (go<20){
+         if (go<15){
 
            //have a static position dont just follow the player
-             dullahan.setDeltaMovement(postionx,postiony,postionz);
+             dullahan.moveTo(postionx,postiony,postionz);
 
-             if (dullahan.position().distanceTo(livingEntity.position())<=0.5){
-                 livingEntity.hurt(livingEntity.damageSources().mobAttack(dullahan), 9.0F);
-                  stop=true;
-             } else if (dullahan.onGround()) {
+             if (go<=0){
                  stop=true;
              }
+
+
+             if (dullahan.position().distanceTo(new Vec3(postionx,postiony,postionz))<=1.5){
+                 livingEntity.hurt(livingEntity.damageSources().mobAttack(dullahan), 9.0F);
+
+             }
+
+
+
+
 
          }
 
@@ -618,17 +630,17 @@ boolean stop;
 
     private Vec3 getjumpvector() {
 
-      Vec3 vec3 =dullahan.position();
+
       RandomSource random1 =dullahan.random;
-      int extra_y=random1.nextInt(20-10)+10;
-      int extra_x=random1.nextInt(10-5)+5;
-      int extra_z=random1.nextInt(10-5)+5;
+      int extra_y=random1.nextInt(10)+10;
+      int extra_x=random1.nextInt(5)+5;
+      int extra_z=random1.nextInt(5)+5;
      boolean neg_one= random1.nextBoolean();
      boolean neg_two= random1.nextBoolean();
-     float ajustment_x= (float) (neg_one?-vec3.x():vec3.x());
-     float ajustment_z= (float) (neg_two?-vec3.z():vec3.z());
+     float ajustment_x= (float) (neg_one?-1:1);
+     float ajustment_z= (float) (neg_two?-1:1);
 
-        return new Vec3(ajustment_x+extra_x,vec3.y()+extra_y,ajustment_z+extra_z);
+        return new Vec3(ajustment_x*extra_x,extra_y,ajustment_z*extra_z).normalize().scale(1.5);
     }
 
     @Override
@@ -640,7 +652,7 @@ boolean stop;
         }
 
 
-        return go>0||stop;
+        return go>0&&!stop;
     }
 
     @Override
@@ -830,7 +842,8 @@ private static class AxeslashGoal extends Goal {
 
         return dullahan.getaxeslash()<=-25
                 &&dullahan.hasaxe()
-                &&dullahan.distanceTo(livingEntity)<5&&dullahan.getmarkiplierpuch()<0;
+                &&dullahan.distanceTo(livingEntity)<5
+                &&dullahan.getmarkiplierpuch()<0;
     }
 }
 
