@@ -38,9 +38,9 @@ jobs:
         with:
             token: ${{ secrets.CURSEFORGE_TOKEN }} #sorry, has to kept secret for security reasons
             project_id: '1065362' # is project ID
-            file_path: 'build/libs/moraymobs-*.jar' # Path to your built jar
-            game_versions: '1.21.1' # Comma separated versions
-            release_type: 'release' # release, beta, or alpha
+            file_path: 'build/libs/moraymobs-*.jar'
+            game_versions: '1.21.1'
+            release_type: 'release'
             display_name: 'Moraysmobs'
             changelog: '-Added Dullahan (add more later)'
             changelog_type: 'markdown'
