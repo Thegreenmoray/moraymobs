@@ -69,6 +69,8 @@ public class Itemregististeries {
     public static final DeferredItem<Item> ROCKPUP_SPAWN_EGG = ITEM.register
             ("spawn_rockpup",()-> new DeferredSpawnEggItem(Mobregistries.ROCKPUP,0x9E814D,0x9966CC,new Item.Properties()));
 
+    public static final DeferredItem<Item> DULLAHAN_SPAWN_EGG = ITEM.register
+            ("spawn_dullahan",()-> new DeferredSpawnEggItem(Mobregistries.DULLAHAN,0x000080,0x9966CC,new Item.Properties()));
 
 
 
@@ -205,7 +207,7 @@ public class Itemregististeries {
             ()->new Item(new Item.Properties().food(new FoodProperties.Builder().saturationModifier(8).nutrition(10).build()).stacksTo(64)));
 
     final public static DeferredItem<Item> DULLAHAN_AXE=ITEM.register("dullahan_axe",
-            ()->new Eelwhip(Tiers.NETHERITE,new Item.Properties().attributes(SwordItem.createAttributes(Tiers.NETHERITE,3f,11f)).durability(3000)));
+            ()->new ItemDullahanaxe(new Item.Properties().attributes(AxeItem.createAttributes(Tiers.NETHERITE,11f,-2.8f)).durability(3000)));
 
 
     public static void register(IEventBus bus){

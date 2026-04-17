@@ -162,12 +162,15 @@ public class Mobregistries {
 
   final public static Supplier<EntityType<Dullahan>> DULLAHAN=
           ENTITY_TYPE.register("dullahan",()->EntityType.Builder.of(Dullahan::new, MobCategory.CREATURE)
-                  .sized(2F,3F).build("dullahan"));
+                  .sized(2F,3F).fireImmune().build("dullahan"));
 
   final public static Supplier<EntityType<DullanhanAxe>> DULLAHAN_AXE=
           ENTITY_TYPE.register("dullahan_axe",()->EntityType.Builder.<DullanhanAxe>of(DullanhanAxe::new, MobCategory.MISC)
                   .sized(1.5f,1F).fireImmune().build("dullahan_axe"));
 
+  final public static Supplier<EntityType<Icice_projectile>> ICICE=
+          ENTITY_TYPE.register("icice",()->EntityType.Builder.<Icice_projectile>of(Icice_projectile::new, MobCategory.MISC)
+                  .sized(1F,3F).fireImmune().build("icice"));
 
     public static void register(IEventBus bus){
     ENTITY_TYPE.register(bus);

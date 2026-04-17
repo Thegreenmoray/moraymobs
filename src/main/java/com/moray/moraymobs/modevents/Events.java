@@ -57,7 +57,6 @@ public class Events {
 event.register(Mobregistries.LESSER_TESSERACT.get(),SpawnPlacementTypes.NO_RESTRICTIONS,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FlyingMob::checkMobSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(Mobregistries.LAMPREY.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WaterAnimal::checkSurfaceWaterAnimalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);
 
-
         event.register(Mobregistries.ROCKPUP.get(),SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Rockpup::checkRockpupSpawnRules,
                 RegisterSpawnPlacementsEvent.Operation.REPLACE);
@@ -87,7 +86,7 @@ event.put(Mobregistries.LESSER_TESSERACT.get(), Lesser_Tesseract.createAttribute
 event.put(Mobregistries.SPRIGGAN.get(), Spriggan.createAttributes().build());
 event.put(Mobregistries.LAMPREY.get(), Lamprey.createAttributes().build());
 event.put(Mobregistries.ROCKPUP.get(), Rockpup.createMobAttributes().build());
-
+event.put(Mobregistries.DULLAHAN.get(), Dullahan.createAttributes().build());
     }
 @EventBusSubscriber(modid = MorayMobs.MODID)
     public static class itemspawn{

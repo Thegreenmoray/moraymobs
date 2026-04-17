@@ -3,7 +3,7 @@
   "package": "com.moray.moraymobs.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "Enchantmenthelpermixin"
+
   ],
   "injectors": {
     "defaultRequire": 1

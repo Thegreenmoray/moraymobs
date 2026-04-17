@@ -1,5 +1,6 @@
 package com.moray.moraymobs.entity.projectiles;
 
+import com.moray.moraymobs.registries.Mobregistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -22,7 +23,7 @@ public class Icice_projectile extends AbstractHurtingProjectile {
     }
 
     public Icice_projectile( LivingEntity owner, Level level,boolean israged) {
-        super(entityType, level);
+        super(Mobregistries.ICICE.get(), level);
         this.setOwner(owner);
         this.setrage(israged);
     }
@@ -39,11 +40,20 @@ public class Icice_projectile extends AbstractHurtingProjectile {
     }
 
     public void tick() {
-        super.tick();
+        if (this.israge()) {
+            this.noPhysics = true;
+            super.tick();
+            this.noPhysics = false;}else{
+            super.tick();
+        }
 
         Vec3 vec3=getDeltaMovement();
 
-        this.setDeltaMovement(vec3.x,vec3.y-0.05,vec3.z);
+        if (this.israge()) {
+            this.setDeltaMovement(vec3.x, vec3.y - 0.1, vec3.z);
+        } else {
+            this.setDeltaMovement(vec3.x, vec3.y - 0.05, vec3.z);
+        }
 
         if (!this.level().isClientSide()) {
 
@@ -61,7 +71,8 @@ public class Icice_projectile extends AbstractHurtingProjectile {
     @Override
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
-       this.remove(RemovalReason.DISCARDED);
+       if (!israge()){
+        this.remove(RemovalReason.DISCARDED);}
 
     }
 

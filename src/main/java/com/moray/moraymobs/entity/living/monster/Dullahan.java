@@ -2,7 +2,9 @@ package com.moray.moraymobs.entity.living.monster;
 
 import com.moray.moraymobs.entity.projectiles.DullanhanAxe;
 import com.moray.moraymobs.entity.projectiles.Icice_projectile;
+import com.moray.moraymobs.entity.projectiles.Soulfireball;
 import com.moray.moraymobs.item.ItemDullahanaxe;
+import com.moray.moraymobs.registries.Itemregististeries;
 import com.moray.moraymobs.tags.MorayKeys;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -11,31 +13,41 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.SpectralArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.pathfinder.Node;
+import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.EnumSet;
 import java.util.List;
 
 public class Dullahan extends Monster implements GeoEntity {
@@ -51,7 +63,8 @@ public class Dullahan extends Monster implements GeoEntity {
     private static final EntityDataAccessor<Integer> AXE_SLASH=SynchedEntityData.defineId(Dullahan.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> SOULFIREBALL=SynchedEntityData.defineId(Dullahan.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> ICE_ATTACK=SynchedEntityData.defineId(Dullahan.class, EntityDataSerializers.INT);
-   //----------------------------------RAGE------------------------------------------
+    private static final EntityDataAccessor<Integer> AXE_WAIT=SynchedEntityData.defineId(Dullahan.class, EntityDataSerializers.INT);
+    //----------------------------------RAGE------------------------------------------
     private static final EntityDataAccessor<Integer> RAGE_SOULFIRE=SynchedEntityData.defineId(Dullahan.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> AXE_SPIN=SynchedEntityData.defineId(Dullahan.class, EntityDataSerializers.INT);
    private static final EntityDataAccessor<Integer> RAGE_ICE_ATTACK=SynchedEntityData.defineId(Dullahan.class, EntityDataSerializers.INT);
@@ -65,6 +78,13 @@ final int Max_rage=6;
     public Dullahan(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
         this.xpReward=100;
+    }
+
+    public int getaxewait(){
+        return this.entityData.get(AXE_WAIT);
+    }
+    public void setaxewait(int hasaxe){
+        this.entityData.set(AXE_WAIT,hasaxe);
     }
 
     public boolean hasaxe(){
@@ -146,20 +166,23 @@ final int Max_rage=6;
 
 
 
+
     @Override
     public boolean hurt(DamageSource source, float amount) {
-      if (source.getDirectEntity() instanceof Projectile projectile){
-          if (projectile instanceof SpectralArrow) {
-              setcurrentragebuildup(getcurrentragebuildup() - 5);
-          } else {
+      if (source.getDirectEntity() instanceof Projectile){
               setcurrentragebuildup(getcurrentragebuildup() + 7);
           }
+
+      if (source.getDirectEntity() instanceof IronGolem){
+          setcurrentragebuildup(getcurrentragebuildup() + 7);
+          return super.hurt(source, (float) (amount*0.80));
       }
+
 
         if (source.getDirectEntity() instanceof Player player) {
             if(player.getMainHandItem().is(MorayKeys.IS_GOLDEN)){
                 setcurrentragebuildup(getcurrentragebuildup()-1);
-                super.hurt(source,amount+6);
+                return super.hurt(source,amount+4);
             }
         }
 
@@ -174,7 +197,55 @@ final int Max_rage=6;
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<>(this,
+                "Controller",this::animations));
+    }
 
+    private PlayState animations(AnimationState<Dullahan> dullahanAnimationState) {
+
+
+
+        if (getHealth()<=0.01){
+            dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("death_normal", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
+    if (this.getmarkiplierpuch()<75&&this.getmarkiplierpuch()>0){
+        dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("markpilierpunch", Animation.LoopType.HOLD_ON_LAST_FRAME));
+    }
+
+        if (this.getmarkiplierpuch()<100&&this.getmarkiplierpuch()>=75){
+            dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("markipilerpunchjump", Animation.LoopType.HOLD_ON_LAST_FRAME));
+        }
+
+
+        if(this.getaxeslash()>0&&hasaxe()){
+            dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("axe_slash", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
+
+       // if(this.getaxeslash()>0&&hasaxe()){
+       //     dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("axe_slash", Animation.LoopType.HOLD_ON_LAST_FRAME));
+       //     return PlayState.CONTINUE;
+       // }
+
+
+        if(dullahanAnimationState.isMoving()&&hasaxe()){
+            dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
+        if (!dullahanAnimationState.isMoving()&&hasaxe()){
+            dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("idle_axe", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
+
+
+
+
+        return PlayState.STOP;
     }
 
     public void setCustomName(@Nullable Component name) {
@@ -196,24 +267,47 @@ final int Max_rage=6;
 
 
         if (getcurrentrage()<6&&getcurrentragebuildup()<100&&getHealth()/getMaxHealth()<0.3&&random.nextInt(5)==0) {
-                setcurrentragebuildup(getcurrentragebuildup()+3);
+                setcurrentragebuildup(getcurrentragebuildup()+4);
         }
 
         if (getcurrentrage()<6&&getcurrentragebuildup()<100&&getHealth()/getMaxHealth()>=0.3&&getHealth()/getMaxHealth()<0.6&&random.nextInt(5)==0) {
 
-                setcurrentragebuildup(getcurrentragebuildup()+2);
+                setcurrentragebuildup(getcurrentragebuildup()+3);
         }
 
 
         if (getcurrentrage()<6&&getcurrentragebuildup()<100&&getHealth()/getMaxHealth()>=0.6&&random.nextInt(5)==0) {
 
-            setcurrentragebuildup(getcurrentragebuildup()+1);
+            setcurrentragebuildup(getcurrentragebuildup()+2);
         }
+
+        setmarkiplierpuch(getmarkiplierpuch()-1);
+
+
+
+        //      seticeattack(geticeattack()-1);
+      //  setrageiceattack(getrageiceattack()-1);
+
+      if(getcurrentrage()>2){
+      //  setaxespin(getaxespin()-1);
+      }
+   //     setragefireball(getragesoulfireball()-1);
+    //    setrageiceattack(getrageiceattack()-1);
+
+
+      //  setaxeslash(getaxeslash()-1);
+
+
+
+      //  setaxethrow(getaxethrow()-1);
+
+
 
 
 
         if (!hasaxe()){
             //set wait time for it
+            setaxewait(getaxewait()-1);
         }
 
 
@@ -226,13 +320,18 @@ final int Max_rage=6;
 
     @Override
     protected void registerGoals() {
-    goalSelector.addGoal(0,new Funnygoal(this));
-    goalSelector.addGoal(5,new MarkiplierpunchGoal(this,60));
-    goalSelector.addGoal(3,new AxeslashGoal(this,30));
-    goalSelector.addGoal(3,new Axethrowgoal(this,25));
-    goalSelector.addGoal(3,new AxespinGoal(this,40));
-
-
+    goalSelector.addGoal(0, new FloatGoal(this));
+   // goalSelector.addGoal(0,new Funnygoal(this));
+    goalSelector.addGoal(5,new MarkiplierpunchGoal(this,50));
+  //  goalSelector.addGoal(3,new AxeslashGoal(this,25));
+  //  goalSelector.addGoal(3,new Axethrowgoal(this,25));
+   // goalSelector.addGoal(3,new AxespinGoal(this,40));
+   // goalSelector.addGoal(3,new SoulfireballGoal(this,45));
+  //  goalSelector.addGoal(3,new IceattackGoal(this,30));
+    targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+    targetSelector.addGoal(1, new HurtByTargetGoal(this));
+    goalSelector.addGoal(2,new Dullahanmove(this,0.5,true));
+ //   goalSelector.addGoal(3,new getaxebackgoal(this,30));
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {
@@ -248,6 +347,7 @@ final int Max_rage=6;
         compound.putInt("rageiceattack",this.getrageiceattack());
         compound.putBoolean("hasaxe",this.hasaxe());
         compound.putInt("ragebuildup",this.getcurrentragebuildup());
+        compound.putInt("waitforaxe",this.getaxewait());
     }
 
     public void readAdditionalSaveData(CompoundTag compound) {
@@ -263,7 +363,7 @@ final int Max_rage=6;
         this.setrageiceattack(compound.getInt("rageiceattack"));
         this.sethasaxe(compound.getBoolean("hasaxe"));
         this.setcurrentragebuildup(compound.getInt("ragebuildup"));
-
+        this.setaxewait(compound.getInt("waitforaxe"));
         this.Dullahan_rage.setName(Component.nullToEmpty("Dullahan's Rage"));
 
 
@@ -282,10 +382,11 @@ final int Max_rage=6;
         builder.define(RAGE_ICE_ATTACK,0);
         builder.define(NO_AXE,true);
         builder.define(RAGE_BUILDUP,0);
+        builder.define(AXE_WAIT,0);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH,200).add(Attributes.FOLLOW_RANGE, 60.0).add(Attributes.MOVEMENT_SPEED, 0.25)
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH,200).add(Attributes.FOLLOW_RANGE, 60.0).add(Attributes.MOVEMENT_SPEED, 0.5)
                 .add(Attributes.ATTACK_DAMAGE, 15.0).add(Attributes.KNOCKBACK_RESISTANCE,20)
                 .add(Attributes.ARMOR,5);
     }
@@ -303,11 +404,25 @@ final int Max_rage=6;
         if ( this.deathTime==1){
            // setanimation(0);
         }
-        if (this.deathTime == 35 && !this.level().isClientSide()) {
+        if (this.deathTime == 55 && !this.level().isClientSide()) {
             this.level().broadcastEntityEvent(this, (byte) 60);
             this.remove(RemovalReason.KILLED);
         }
     }
+
+
+    @Override
+    public void startSeenByPlayer(ServerPlayer serverPlayer) {
+        super.startSeenByPlayer(serverPlayer);
+        this.Dullahan_rage.addPlayer(serverPlayer);
+    }
+
+    @Override
+    public void stopSeenByPlayer(ServerPlayer serverPlayer) {
+        super.stopSeenByPlayer(serverPlayer);
+        this.Dullahan_rage.removePlayer(serverPlayer);
+    }
+
 
 
 public static class Funnygoal extends Goal {
@@ -360,6 +475,7 @@ float z_diff=0;
     @Override
         public void start() {
             go=time;
+        this.dullahan.setaxethrow(150);
         }
 
         @Override
@@ -377,7 +493,7 @@ go--;
              }
 
            if (go==15){                                                                                              //replace with the registry call
-               DullanhanAxe dullanhanAxe=new DullanhanAxe(this.dullahan,this.dullahan.level(),new ItemStack(new ItemDullahanaxe(new Item.Properties())),new ItemStack(new ItemDullahanaxe(new Item.Properties())));
+               DullanhanAxe dullanhanAxe=new DullanhanAxe(this.dullahan,this.dullahan.level(), Itemregististeries.DULLAHAN_AXE.toStack(),null);
 
                dullanhanAxe.setPos(dullahan.getViewVector(1));
               y_diff= (float) (y_diff-dullanhanAxe.getY());
@@ -415,7 +531,7 @@ go--;
          return false;
      }
 
-            return dullahan.getaxethrow()<0&&livingEntity.distanceTo(dullahan)>6&&
+            return dullahan.getaxethrow()<-100&&livingEntity.distanceTo(dullahan)>6&&
                     dullahan.hasaxe()&&dullahan.level().random.nextInt(10)==2;
         }
     }
@@ -438,13 +554,16 @@ boolean stop;
     @Override
     public void start() {
         go=time;
+        dullahan.setmarkiplierpuch(100);
+        stop=false;
+        ismarked=false;
     }
 
     @Override
     public void tick() {
 
         LivingEntity livingEntity =dullahan.getTarget();
-go-=1;
+         go--;
         if (livingEntity != null){
 
 
@@ -454,23 +573,21 @@ go-=1;
            ismarked=true;
            }
 
-            dullahan.setNoGravity(true);
-
-            dullahan.moveTo(jump_vector.x,jump_vector.y,jump_vector.z);
+            dullahan.setDeltaMovement(jump_vector.normalize().scale(2).x,jump_vector.normalize().scale(2).y,jump_vector.normalize().scale(2).z);
 
          }
 
          if (go==40){
-             postionx= (int) livingEntity.position().x();
-             postiony= (int) livingEntity.position().y();
-             postionz= (int) livingEntity.position().z();
+             postionx= (int) livingEntity.position().normalize().x();
+             postiony= (int) livingEntity.position().normalize().y();
+             postionz= (int) livingEntity.position().normalize().z();
          }
 
 
-         if (go<40){
-             dullahan.setNoGravity(false);
+         if (go<20){
+
            //have a static position dont just follow the player
-             dullahan.moveTo(postionx,postiony,postionz);
+             dullahan.setDeltaMovement(postionx,postiony,postionz);
 
              if (dullahan.position().distanceTo(livingEntity.position())<=0.5){
                  livingEntity.hurt(livingEntity.damageSources().mobAttack(dullahan), 9.0F);
@@ -495,6 +612,8 @@ go-=1;
     public void stop() {
         go=0;
         dullahan.setmarkiplierpuch(0);
+        stop=true;
+        ismarked=true;
     }
 
     private Vec3 getjumpvector() {
@@ -533,14 +652,24 @@ go-=1;
         }
 
 
-        return dullahan.getmarkiplierpuch()<0&&!dullahan.hasaxe();
+        int dull=dullahan.getmarkiplierpuch();
+        int axe=dullahan.getaxeslash();
+
+
+        return dull<-40 //set to -90
+                //&&!dullahan.hasaxe()
+                &&axe<=0
+                ;
     }
 }
 
-public static class SoulfireballGoal extends Goal {
+private static class SoulfireballGoal extends Goal {
     Dullahan dullahan;
     int time;
     int go;
+
+
+
         public SoulfireballGoal(Dullahan dullahan,int time) {
    this.dullahan = dullahan;
    this.time=time;
@@ -549,14 +678,69 @@ public static class SoulfireballGoal extends Goal {
     @Override
     public void start() {
         go=time;
+        if ((dullahan.getragesoulfireball() < 0 && dullahan.getcurrentrage() >= 2)) {
+            dullahan.setragefireball(100);
+        } else {
+            dullahan.setsoulfireball(100);
+        }
+
     }
 
 
     @Override
     public void stop() {
+        if (go<=10&&dullahan.getcurrentrage()>=2&&dullahan.getragesoulfireball()>0){
+            dullahan.setcurrentrage(dullahan.getcurrentrage()-2);
+            dullahan.setragefireball(0);
+        }
+       else{
+            dullahan.setsoulfireball(0);
+        }
+
+
         go=0;
     }
 
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        LivingEntity livingEntity =dullahan.getTarget();
+        go--;
+        if (livingEntity != null){
+
+
+
+            if (go==15){
+
+                if (dullahan.getcurrentrage()>=2&&dullahan.getragesoulfireball()>0){
+                   Soulfireball ice =new Soulfireball(this.dullahan.level(), this.dullahan,this.dullahan.position(),true);
+
+                    ice.setPos(dullahan.getViewVector(1));
+                    this.dullahan.level().addFreshEntity(ice);
+                } else  {
+                    Soulfireball ice =new Soulfireball(this.dullahan.level(), this.dullahan,this.dullahan.position(),false);
+                    ice.setPos(dullahan.getViewVector(1));
+                    this.dullahan.level().addFreshEntity(ice);
+                }
+
+            }
+        }
+    }
+
+    @Override
+    public boolean canContinueToUse() {
+
+        LivingEntity livingEntity =dullahan.getTarget();
+
+        if (livingEntity == null||!livingEntity.isAlive()){
+            return false;
+        }
+
+
+        return go>0;
+    }
     @Override
     public boolean canUse() {
 
@@ -568,7 +752,7 @@ public static class SoulfireballGoal extends Goal {
 
 
 
-     return dullahan.getsoulfireball()<0||(dullahan.getragesoulfireball()<0&&dullahan.getcurrentrage()>=2)&&!dullahan.hasaxe();
+     return (dullahan.getsoulfireball()<-100||(dullahan.getragesoulfireball()<-200&&dullahan.getcurrentrage()>=2))&&!dullahan.hasaxe();
     }
 }
 
@@ -584,8 +768,8 @@ private static class AxeslashGoal extends Goal {
 
     @Override
     public void start() {
-        super.start();
         go=start;
+        dullahan.setaxeslash(50);
     }
 
 
@@ -597,17 +781,17 @@ private static class AxeslashGoal extends Goal {
               dullahan.lookAt((Entity) livingEntity, (float) livingEntity.getY(), (float) livingEntity.getX());
            }
          if (go==10){
-            List<Entity> range=dullahan.level().getEntities(this.dullahan,dullahan.getBoundingBox(),entity->dullahan.position().normalize().dot(entity.position().normalize())<=0.25); //75 degrees
+            List<Entity> range=dullahan.level().getEntities(this.dullahan,dullahan.getBoundingBox().inflate(2),e->dullahan.position().normalize().dot(livingEntity.position().normalize())>=0.0&& e instanceof LivingEntity);
             for(Entity e:range){
-                if (e instanceof LivingEntity){
-                    livingEntity.hurt(livingEntity.damageSources().mobAttack(dullahan), 11.0F);
+                if (e instanceof LivingEntity living){
+                    living.hurt(living.damageSources().mobAttack(dullahan), living instanceof IronGolem ?25.0f:11.0F);
                     double d0 = (this.dullahan.getBoundingBox().minX + this.dullahan.getBoundingBox().maxX) / 2.0;
                     double d1 = (this.dullahan.getBoundingBox().minZ + this.dullahan.getBoundingBox().maxZ) / 2.0;
                     double d2 = e.getX() - d0;
                     double d3 = e.getZ() - d1;
                     double d4 = Math.max(d2 * d2 + d3 * d3, 0.1);
 
-                    ((LivingEntity) e).knockback(3,-(d2 / d4 * 4.0),-(d3 / d4 * 4.0));
+                    living.knockback(3,-(d2 / d4 * 4.0),-(d3 / d4 * 4.0));
 
                 }
             }
@@ -644,7 +828,9 @@ private static class AxeslashGoal extends Goal {
         }
 
 
-        return dullahan.getaxeslash()>50&&dullahan.hasaxe()&&dullahan.distanceTo(livingEntity)<5;
+        return dullahan.getaxeslash()<=-25
+                &&dullahan.hasaxe()
+                &&dullahan.distanceTo(livingEntity)<5&&dullahan.getmarkiplierpuch()<0;
     }
 }
 
@@ -661,6 +847,7 @@ private static class AxespinGoal extends Goal {
         @Override
         public void start() {
             go=start;
+            this.dullahan.setaxespin(150);
         }
         @Override
         public void tick() {
@@ -700,7 +887,7 @@ private static class AxespinGoal extends Goal {
             return false;
         }
 
-        return (dullahan.getaxespin()<0&&dullahan.getcurrentrage()>=4)&&dullahan.hasaxe()&& dullahan.distanceTo(livingEntity)<5;
+        return (dullahan.getaxespin()<-200&&dullahan.getcurrentrage()>=4)&&dullahan.hasaxe()&& dullahan.distanceTo(livingEntity)<5;
     }
 
 
@@ -725,7 +912,7 @@ private static class AxespinGoal extends Goal {
 
 }
 
-public static class IceattackGoal extends Goal {
+private static class IceattackGoal extends Goal {
 Dullahan dullahan;
  int time;
  int go;
@@ -776,6 +963,11 @@ float y_diff=0;
     @Override
     public void start() {
         go=time;
+        if ((dullahan.getrageiceattack() < 0 && dullahan.getcurrentrage() >= 2)) {
+            dullahan.setrageiceattack(100);
+        } else {
+            dullahan.seticeattack(100);
+        }
     }
 
 
@@ -818,10 +1010,206 @@ float y_diff=0;
 
 
 
-            return dullahan.geticeattack()<0||(dullahan.getrageiceattack()<0&&dullahan.getcurrentrage()>=2)&&!dullahan.hasaxe();
+            return dullahan.geticeattack()<-100||(dullahan.getrageiceattack()<-200&&dullahan.getcurrentrage()>=2)&&!dullahan.hasaxe();
     }
 }
 
+private class Dullahanmove extends Goal {
+
+        final double speedModifier;
+        final boolean followingTargetEvenIfNotSeen;
+        Dullahan dullahan;
+        private Path path;
+        private double pathedTargetX;
+        private double pathedTargetY;
+        private double pathedTargetZ;
+        private int ticksUntilNextPathRecalculation;
+        private int ticksUntilNextAttack;
+        private int failedPathFindingPenalty = 0;
+        private boolean canPenalize = false;
 
 
+        //largely copied from melee attack but with some changes
+        public Dullahanmove(Dullahan dullahan, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen) {
+            this.speedModifier = pSpeedModifier;
+            this.followingTargetEvenIfNotSeen = pFollowingTargetEvenIfNotSeen;
+            this.dullahan =dullahan;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+
+        @Override
+        public void tick() {
+            LivingEntity livingentity = this.dullahan.getTarget();
+            if (livingentity != null) {
+                this.dullahan.getLookControl().setLookAt(livingentity, 30.0F, 30.0F);
+                this.ticksUntilNextPathRecalculation = Math.max(this.ticksUntilNextPathRecalculation - 1, 0);
+
+
+                if ((this.followingTargetEvenIfNotSeen || this.dullahan.getSensing().hasLineOfSight(livingentity)) && this.ticksUntilNextPathRecalculation <= 0 && (this.pathedTargetX == 0.0 && this.pathedTargetY == 0.0 && this.pathedTargetZ == 0.0 || livingentity.distanceToSqr(this.pathedTargetX, this.pathedTargetY, this.pathedTargetZ) >= 1.0 || this.dullahan.getRandom().nextFloat() < 0.05F)) {
+                    this.pathedTargetX = livingentity.getX();
+                    this.pathedTargetY = livingentity.getY();
+                    this.pathedTargetZ = livingentity.getZ();
+                    this.ticksUntilNextPathRecalculation = 4 + this.dullahan.getRandom().nextInt(7);
+                    double d0 = this.dullahan.distanceToSqr(livingentity);
+                    if (this.canPenalize) {
+                        this.ticksUntilNextPathRecalculation += this.failedPathFindingPenalty;
+                        if (this.dullahan.getNavigation().getPath() != null) {
+                            Node finalPathPoint = this.dullahan.getNavigation().getPath().getEndNode();
+                            if (finalPathPoint != null && livingentity.distanceToSqr((double)finalPathPoint.x, (double)finalPathPoint.y, (double)finalPathPoint.z) < 1.0) {
+                                this.failedPathFindingPenalty = 0;
+                            } else {
+                                this.failedPathFindingPenalty += 10;
+                            }
+                        } else {
+                            this.failedPathFindingPenalty += 10;
+                        }
+                    }
+
+                    if (d0 > 1024.0) {
+                        this.ticksUntilNextPathRecalculation += 10;
+                    } else if (d0 > 256.0) {
+                        this.ticksUntilNextPathRecalculation += 5;
+                    }
+
+                    if (!this.dullahan.getNavigation().moveTo(livingentity, this.speedModifier)) {
+                        this.ticksUntilNextPathRecalculation += 15;
+                    }
+
+                    this.ticksUntilNextPathRecalculation = this.adjustedTickDelay(this.ticksUntilNextPathRecalculation);
+                }
+                this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
+
+
+            }
+
+
+
+
+        }
+
+
+
+
+        public boolean canUse() {
+
+            if (dullahan.getrageiceattack()>0||dullahan.geticeattack()>0
+            ||dullahan.getragesoulfireball()>0||dullahan.getsoulfireball()>0
+            || dullahan.getaxethrow()>0 ||dullahan.getmarkiplierpuch()>0
+            || dullahan.getaxespin()>0||dullahan.getaxeslash()>0
+            ) {
+                return false;
+            }
+
+
+
+
+
+            LivingEntity livingentity = this.dullahan.getTarget();
+            if (livingentity == null) {
+                return false;}
+
+                if (!livingentity.isAlive()) {
+                    return false;
+                } else {
+                    this.path = this.dullahan.getNavigation().createPath(livingentity, 0);
+                    if (this.path != null) {
+                        return true;
+                    }
+                    else {
+                        return this.getAttackReachSqr(livingentity) > 4.5;
+                    }}
+
+        }
+
+        public boolean canContinueToUse() {
+            LivingEntity livingentity = this.dullahan.getTarget();
+            if (dullahan.getrageiceattack()>0||dullahan.geticeattack()>0
+                    ||dullahan.getragesoulfireball()>0||dullahan.getsoulfireball()>0
+                    || dullahan.getaxethrow()>0 ||dullahan.getmarkiplierpuch()>0
+                    || dullahan.getaxespin()>0||dullahan.getaxeslash()>0
+            ) {
+                return false;
+            }
+
+            if (livingentity == null) {
+                return false;}
+
+
+
+                if (!livingentity.isAlive()) {
+                    return false;
+                } else if (!this.followingTargetEvenIfNotSeen) {
+                    return !this.dullahan.getNavigation().isDone();
+                } else if (!this.dullahan.isWithinRestriction(livingentity.blockPosition())) {
+                    return false;
+                } else {
+                    return !(livingentity instanceof Player) || !livingentity.isSpectator() && !((Player)livingentity).isCreative();
+                }
+
+        }
+
+        public void start() {
+
+            this.dullahan.getNavigation().moveTo(this.path, this.speedModifier);
+            this.dullahan.setAggressive(true);
+            this.ticksUntilNextPathRecalculation = 0;
+            this.ticksUntilNextAttack = 0;
+        }
+
+        public void stop() {
+            LivingEntity livingentity = this.dullahan.getTarget();
+            if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
+                this.dullahan.setTarget((LivingEntity)null);
+            }
+            this.dullahan.setAggressive(false);
+            this.dullahan.getNavigation().stop();
+        }
+
+        public boolean requiresUpdateEveryTick() {
+            return true;
+        }
+
+        protected double getAttackReachSqr(LivingEntity pAttackTarget) {
+            return (double)(this.dullahan.getBbWidth() * this.dullahan.getBbWidth() + pAttackTarget.getBbWidth());
+        }
+    }
+
+private class getaxebackgoal extends Goal{
+Dullahan dullahan;
+int time;
+int go;
+    public getaxebackgoal(Dullahan dullahan,int time) {
+        this.dullahan = dullahan;
+        this.time = time;
+    }
+
+    @Override
+    public boolean canContinueToUse() {
+        return !hasaxe()&&go>0;
+    }
+    @Override
+    public void start() {
+     go=time;
+    }
+
+    @Override
+    public void stop() {
+        dullahan.sethasaxe(true);
+        go=0;
+        setaxewait(0);
+    }
+
+    @Override
+    public void tick() {
+       super.tick();
+       go--;
+    }
+
+    @Override
+    public boolean canUse() {
+
+        return !hasaxe()&&getaxewait()<-150;
+    }
+}
 }

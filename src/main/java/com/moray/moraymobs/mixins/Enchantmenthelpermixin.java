@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EnchantmentHelper.class)
 public class Enchantmenthelpermixin {
-
- @Inject(method= "runIterationOnItem*",at = @At("HEAD"),
+/*
+ @Inject(method= "runIterationOnItem",at = @At("HEAD"),
          cancellable = true)
     public void runIterationOnItemdisenchment(LivingEntity entity, CallbackInfo ci){
 
@@ -22,4 +22,6 @@ public class Enchantmenthelpermixin {
      }
 
  }
+ */
+
 }

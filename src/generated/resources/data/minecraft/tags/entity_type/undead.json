@@ -4,6 +4,7 @@
     "#minecraft:zombies",
     "minecraft:wither",
     "minecraft:phantom",
-    "moraymobs:bony_moray"
+    "moraymobs:bony_moray",
+    "moraymobs:dullahan"
   ]
 }
