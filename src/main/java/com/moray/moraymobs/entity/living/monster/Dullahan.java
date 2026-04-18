@@ -83,6 +83,7 @@ final int Max_rage=6;
     public int getaxewait(){
         return this.entityData.get(AXE_WAIT);
     }
+
     public void setaxewait(int hasaxe){
         this.entityData.set(AXE_WAIT,hasaxe);
     }
@@ -90,6 +91,7 @@ final int Max_rage=6;
     public boolean hasaxe(){
         return this.entityData.get(NO_AXE);
     }
+
     public void sethasaxe(boolean hasaxe){
         this.entityData.set(NO_AXE,hasaxe);
     }
@@ -97,6 +99,7 @@ final int Max_rage=6;
     public int getcurrentragebuildup(){
         return this.entityData.get(RAGE_BUILDUP);
     }
+
     public void setcurrentragebuildup(int ragebuildup){
         this.entityData.set(RAGE_BUILDUP,ragebuildup);
     }
@@ -104,6 +107,7 @@ final int Max_rage=6;
     public int getcurrentrage(){
         return this.entityData.get(RAGE);
     }
+
     public void setcurrentrage(int rage){
         this.entityData.set(RAGE,rage);
     }
@@ -111,6 +115,7 @@ final int Max_rage=6;
     public int getaxethrow(){
         return this.entityData.get(AXE_THROW);
     }
+
     public void setaxethrow(int axethrow){
         this.entityData.set(AXE_THROW,axethrow);
     }
@@ -118,6 +123,7 @@ final int Max_rage=6;
     public int getmarkiplierpuch(){
         return this.entityData.get(MARKIPILER_PUNCH);
     }
+
     public void setmarkiplierpuch(int punch){
         this.entityData.set(MARKIPILER_PUNCH,punch);
     }
@@ -125,6 +131,7 @@ final int Max_rage=6;
     public int getaxeslash(){
         return this.entityData.get(AXE_SLASH);
     }
+
     public void setaxeslash(int axeslash){
         this.entityData.set(AXE_SLASH,axeslash);
     }
@@ -132,6 +139,7 @@ final int Max_rage=6;
     public int geticeattack(){
         return this.entityData.get(ICE_ATTACK);
     }
+
     public void seticeattack(int iceattack){
         this.entityData.set(ICE_ATTACK,iceattack);
     }
@@ -139,6 +147,7 @@ final int Max_rage=6;
     public int getragesoulfireball(){
         return this.entityData.get(RAGE_SOULFIRE);
     }
+
     public void setragefireball(int soulfireball){
         this.entityData.set(RAGE_SOULFIRE,soulfireball);
     }
@@ -146,6 +155,7 @@ final int Max_rage=6;
     public int getaxespin(){
         return this.entityData.get(AXE_SPIN);
     }
+
     public void setaxespin(int axesspin){
         this.entityData.set(AXE_SPIN,axesspin);
     }
@@ -153,6 +163,7 @@ final int Max_rage=6;
     public int getrageiceattack(){
         return this.entityData.get(RAGE_ICE_ATTACK);
     }
+
     public void setrageiceattack(int iceattack){
         this.entityData.set(RAGE_ICE_ATTACK,iceattack);
     }
@@ -160,12 +171,10 @@ final int Max_rage=6;
     public int getsoulfireball(){
         return this.entityData.get(SOULFIREBALL);
     }
+
     public void setsoulfireball(int soulfireball){
         this.entityData.set(SOULFIREBALL,soulfireball);
     }
-
-
-
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
@@ -203,10 +212,18 @@ final int Max_rage=6;
 
     private PlayState animations(AnimationState<Dullahan> dullahanAnimationState) {
 
-
-
         if (getHealth()<=0.01){
             dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("death_normal", Animation.LoopType.HOLD_ON_LAST_FRAME));
+            return PlayState.CONTINUE;
+        }
+
+        if(this.getaxethrow()>30&&0<this.getaxethrow()){
+            dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("throwaxe", Animation.LoopType.PLAY_ONCE));
+            return PlayState.CONTINUE;
+        }
+
+        if (!hasaxe()&&getaxewait()<=-150){
+            dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("retrevie_axe", Animation.LoopType.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
         }
 
@@ -220,7 +237,6 @@ final int Max_rage=6;
             return PlayState.CONTINUE;
         }
 
-
         if(this.getaxeslash()>0&&hasaxe()){
             dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("axe_slash", Animation.LoopType.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
@@ -232,6 +248,15 @@ final int Max_rage=6;
        //     return PlayState.CONTINUE;
        // }
 
+        if(dullahanAnimationState.isMoving()&&!hasaxe()){
+            dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("dull_walk_no_axe", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
+        if (!dullahanAnimationState.isMoving()&&!hasaxe()){
+            dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
 
         if(dullahanAnimationState.isMoving()&&hasaxe()){
             dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
@@ -242,10 +267,6 @@ final int Max_rage=6;
             dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("idle_axe", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         }
-
-
-
-
 
         return PlayState.STOP;
     }
@@ -283,7 +304,7 @@ final int Max_rage=6;
             setcurrentragebuildup(getcurrentragebuildup()+2);
         }
 
-        setmarkiplierpuch(getmarkiplierpuch()-1);
+      //  setmarkiplierpuch(getmarkiplierpuch()-1);
 
 
 
@@ -301,7 +322,7 @@ final int Max_rage=6;
 
 
 
-      //  setaxethrow(getaxethrow()-1);
+       setaxethrow(getaxethrow()-1);
 
 
 
@@ -324,16 +345,22 @@ final int Max_rage=6;
     protected void registerGoals() {
     goalSelector.addGoal(0, new FloatGoal(this));
    // goalSelector.addGoal(0,new Funnygoal(this));
- //   goalSelector.addGoal(5,new MarkiplierpunchGoal(this,25));
- //   goalSelector.addGoal(3,new AxeslashGoal(this,25));
-    goalSelector.addGoal(3,new Axethrowgoal(this,25));
-   // goalSelector.addGoal(3,new AxespinGoal(this,40));
+        //done
+        //   goalSelector.addGoal(5,new MarkiplierpunchGoal(this,25));
+        //done
+        //   goalSelector.addGoal(3,new AxeslashGoal(this,25));
+   //doneish
+    //goalSelector.addGoal(3,new Axethrowgoal(this,20));
+
+    goalSelector.addGoal(3,new AxespinGoal(this,40));
+
    // goalSelector.addGoal(3,new SoulfireballGoal(this,45));
   //  goalSelector.addGoal(3,new IceattackGoal(this,30));
     targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     targetSelector.addGoal(1, new HurtByTargetGoal(this));
     goalSelector.addGoal(2,new Dullahanmove(this,0.5,true));
- //   goalSelector.addGoal(3,new getaxebackgoal(this,30));
+  //done
+        // goalSelector.addGoal(3,new getaxebackgoal(this,30));
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {
@@ -483,7 +510,7 @@ float z_diff=0;
         @Override
         public void tick() {
             super.tick();
-go--;
+           go--;
             LivingEntity livingEntity =dullahan.getTarget();
 
             if (livingEntity != null){
@@ -496,8 +523,8 @@ go--;
 
            if (go==15){                                                                                              //replace with the registry call
                DullanhanAxe dullanhanAxe=new DullanhanAxe(this.dullahan,this.dullahan.level(), Itemregististeries.DULLAHAN_AXE.toStack(),null);
-
-               dullanhanAxe.setPos(dullahan.getViewVector(1));
+               Vec3 vec3=dullahan.getViewVector(1);
+               dullanhanAxe.setPos(this.dullahan.getX() + vec3.x * 3.0, this.dullahan.getY(0.5) + 0.5, this.dullahan.getZ() + vec3.z * 3.0);
               y_diff= (float) (y_diff-dullanhanAxe.getY());
                double d3 = Math.sqrt(x_diff * x_diff + z_diff * z_diff);
                dullanhanAxe.shoot(x_diff,y_diff+d3*0.4,z_diff,1.6F, (float)(14 - dullahan.level().getDifficulty().getId() * 4));
@@ -533,9 +560,10 @@ go--;
          return false;
      }
 
-            return dullahan.getaxethrow()<-100&&livingEntity.distanceTo(dullahan)>6&&
-                    dullahan.hasaxe()&&dullahan.level().random.nextInt(10)==2
-                    ;
+            return dullahan.getaxethrow()<-40 //-100?
+                    //&& livingEntity.distanceTo(dullahan)>6
+                 //   &&dullahan.level().random.nextInt(10)==2
+           &&dullahan.hasaxe() &&dullahan.getmarkiplierpuch()<=0&&dullahan.getaxeslash()<=0;
         }
     }
 
@@ -900,7 +928,8 @@ private static class AxespinGoal extends Goal {
             return false;
         }
 
-        return (dullahan.getaxespin()<-200&&dullahan.getcurrentrage()>=4)&&dullahan.hasaxe()&& dullahan.distanceTo(livingEntity)<5;
+        return (dullahan.getaxespin()<-200&&dullahan.getcurrentrage()>=3)
+                &&dullahan.hasaxe()&& dullahan.distanceTo(livingEntity)<5;
     }
 
 

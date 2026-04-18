@@ -14,14 +14,17 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -98,7 +101,7 @@ public class DullanhanAxe extends AbstractArrow implements GeoEntity {
         super.defineSynchedData(builder);
         builder.define(ID_LOYALTY, (byte) 0);
         builder.define(ISBEINGCALLEDBACK,false);
-        builder.define(TIMER,100);
+        builder.define(TIMER,1000);
     }
 
 
@@ -114,8 +117,8 @@ public class DullanhanAxe extends AbstractArrow implements GeoEntity {
 
         Entity entity = this.getOwner();
 if (entity instanceof Player) {
-    int i = (Byte) this.entityData.get(ID_LOYALTY);
-    if (i > 0 && (this.dealtDamage || this.isNoPhysics())) {
+  //  int i = (Byte) this.entityData.get(ID_LOYALTY);
+    if ( (this.dealtDamage || this.isNoPhysics())) {
         if (!this.isAcceptibleReturnOwner()) {
             if (!this.level().isClientSide && this.pickup == Pickup.ALLOWED) {
                 this.spawnAtLocation(this.getPickupItem(), 0.1F);
@@ -125,25 +128,21 @@ if (entity instanceof Player) {
         } else {
             this.setNoPhysics(true);
             Vec3 vec3 = entity.getEyePosition().subtract(this.position());
-            this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015 * (double) i, this.getZ());
+            this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015 * (double) 3, this.getZ());
             if (this.level().isClientSide) {
                 this.yOld = this.getY();
             }
 
-            double d0 = 0.05 * (double) i;
+            double d0 = 0.05 * (double) 3;
             this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d0)));
-            if (this.clientSideReturnTridentTickCount == 0) {
-                this.playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.0F);
-            }
+
 
             ++this.clientSideReturnTridentTickCount;
         }
    }} else if (entity instanceof Dullahan) {
         if ( (this.dealtDamage || this.isNoPhysics())) {
             if (!this.isAcceptibleReturnOwner()) {
-                if (!this.level().isClientSide &&  0>=gettimer()) {
-                    this.spawnAtLocation(this.getPickupItem(), 0.1F);
-                }
+
 
                 this.discard();
             } else {
@@ -155,14 +154,16 @@ if (entity instanceof Player) {
                 }
 
                 double d0 = 0.05;
-                this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d0)));
-                if (this.gettimer()<=0) {
-                    this.playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.0F);
-                }
 
-                this.settimer(gettimer()-1);
-            }}
-}
+
+
+
+                    this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d0)));
+
+
+
+            }
+}}
         super.tick();
     }
 
@@ -171,7 +172,18 @@ if (entity instanceof Player) {
         return this.dealtDamage ? null : super.findHitEntity(startVec, endVec);
     }
 
+    protected void hitBlockEnchantmentEffects(ServerLevel level, BlockHitResult hitResult, ItemStack stack) {
+        Vec3 vec3 = hitResult.getBlockPos().clampLocationWithin(hitResult.getLocation());
+        Entity var6 = this.getOwner();
+        LivingEntity var10002;
+        if (var6 instanceof LivingEntity livingentity) {
+            var10002 = livingentity;
+        } else {
+            var10002 = null;
+        }
 
+        EnchantmentHelper.onHitBlock(level, stack, var10002, this, (EquipmentSlot)null, vec3, level.getBlockState(hitResult.getBlockPos()), (p_348680_) -> this.kill());
+    }
 
 
     protected void onHitEntity(EntityHitResult result) {
@@ -191,13 +203,11 @@ if (entity instanceof Player) {
             }
 
             var7 = this.level();
-            if (var7 instanceof ServerLevel) {
-                ServerLevel serverlevel1 = (ServerLevel) var7;
+            if (var7 instanceof ServerLevel serverlevel1) {
                 EnchantmentHelper.doPostAttackEffectsWithItemSource(serverlevel1, entity, damagesource, this.getWeaponItem());
             }
 
-            if (entity instanceof LivingEntity) {
-                LivingEntity livingentity = (LivingEntity) entity;
+            if (entity instanceof LivingEntity livingentity) {
                 this.doKnockback(livingentity, damagesource);
                 this.doPostHurtEffects(livingentity);
             }
@@ -207,7 +217,7 @@ if (entity instanceof Player) {
     }
 
         @Override
-    protected ItemStack getDefaultPickupItem() {
+    protected @NotNull ItemStack getDefaultPickupItem() {
         return new ItemStack(Itemregististeries.DULLAHAN_AXE.asItem());
     }
 
