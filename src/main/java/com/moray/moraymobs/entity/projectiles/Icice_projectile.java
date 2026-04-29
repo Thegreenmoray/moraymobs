@@ -12,11 +12,16 @@ import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
 
-public class Icice_projectile extends AbstractHurtingProjectile {
+public class Icice_projectile extends AbstractHurtingProjectile implements GeoEntity {
     private static final EntityDataAccessor<Boolean> RAGED= SynchedEntityData.defineId(Icice_projectile.class, EntityDataSerializers.BOOLEAN);
+    private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
 
     public Icice_projectile(EntityType<? extends AbstractHurtingProjectile> entityType, Level level) {
         super(entityType, level);
@@ -93,5 +98,13 @@ public class Icice_projectile extends AbstractHurtingProjectile {
     }
 
 
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
 
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return Cache;
+    }
 }

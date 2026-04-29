@@ -1,5 +1,6 @@
 package com.moray.moraymobs.entity.projectiles;
 
+import com.moray.moraymobs.registries.Mobregistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -28,7 +29,7 @@ public class Soulfireball extends Fireball {
 
 
     public Soulfireball(Level level, LivingEntity owner, Vec3 movement, boolean inrage) {
-        super(EntityType.FIREBALL, owner, movement, level);
+        super(Mobregistries.SOULFIREBALL.get(), owner, movement, level);
         this.setrage(inrage);
 
     }
@@ -84,7 +85,10 @@ public class Soulfireball extends Fireball {
         super.readAdditionalSaveData(compound);
         compound.putBoolean("rage",this.israge());
     }
-
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(RAGED,false);
+    }
 
     @Override
     public boolean isPickable() {

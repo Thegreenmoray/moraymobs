@@ -172,6 +172,12 @@ public class Mobregistries {
           ENTITY_TYPE.register("icice",()->EntityType.Builder.<Icice_projectile>of(Icice_projectile::new, MobCategory.MISC)
                   .sized(1F,3F).fireImmune().build("icice"));
 
+  final public static Supplier<EntityType<Soulfireball>> SOULFIREBALL=
+          ENTITY_TYPE.register("soulfireball",()->EntityType.Builder.<Soulfireball>of(Soulfireball::new, MobCategory.MISC)
+                  .sized(2F,3F).fireImmune().build("soulfireball"));
+
+
+
     public static void register(IEventBus bus){
     ENTITY_TYPE.register(bus);
 }

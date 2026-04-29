@@ -56,6 +56,8 @@ EntityRenderers.register(Mobregistries.LESSER_TESSERACT.get(),Tesseractrender::n
  EntityRenderers.register(Mobregistries.ROCKPUP.get(), Rockrender::new);
  EntityRenderers.register(Mobregistries.DULLAHAN.get(), Dullahanrender::new);
  EntityRenderers.register(Mobregistries.DULLAHAN_AXE.get(), Axerender::new);
+ EntityRenderers.register(Mobregistries.SOULFIREBALL.get(),Soulfirerender::new);
+ EntityRenderers.register(Mobregistries.ICICE.get(),Soulicerender::new);
     }
 
 
