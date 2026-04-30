@@ -153,12 +153,12 @@ if (entity instanceof Player) {
                     this.yOld = this.getY();
                 }
 
-                double d0 = 0.05;
+             //   double d0 = 0.05;
 
 
 
 
-                    this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d0)));
+                  //  this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d0)));
 
 
 
@@ -192,7 +192,7 @@ if (entity instanceof Player) {
         Entity entity1 = this.getOwner();
         DamageSource damagesource = this.damageSources().trident(this, (Entity) (entity1 == null ? this : entity1));
         Level var7 = this.level();
-        if (var7 instanceof ServerLevel serverlevel) {
+        if (var7 instanceof ServerLevel serverlevel && !(getOwner() instanceof Dullahan)) {
             f = EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, damagesource, f);
         }
 
