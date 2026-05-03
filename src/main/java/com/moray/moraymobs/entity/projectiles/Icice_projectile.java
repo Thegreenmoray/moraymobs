@@ -48,14 +48,15 @@ public class Icice_projectile extends AbstractHurtingProjectile implements GeoEn
         if (this.israge()) {
             this.noPhysics = true;
             super.tick();
-            this.noPhysics = false;}else{
+            this.noPhysics = false;}
+        else{
             super.tick();
         }
 
         Vec3 vec3=getDeltaMovement();
 
         if (this.israge()) {
-            this.setDeltaMovement(vec3.x, vec3.y - 0.1, vec3.z);
+            this.setDeltaMovement(vec3.x, vec3.y - 0.4, vec3.z);
         } else {
             this.setDeltaMovement(vec3.x, vec3.y - 0.05, vec3.z);
         }
@@ -65,7 +66,7 @@ public class Icice_projectile extends AbstractHurtingProjectile implements GeoEn
             List<Entity> entities_in_list=this.level().getEntities(this,this.getBoundingBox().inflate(1));
             if (!entities_in_list.isEmpty()){
                 for (Entity entity : entities_in_list) {
-                    if (entity instanceof LivingEntity) {
+                    if (entity instanceof LivingEntity&& !entity.equals(this.getOwner())) {
                         entity.hurt(this.damageSources().fallingBlock(this),israge()?12.0F:6.0F);
                     }
                 }

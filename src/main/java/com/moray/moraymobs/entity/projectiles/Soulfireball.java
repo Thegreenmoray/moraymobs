@@ -51,7 +51,8 @@ public class Soulfireball extends Fireball {
         if (!this.level().isClientSide) {
             //may want to look into EventHooks later
             boolean flag = net.neoforged.neoforge.event.EventHooks.canEntityGrief(this.level(), this.getOwner());
-            this.level().explode(this, this.getX(), this.getY(), this.getZ(), israge()? 7.0f:3.0f, flag, Level.ExplosionInteraction.MOB);
+
+            this.level().explode(this, this.getX(), this.getY(), this.getZ(), israge()? 6.0f:3.0f, flag, Level.ExplosionInteraction.MOB);
             this.discard();
         }
     }

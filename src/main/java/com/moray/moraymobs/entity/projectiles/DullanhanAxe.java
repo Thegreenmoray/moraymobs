@@ -39,13 +39,30 @@ public class DullanhanAxe extends AbstractArrow implements GeoEntity {
     public int clientSideReturnTridentTickCount;
     private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
 
+   ItemStack axe =new ItemStack(Itemregististeries.DULLAHAN_AXE.asItem());
+
+
     public DullanhanAxe(EntityType<? extends AbstractArrow> entityType, Level level) {
         super(entityType, level);
 
         this.pickup =  Pickup.DISALLOWED;
 
     }
+    protected ItemStack getPickupItem() {
+        return axe;
+    }
 
+    public DullanhanAxe(Level level, double x, double y, double z, ItemStack pickupItemStack) {
+        super(Mobregistries.DULLAHAN_AXE.get(), x, y, z, level, pickupItemStack, pickupItemStack);
+        this.entityData.set(ID_LOYALTY, this.getLoyaltyFromItem(pickupItemStack));
+        axe=pickupItemStack.copy();
+    }
+
+    public DullanhanAxe(Level level, LivingEntity shooter, ItemStack pickupItemStack) {
+        super(Mobregistries.DULLAHAN_AXE.get(), shooter, level, pickupItemStack, null);
+        this.entityData.set(ID_LOYALTY, this.getLoyaltyFromItem(pickupItemStack));
+        axe=pickupItemStack.copy();
+    }
 
     public int gettimer(){
         return this.entityData.get(TIMER);
@@ -117,8 +134,8 @@ public class DullanhanAxe extends AbstractArrow implements GeoEntity {
 
         Entity entity = this.getOwner();
 if (entity instanceof Player) {
-  //  int i = (Byte) this.entityData.get(ID_LOYALTY);
-    if ( (this.dealtDamage || this.isNoPhysics())) {
+   int i = (Byte) this.entityData.get(ID_LOYALTY);
+    if ( i > 0 &&(this.dealtDamage || this.isNoPhysics())) {
         if (!this.isAcceptibleReturnOwner()) {
             if (!this.level().isClientSide && this.pickup == Pickup.ALLOWED) {
                 this.spawnAtLocation(this.getPickupItem(), 0.1F);
@@ -128,12 +145,12 @@ if (entity instanceof Player) {
         } else {
             this.setNoPhysics(true);
             Vec3 vec3 = entity.getEyePosition().subtract(this.position());
-            this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015 * (double) 3, this.getZ());
+            this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015 * (double) i, this.getZ());
             if (this.level().isClientSide) {
                 this.yOld = this.getY();
             }
 
-            double d0 = 0.05 * (double) 3;
+            double d0 = 0.05 * (double) i;
             this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d0)));
 
 
@@ -141,29 +158,23 @@ if (entity instanceof Player) {
         }
    }} else if (entity instanceof Dullahan) {
         if ( (this.dealtDamage || this.isNoPhysics())) {
-            if (!this.isAcceptibleReturnOwner()) {
-
-
-                this.discard();
-            } else {
                 this.setNoPhysics(true);
                 Vec3 vec3 = entity.getEyePosition().subtract(this.position());
                 this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015 , this.getZ());
                 if (this.level().isClientSide) {
                     this.yOld = this.getY();
                 }
-
-             //   double d0 = 0.05;
-
-
-
-
-                  //  this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d0)));
+                if (clientSideReturnTridentTickCount>120){
+                    discard();
+                }
 
 
+            ++this.clientSideReturnTridentTickCount;
+}
 
-            }
-}}
+
+
+}
         super.tick();
     }
 
@@ -190,10 +201,10 @@ if (entity instanceof Player) {
         Entity entity = result.getEntity();
         float f = 15.0F;
         Entity entity1 = this.getOwner();
-        DamageSource damagesource = this.damageSources().trident(this, (Entity) (entity1 == null ? this : entity1));
+        DamageSource damagesource = this.damageSources().thrown(this, (Entity) (entity1 == null ? this : entity1));
         Level var7 = this.level();
         if (var7 instanceof ServerLevel serverlevel && !(getOwner() instanceof Dullahan)) {
-            f = EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, damagesource, f);
+            f = EnchantmentHelper.modifyDamage(serverlevel, this.getPickupItem(), entity, damagesource, f);
         }
 
         this.dealtDamage = true;
@@ -218,7 +229,7 @@ if (entity instanceof Player) {
 
         @Override
     protected @NotNull ItemStack getDefaultPickupItem() {
-        return new ItemStack(Itemregististeries.DULLAHAN_AXE.asItem());
+        return axe;
     }
 
     @Override
