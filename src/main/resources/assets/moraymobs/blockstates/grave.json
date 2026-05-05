@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "moraymobs:block/grave"
+    },
+    "facing=south": {
+      "model": "moraymobs:block/grave",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "moraymobs:block/grave",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "moraymobs:block/grave",
+      "y": 270
+    }
+  }
+}

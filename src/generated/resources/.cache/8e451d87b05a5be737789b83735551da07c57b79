@@ -1,4 +1,5 @@
-// 1.21.1	2026-03-11T15:53:46.9700791	Tags for minecraft:item mod id moraymobs
+// 1.21.1	2026-05-04T18:59:35.1132255	Tags for minecraft:item mod id moraymobs
+f77ce6399621fbd78e029561992324a80b07cfe5 data/minecraft/tags/item/axes.json
 531a542a2fd4c63d291cd490511db8b597f579a5 data/minecraft/tags/item/chest_armor.json
 662f7b8fc77e38f19a3b613d3f1a0b4baa7ebb7d data/minecraft/tags/item/enchantable/durability.json
 38b9e11be008d3f4016999866a40b460326b91a3 data/minecraft/tags/item/foot_armor.json

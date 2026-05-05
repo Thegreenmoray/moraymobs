@@ -10,6 +10,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+// Check if this import
 
 
 public class Itemregististeries {
@@ -206,8 +207,12 @@ public class Itemregististeries {
     final public static DeferredItem<Item> LAMPREY_PIE=ITEM.register("lamprey_pie",
             ()->new Item(new Item.Properties().food(new FoodProperties.Builder().saturationModifier(8).nutrition(10).build()).stacksTo(64)));
 
-    final public static DeferredItem<Item> DULLAHAN_AXE=ITEM.register("dullahan_axe",
-            ()->new ItemDullahanaxe(new Item.Properties().attributes(AxeItem.createAttributes(Tiers.NETHERITE,11f,-2.8f)).durability(3000)));
+    final public static DeferredItem<Item> DULLAHAN_AXE=ITEM.register("axeitem",
+            ()->new ItemDullahanaxe(new Item.Properties().
+                    attributes(AxeItem.createAttributes(Tiers.NETHERITE,
+                            11f,-3.4f))
+                    .durability(3000).rarity(Rarity.EPIC)
+            ));
 
 
     public static void register(IEventBus bus){

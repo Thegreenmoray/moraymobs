@@ -40,6 +40,7 @@
   "item.moraymobs.raw_lamprey": "Raw Lamprey",
   "item.moraymobs.cooked_lamprey": "Cooked Lamprey",
   "item.moraymobs.lamprey_pie": "Lamprey Pie",
+  "item.moraymobs.axeitem": "Dullahan's Axe",
   "item.moraymobs.spawn_basaltlisk": "Spawn Basaltlisk",
   "item.moraymobs.spawn_body_snatcher": "Spawn Body Snatcher",
   "item.moraymobs.spawn_opposum": "Spawn Opossum",
@@ -58,6 +59,7 @@
   "item.moraymobs.spawn_spriggan": "Spawn Spriggan",
   "item.moraymobs.spawn_lamprey": "Spawn Lamprey",
   "item.moraymobs.spawn_rockpup": "Spawn Rockpup",
+  "item.moraymobs.spawn_dullahan": "Spawn Dullahan",
 
   "block.moraymobs.basaltlamp": "Basalt Lamp",
   "block.moraymobs.blockscale": "Block of Scales",
@@ -72,6 +74,7 @@
 "block.moraymobs.keytopblock": "Key Top Block",
   "block.moraymobs.lava_sponge": "Lava Sponge",
   "block.moraymobs.super_lava_sponge": "Super Lava Sponge",
+  "block.moraymobs.grave": "Dullahan's Grave",
 
   "entity.moraymobs.bodysnatcher": "Body Snatcher",
   "entity.moraymobs.opossum": "Opossum",
@@ -92,6 +95,7 @@
   "entity.moraymobs.spriggan": "Spriggan",
   "entity.moraymobs.lamprey": "Lamprey",
   "entity.moraymobs.rockpup": "Rockpup",
+  "entity.moraymobs.dullahan":"Dullahan",
 
 "creative.moray_tab": "Moray Items",
 "effect.moraymobs.stun": "Stun",

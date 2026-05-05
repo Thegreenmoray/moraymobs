@@ -1,7 +1,8 @@
 package com.moray.moraymobs.item;
 
 import com.moray.moraymobs.entity.projectiles.DullanhanAxe;
-import com.moray.moraymobs.registries.Itemregististeries;
+import com.moray.moraymobs.rendersandmodels.render.Axeitemrender;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -22,26 +23,30 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.entity.projectile.ThrownTrident;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraft.world.item.component.Tool;
-import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.List;
+import java.util.function.Consumer;
 
-public class ItemDullahanaxe extends AxeItem implements ProjectileItem{
+public class ItemDullahanaxe extends AxeItem implements ProjectileItem, GeoItem {
+    private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
 
 
     public ItemDullahanaxe(Properties p_40524_) {
-        super(Tiers.NETHERITE, p_40524_);
+
+
+        super(Tiers.NETHERITE,p_40524_);
     }
 
     public static ItemAttributeModifiers createAttributes() {
@@ -51,7 +56,21 @@ public class ItemDullahanaxe extends AxeItem implements ProjectileItem{
     public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
         return !player.isCreative();
     }
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            private Axeitemrender renderer;
 
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                if(this.renderer == null) {
+                    renderer = new Axeitemrender();
+                }
+
+                return this.renderer;
+            }
+        });
+    }
 
 
     public UseAnim getUseAnimation(ItemStack stack) {
@@ -63,7 +82,7 @@ public class ItemDullahanaxe extends AxeItem implements ProjectileItem{
     }
 
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entityLiving, int timeLeft) {
-        if (entityLiving instanceof Player player) {
+     /*   if (entityLiving instanceof Player player) {
             int i = this.getUseDuration(stack, entityLiving) - timeLeft;
             if (i >= 10) {
                 float f = EnchantmentHelper.getTridentSpinAttackStrength(stack, player);
@@ -109,7 +128,7 @@ public class ItemDullahanaxe extends AxeItem implements ProjectileItem{
                 }
             }
         }
-
+*/
     }
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -126,6 +145,13 @@ public class ItemDullahanaxe extends AxeItem implements ProjectileItem{
         return stack.getDamageValue() >= stack.getMaxDamage() - 1;
     }
 
+    @Override
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        return super.supportsEnchantment(stack, enchantment)||enchantment == Enchantments.LOYALTY || enchantment == Enchantments.FIRE_ASPECT ;
+    }
+
+
+
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         return true;
     }
@@ -135,7 +161,7 @@ public class ItemDullahanaxe extends AxeItem implements ProjectileItem{
     }
 
     public int getEnchantmentValue() {
-        return 1;
+        return 15;
     }
 
     public Projectile asProjectile(Level level, Position pos, ItemStack stack, Direction direction) {
@@ -149,4 +175,13 @@ public class ItemDullahanaxe extends AxeItem implements ProjectileItem{
     }
 
 
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return Cache;
+    }
 }

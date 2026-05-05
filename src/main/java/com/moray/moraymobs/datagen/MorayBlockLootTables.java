@@ -48,6 +48,7 @@ public class MorayBlockLootTables  extends BlockLootSubProvider {
                 Itemregististeries.END_SEED.get() , lootitemcondition$builder));
 this.dropSelf(Blockregistrires.LAVASUCC.get());
 this.dropSelf(Blockregistrires.LAVASUCCSUPER.get());
+
     }
     protected LootTable.Builder createendGrassDrops(Block pBlock) {
         HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);

@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "moraymobs:dullahangrave",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+
+    "salt": 916477364,
+
+    "spacing": 100,
+
+    "separation": 85
+  }
+}

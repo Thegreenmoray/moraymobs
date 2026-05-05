@@ -12,7 +12,7 @@ import net.minecraft.world.damagesource.DamageType;
 import java.util.concurrent.CompletableFuture;
 
 public class DamageTagGenerator extends DamageTypeTagsProvider{
-    public static final TagKey<DamageType> ACIDBOMB = create(ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"assimilable"));
+    public static final TagKey<DamageType> ACIDBOMB = create(ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID,"acidbomb"));
 
 
     public DamageTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {

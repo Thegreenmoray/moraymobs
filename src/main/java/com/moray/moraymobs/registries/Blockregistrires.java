@@ -64,6 +64,11 @@ public class Blockregistrires {
     public static final DeferredBlock<Block> LAVASUCCSUPER=registerBlock("super_lava_sponge",
             ()->new Superlavasucc(BlockBehaviour.Properties.ofFullCopy(Blocks.SPONGE)));
 
+
+    public static final DeferredBlock<Block> GRAVE = registerBlock("grave",
+            () -> new Dullahantomb(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().noLootTable()));
+
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

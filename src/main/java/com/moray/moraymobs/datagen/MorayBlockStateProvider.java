@@ -72,7 +72,7 @@ blockWithItem(Blockregistrires.CRACKEDDARKPRISMANE);
         simpleBlockItem(Blockregistrires.KEYTOPBLOCK.get(), models().cubeAll("dark_prismarine_up_keyhole_empty",
                 ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, "block/" + "dark_prismarine_up_keyhole_empty")));
 
-
+       // directionalBlock(Blockregistrires.GRAVE.get(),models().doorTopRightOpen());
 
         getVariantBuilder(Blockregistrires.KEYDOWNBLOCK.get()).forAllStates(state -> {
             if(state.getValue(Keydownblock.KEYINSERT2)) {

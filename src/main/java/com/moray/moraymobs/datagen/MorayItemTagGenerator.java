@@ -47,6 +47,7 @@ tag(ItemTags.FOOT_ARMOR).add(Itemregististeries.BEETLE_BOOTS.get())
         .add(Itemregististeries.OMNIDENS_BOOTS.get());
 tag(ItemTags.DURABILITY_ENCHANTABLE).add(Itemregististeries.BUCCANEER.get())
         .add(Itemregististeries.STUNGUN.get());
+tag(ItemTags.AXES).add(Itemregististeries.DULLAHAN_AXE.get());
 tag(ItemTags.MEAT).add(Itemregististeries.RAW_BOWFIN.get())
         .add(Itemregististeries.RAW_PRONGHORN.get()).add(Itemregististeries.RAW_LAMPREY.get())
         .add(Itemregististeries.COOKED_BOWFIN.get()).add(Itemregististeries.COOKED_PRONGHORN.get())
