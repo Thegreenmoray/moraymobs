@@ -38,7 +38,7 @@ jobs:
         with:
             token: ${{ secrets.CURSEFORGE_TOKEN }} #sorry, has to kept secret for security reasons
             project_id: '1065362' # is project ID
-            file_path: 'build/libs/moraymobs-*.jar'
+            file_path: 'build/libs/moraymobs-1.8.0.jar'
             game_versions: '1.21.1'
             release_type: 'release'
             display_name: 'Moraysmobs'
