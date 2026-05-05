@@ -38,6 +38,7 @@ public class MorayBiomeModifiers {
 
 
 
+
     private static ResourceKey<BiomeModifier> registerKey(String name) {
         return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(MorayMobs.MODID, name));
     }
