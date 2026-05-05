@@ -48,4 +48,5 @@ jobs:
             -Dullahan Axe, A very powerful but slow weapon, drops from Dullahan
             -Various minor changes I cant remember'
             changelog_type: 'markdown'
+            game_endpoint: 'minecraft'
       #  thanks itsmoew!
