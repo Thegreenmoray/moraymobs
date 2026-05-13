@@ -38,7 +38,7 @@ public class MarkiplierpunchGoal extends Goal {
         if (livingEntity != null){
 
 
-            if (go>20){
+            if (go>23){
                 if (!ismarked){
                     jump_vector=getjumpvector();
                     ismarked=true;
@@ -50,21 +50,21 @@ public class MarkiplierpunchGoal extends Goal {
 
             }
 
-            if (go==15){
+            if (go==19){
                 postionx= (int) livingEntity.position().x();
                 postiony= (int) livingEntity.position().y();
                 postionz= (int) livingEntity.position().z();
             }
 
 
-            if (go<10){
+            if (go<6){
 
                 //have a static position dont just follow the player
                 dullahan.moveTo(postionx,postiony,postionz);
 
 
-                if (dullahan.position().distanceTo(new Vec3(postionx,postiony,postionz))<=1.5){
-                    livingEntity.hurt(livingEntity.damageSources().mobAttack(dullahan), 11.0F);
+                if (dullahan.position().distanceTo(livingEntity.position())<=1.0&&dullahan.onGround()){
+                    livingEntity.hurt(livingEntity.damageSources().mobAttack(dullahan), 8.0F);
 
                 }
 

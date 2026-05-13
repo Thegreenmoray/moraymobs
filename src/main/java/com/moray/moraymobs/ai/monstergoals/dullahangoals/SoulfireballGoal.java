@@ -58,22 +58,26 @@ public class SoulfireballGoal extends Goal {
             if (go==10){
 
                 if (dullahan.getcurrentrage()>=2&&dullahan.getragesoulfireball()>0){
-                    Vec3 vec3 = this.dullahan.getViewVector(1.0F);
-                    double d2 = livingEntity.getX() - (this.dullahan.getX() + vec3.x * (double)4.0F);
+                    Vec3 vec3 = this.dullahan.getViewVector(2.0F);
+                    double d2 = livingEntity.getX() - (this.dullahan.getX() + vec3.x * (double)2.0F);
                     double d3 = livingEntity.getY((double)0.5F) - ((double)0.5F + this.dullahan.getY((double)0.5F));
-                    double d4 = livingEntity.getZ() - (this.dullahan.getZ() + vec3.z * (double)4.0F);
+                    double d4 = livingEntity.getZ() - (this.dullahan.getZ() + vec3.z * (double)2.0F);
 
-                    Vec3 vec31 = new Vec3(-d2, d3, -d4);
+                    Vec3 vec31 = new Vec3(d2, d3, d4);
                     Soulfireball soulfireball =new Soulfireball(this.dullahan.level(), this.dullahan,vec31.normalize(),true);
+                    soulfireball.setPos(this.dullahan.getX() + vec3.x * (double)4.0F, this.dullahan.getY((double)0.5F) + (double)0.5F, soulfireball.getZ() + vec3.z * (double)4.0F);
+
                     this.dullahan.level().addFreshEntity(soulfireball);
                 } else  {
-                    Vec3 vec3 = this.dullahan.getViewVector(1.0F);
-                    double d2 = livingEntity.getX() - (this.dullahan.getX() + vec3.x * (double)4.0F);
+                    Vec3 vec3 = this.dullahan.getViewVector(9.0F);
+                    double d2 = livingEntity.getX() - (this.dullahan.getX() + vec3.x * (double)2.0F);
                     double d3 = livingEntity.getY((double)0.5F) - ((double)0.5F + this.dullahan.getY((double)0.5F));
-                    double d4 = livingEntity.getZ() - (this.dullahan.getZ() + vec3.z * (double)4.0F);
+                    double d4 = livingEntity.getZ() - (this.dullahan.getZ() + vec3.z * (double)2.0F);
 
-                    Vec3 vec31 = new Vec3(-d2, d3, -d4);
+                    Vec3 vec31 = new Vec3(d2, d3, d4);
                     Soulfireball soulfireball =new Soulfireball(this.dullahan.level(), this.dullahan,vec31.normalize(),false);
+                    soulfireball.setPos(this.dullahan.getX() + vec3.x * (double)4.0F, this.dullahan.getY((double)0.5F) + (double)0.5F, soulfireball.getZ() + vec3.z * (double)4.0F);
+
                     this.dullahan.level().addFreshEntity(soulfireball);
                 }
 

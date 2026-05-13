@@ -211,7 +211,7 @@ public class Itemregististeries {
             ()->new ItemDullahanaxe(new Item.Properties().
                     attributes(AxeItem.createAttributes(Tiers.NETHERITE,
                             11f,-3.4f))
-                    .durability(3000).rarity(Rarity.EPIC)
+                    .durability(3000).fireResistant().rarity(Rarity.EPIC)
             ));
 
 

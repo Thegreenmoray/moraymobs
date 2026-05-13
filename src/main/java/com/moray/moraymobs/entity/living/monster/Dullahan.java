@@ -40,7 +40,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 
-public class Dullahan extends Monster implements GeoEntity {
+public class  Dullahan extends Monster implements GeoEntity {
 
     private final AnimatableInstanceCache Cache = GeckoLibUtil.createInstanceCache(this);
 
@@ -251,12 +251,12 @@ final int Max_rage=6;
       //      return PlayState.CONTINUE;
      //   }
 
-    if (this.getmarkiplierpuch()<75&&this.getmarkiplierpuch()>=1){
+    if (this.getmarkiplierpuch()<60&&this.getmarkiplierpuch()>=1){
         dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("markpilierpunch", Animation.LoopType.HOLD_ON_LAST_FRAME));
         return PlayState.CONTINUE;
     }
 
-        if (this.getmarkiplierpuch()<100&&this.getmarkiplierpuch()>=75){
+        if (this.getmarkiplierpuch()<100&&this.getmarkiplierpuch()>=60){
             dullahanAnimationState.getController().setAnimation(RawAnimation.begin().then("markipilerpunchjump", Animation.LoopType.HOLD_ON_LAST_FRAME));
             return PlayState.CONTINUE;
         }
@@ -394,7 +394,7 @@ final int Max_rage=6;
     goalSelector.addGoal(0, new FloatGoal(this));
    // goalSelector.addGoal(0,new Funnygoal(this));
         //done
-    goalSelector.addGoal(2,new MarkiplierpunchGoal(this,23));
+    goalSelector.addGoal(2,new MarkiplierpunchGoal(this,30));
         //done
    goalSelector.addGoal(3,new AxeslashGoal(this,25));
    //doneish

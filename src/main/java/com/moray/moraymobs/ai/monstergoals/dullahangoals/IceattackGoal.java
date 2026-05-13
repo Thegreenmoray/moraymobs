@@ -24,7 +24,7 @@ public class IceattackGoal extends Goal {
         LivingEntity livingEntity =dullahan.getTarget();
         go--;
         if (livingEntity != null){
-            if(go>15){
+            if(go==15){
                 x_diff= (float) (livingEntity.getX());
                 y_diff = (float) (livingEntity.getY());
                 z_diff= (float) (livingEntity.getZ());
@@ -38,7 +38,7 @@ public class IceattackGoal extends Goal {
                     y_diff= y_diff+10;
                     ice.setPos(x_diff,y_diff,z_diff);
                     this.dullahan.level().addFreshEntity(ice);
-                } else if (dullahan.getcurrentrage()<2) {
+                } else{
                     Icice_projectile ice =new Icice_projectile(this.dullahan,this.dullahan.level(),false);
                     y_diff= y_diff+10;
                     ice.setPos(x_diff,y_diff,z_diff);
