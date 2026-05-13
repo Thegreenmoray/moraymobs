@@ -38,15 +38,15 @@ jobs:
         with:
             token: ${{ secrets.CURSEFORGE_TOKEN }} #sorry, has to kept secret for security reasons
             project_id: '1065362' # is project ID
-            file_path: 'build/libs/moraymobs-1.8.0.jar'
+            file_path: 'build/libs/moraymobs-1.8.1.jar'
          #   game_versions: '1.21.1'
             release_type: 'release'
             display_name: 'Moraysmobs'
-            changelog: '-Added Dullahan: 
-            A miniboss with various powers and a rage mechanic.
-            Found in mountain/hills biomes in a structure
-            -Dullahan Axe, A very powerful but slow weapon, drops from Dullahan
-            -Various minor changes I cant remember'
+            changelog: '-Fixed the jump punch of the dullahan not working properly and 
+            incorreclty damaging target when target should be out of reach
+            -reduced damage of jump punch
+            -Fixed soulfireball expolding immdealty
+            -Fixed Ice attack not always spawning'
             changelog_type: 'markdown'
             game_endpoint: 'minecraft'
       #  thanks itsmoew!
